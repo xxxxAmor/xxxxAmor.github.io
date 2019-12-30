@@ -28,11 +28,11 @@ if b&amp;gt;c,b和c对换
 <meta property="og:site_name" content="Geek is the new chic">
 <meta property="og:description" content="C语言代码练习题选择结构程序设计1.输入a,b,c三个数，要求按由小到大的顺序输出伪代码： begin if a&amp;gt;b,a和b对换 if a&amp;gt;c,a和c对换 if b&amp;gt;c,b和c对换 1int main() 2&amp;#123;3	float a,b,c,temp;4	scanf(&quot;%f %f %f&quot;,&amp;amp;a,&amp;amp;b,&amp;amp;c);5	if(a&amp;gt;b)6	&amp;#123;7">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="c:%5CUsers%5CLenovo%5CPictures%5Cbug1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;.com&#x2F;&#x2F;C:%5CUsers%5CLenovo%5CPictures%5Cbug1.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;img1.ph.126.net&#x2F;RMwsVYSE_1yYH0wdcJZ9ug&#x3D;&#x3D;&#x2F;1327154515208835523.jpg">
 <meta property="og:updated_time" content="2019-12-05T13:21:29.573Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:%5CUsers%5CLenovo%5CPictures%5Cbug1.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;.com&#x2F;&#x2F;C:%5CUsers%5CLenovo%5CPictures%5Cbug1.png">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -90,7 +90,7 @@ if b&amp;gt;c,b和c对换
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" target="_blank" rel="noopener" data-url="http://yoursite.com/2019/12/05/C%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/" data-id="ck4i7g5f10004ogxz7ttf1ttm" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" target="_blank" rel="noopener" data-url="http://yoursite.com/2019/12/05/C%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/" data-id="ck4smzuts00025cxz5n8y4t3i" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -145,7 +145,7 @@ if b&amp;gt;c,b和c对换
 <p>   输出三行，每行为该班组号（从1开始）和该班组的平均工资。平均工资输出要求小数点后必须保留2位有效数字（四舍五入），不足补零。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="function"></span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> group;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">for</span>(group=<span class="number">1</span>;group&lt;=<span class="number">3</span>;group++)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">float</span> total=<span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">float</span> avg=<span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">float</span> n;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">int</span> i=<span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"> <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%f"</span>,&amp;n))&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">if</span>(n!=<span class="number">-1</span>)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">      total+=n;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">      i++;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;     <span class="keyword">else</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">break</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">   avg=total/i;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">   <span class="built_in">printf</span>(<span class="string">"%d %.2f\n"</span>,group,avg);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 
-<p><img src="C:%5CUsers%5CLenovo%5CPictures%5Cbug1.png" alt=""></p>
+<p><img src="/.com//C:%5CUsers%5CLenovo%5CPictures%5Cbug1.png" alt></p>
 <p>输出结果不是很理想，有时间再改</p>
 <h5 id="7-计算1-1-2-1-3-1-4-…-1-99-1-100-…的值，直到最后一项的绝对值小于10-4为止。"><a href="#7-计算1-1-2-1-3-1-4-…-1-99-1-100-…的值，直到最后一项的绝对值小于10-4为止。" class="headerlink" title="7.计算1 - 1/2 + 1/3 - 1/4 + … + 1/99 - 1/100 + …的值，直到最后一项的绝对值小于10-4为止。"></a>7.计算1 - 1/2 + 1/3 - 1/4 + … + 1/99 - 1/100 + …的值，直到最后一项的绝对值小于10-4为止。</h5><p>解题思路：注意定义sum是float型，设置一个标记sign，来解决正负号的变化</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="function"></span>&#123; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">   <span class="keyword">int</span> n = <span class="number">1</span>; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">   <span class="keyword">float</span> term = <span class="number">1.0</span>, sign = <span class="number">1</span>, sum = <span class="number">0</span>; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">   <span class="keyword">while</span>(<span class="built_in">fabs</span>(term)&gt;=<span class="number">0.0001</span>   )</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">   &#123; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">      term=sign/n   ; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      sum = sum + term; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">      sign = -sign   ; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">      n++; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">   &#125; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">   <span class="built_in">printf</span>(<span class="string">"sum = %.6f\n"</span>, sum); </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">   <span class="keyword">return</span> <span class="number">0</span>; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
@@ -373,6 +373,10 @@ if b&amp;gt;c,b和c对换
       <ul>
         
           <li>
+            <a href="/2019/12/31/2019/2019/">2019</a>
+          </li>
+        
+          <li>
             <a href="/2019/12/23/Web-Design/">Web Design</a>
           </li>
         
@@ -388,10 +392,6 @@ if b&amp;gt;c,b和c对换
             <a href="/2019/12/01/DataStructer/">DataStructer</a>
           </li>
         
-          <li>
-            <a href="/2019/11/30/About%20me/">About  me</a>
-          </li>
-        
       </ul>
     </div>
   </aside>
@@ -401,7 +401,7 @@ if b&amp;gt;c,b和c对换
   <aside class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-content">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Note/" rel="tag">Note</a><span class="tag-list-count">4</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Note/" rel="tag">Note</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" rel="tag">年度总结</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </aside>
 
