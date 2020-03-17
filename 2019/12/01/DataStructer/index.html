@@ -1,21 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  
-  
-  <meta name="description" content="链表1.1链表的定义链表是一种数据结构，在内存中通过节点记录内存地址而相互链接形成一条链的储存方式。相比数组而言，链表在内存中不需要连续的区域，只需要每一个节点都能够记录下一个节点的内存地址，通过引用进行查找，这样的特点也就造就了链表增删操作时间消耗很小，而查找遍历时间消耗很大的特点
-1.2 单链表" />
-  
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-  
-  
-  
-  
-  
-  
-  <title>DataStructer | Geek is the new chic</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
   <meta name="description" content="链表1.1链表的定义链表是一种数据结构，在内存中通过节点记录内存地址而相互链接形成一条链的储存方式。相比数组而言，链表在内存中不需要连续的区域，只需要每一个节点都能够记录下一个节点的内存地址，通过引用进行查找，这样的特点也就造就了链表增删操作时间消耗很小，而查找遍历时间消耗很大的特点 1.2 单链表特点： 每个元素(表项)由结点(Node)构成。   线性结构   结点可以连续，可以不连续存储 结">
 <meta name="keywords" content="Note">
 <meta property="og:type" content="article">
@@ -51,68 +55,181 @@
 <meta property="og:updated_time" content="2019-12-05T12:24:19.024Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;01&#x2F;DataStructer&#x2F;D:%5Cxxxxamor%5CDataStructure%5CPNG%5C1569065607094.png">
-  
-  
-    <link rel="icon" href="/css/images/favicon.ico">
-  
-  <link rel="stylesheet" href="/css/style.css">
+
+<link rel="canonical" href="http://yoursite.com/2019/12/01/DataStructer/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>DataStructer | Geek is the new chic</title>
   
 
-  
-  <!-- baidu webmaster push -->
-  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
-<body class="home blog custom-background custom-font-enabled single-author">
-  <div id="page" class="hfeed site">
-      <header id="masthead" class="site-header" role="banner">
-    <hgroup>
-      <h1 class="site-title">
-        <a href="/" title="Geek is the new chic" rel="home">Geek is the new chic</a>
-      </h1>
-      
-        <h2 class="site-description hitokoto"></h2>
-        <script type="text/javascript" src="https://v1.hitokoto.cn/?encode=js"></script>
-      
-    </hgroup>
 
-    <nav id="site-navigation" class="main-navigation" role="navigation">
-            <button class="menu-toggle">菜单</button>
-            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
-            <div class="menu-main-container">
-                <ul id="menu-main" class="nav-menu">
-                
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
-                
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
-                
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Music</a></li>
-                
-                </ul>
-            </div>
-    </nav>
-</header>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
 
-      <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-DataStructer" class="post-DataStructer post type-post status-publish format-standard hentry">
-    <!---->
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
 
-      <header class="entry-header">
-        
-        
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Geek is the new chic</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
   
-    <h1 class="entry-title article-title">
-      DataStructer
-    </h1>
-  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
 
-        
-        <div class="comments-link">
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
             
-            <a href="javascript:void(0);" target="_blank" rel="noopener" data-url="http://yoursite.com/2019/12/01/DataStructer/" data-id="ck7t21qwj0002w8xz7h72hn4e" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
 
-    <div class="entry-content">
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/01/DataStructer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="xxxxAmor">
+      <meta itemprop="description" content="Not all girls are made of sugar and spice and everything nice.Some girls are made of adventures,fine beer,brains and no fear">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Geek is the new chic">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          DataStructer
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-01 22:05:27" itemprop="dateCreated datePublished" datetime="2019-12-01T22:05:27+08:00">2019-12-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-05 20:24:19" itemprop="dateModified" datetime="2019-12-05T20:24:19+08:00">2019-12-05</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
         <h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><h2 id="1-1链表的定义"><a href="#1-1链表的定义" class="headerlink" title="1.1链表的定义"></a>1.1链表的定义</h2><p>链表是一种数据结构，在内存中通过节点记录内存地址而相互链接形成一条链的储存方式。相比数组而言，链表在内存中不需要连续的区域，只需要每一个节点都能够记录下一个节点的内存地址，通过引用进行查找，这样的特点也就造就了链表增删操作时间消耗很小，而查找遍历时间消耗很大的特点</p>
 <h3 id="1-2-单链表"><a href="#1-2-单链表" class="headerlink" title="1.2 单链表"></a>1.2 单链表</h3><p><code>特点：</code></p>
@@ -259,125 +376,189 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">PolyNode</span> &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">int</span> coef;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">int</span> <span class="built_in">exp</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">	PolyNode* next;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;node;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="function">node* <span class="title">CreatPoly</span><span class="params">()</span> </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">	PolyNode* h, * tail, * s;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">int</span> coef, <span class="built_in">exp</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">	h = (PolyNode*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(node));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">	h-&gt;next = <span class="literal">NULL</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">	tail = h;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">	scanf_s(<span class="string">"%d,%d"</span>, &amp;coef, &amp;<span class="built_in">exp</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">while</span> (coef) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">		PolyNode* s = (PolyNode*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(node));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">		s-&gt;coef = coef;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">		s-&gt;<span class="built_in">exp</span> = <span class="built_in">exp</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">		s-&gt;next = tail-&gt;next;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">		tail-&gt;next = s;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">		tail = s;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">		</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">		scanf_s(<span class="string">"%d,%d"</span>, &amp;coef, &amp;<span class="built_in">exp</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">	&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">return</span> h;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Add</span><span class="params">(node* Polya, node* Polyb)</span> </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">	node* p, * q, * pre, * temp;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">	p = Polya-&gt;next;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">	q = Polyb-&gt;next;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">	pre = Polya;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">int</span> sum;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">while</span> (p &amp;&amp; q) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">		<span class="keyword">if</span> (p-&gt;<span class="built_in">exp</span> &lt; q-&gt;<span class="built_in">exp</span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">			pre-&gt;next = p;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">			pre = p;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">			p = p-&gt;next;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">		&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (p-&gt;<span class="built_in">exp</span> &gt; q-&gt;<span class="built_in">exp</span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">			pre-&gt;next = q;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">			pre = q;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">			q = q-&gt;next;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">		&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">		<span class="keyword">else</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">			sum = p-&gt;coef + q-&gt;coef;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line">			<span class="keyword">if</span> (sum) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">				p-&gt;coef = sum;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">				pre-&gt;next = p;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">				pre = p;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line">				p = p-&gt;next;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line">				temp = q-&gt;next;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line">				<span class="built_in">free</span>(q);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">58</span></pre></td><td class="code"><pre><span class="line">				q = temp;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">59</span></pre></td><td class="code"><pre><span class="line">			&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">60</span></pre></td><td class="code"><pre><span class="line">			<span class="keyword">else</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">61</span></pre></td><td class="code"><pre><span class="line">				temp = p-&gt;next;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">62</span></pre></td><td class="code"><pre><span class="line">				<span class="built_in">free</span>(p);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">63</span></pre></td><td class="code"><pre><span class="line">				p = temp;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">64</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">65</span></pre></td><td class="code"><pre><span class="line">				temp = q-&gt;next;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">66</span></pre></td><td class="code"><pre><span class="line">				<span class="built_in">free</span>(q);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">67</span></pre></td><td class="code"><pre><span class="line">				q = temp;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">68</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">69</span></pre></td><td class="code"><pre><span class="line">			&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">70</span></pre></td><td class="code"><pre><span class="line">		&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">71</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">72</span></pre></td><td class="code"><pre><span class="line">	&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">73</span></pre></td><td class="code"><pre><span class="line">	pre-&gt;next = p ? p : q;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">74</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">75</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">76</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">77</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">PrintPoly</span><span class="params">(node* h)</span> </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">78</span></pre></td><td class="code"><pre><span class="line">	node* p = h-&gt;next;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">79</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">while</span> (p) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">80</span></pre></td><td class="code"><pre><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d*x^%d "</span>, p-&gt;coef, p-&gt;<span class="built_in">exp</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">81</span></pre></td><td class="code"><pre><span class="line">		p = p-&gt;next;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">82</span></pre></td><td class="code"><pre><span class="line">	&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">83</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">84</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">85</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">86</span></pre></td><td class="code"><pre><span class="line"><span class="function"></span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">87</span></pre></td><td class="code"><pre><span class="line">	node* Polya, * Polyb;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">88</span></pre></td><td class="code"><pre><span class="line">	<span class="built_in">printf</span>(<span class="string">"请输入第一个一元多项式的系数和指数(例如：2,3 5,6 以输入系数为0来结束)\n"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">89</span></pre></td><td class="code"><pre><span class="line">	</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">90</span></pre></td><td class="code"><pre><span class="line">	Polya = CreatPoly();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">91</span></pre></td><td class="code"><pre><span class="line">	<span class="built_in">printf</span>(<span class="string">"第一个一元多项式:"</span> );</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">92</span></pre></td><td class="code"><pre><span class="line">	PrintPoly(Polya);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">93</span></pre></td><td class="code"><pre><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">94</span></pre></td><td class="code"><pre><span class="line">	<span class="built_in">printf</span>(<span class="string">"请输入第二个一元多项式的系数和指数（例如：2,3 5,6以输入系数为0来结束）\n"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">95</span></pre></td><td class="code"><pre><span class="line">	Polyb = CreatPoly();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">96</span></pre></td><td class="code"><pre><span class="line">	<span class="built_in">printf</span>(<span class="string">"第二个一元多项式:\n"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">97</span></pre></td><td class="code"><pre><span class="line">	PrintPoly(Polyb);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">98</span></pre></td><td class="code"><pre><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">99</span></pre></td><td class="code"><pre><span class="line">	<span class="built_in">printf</span>(<span class="string">"这两个一元多项式相加后的结果为"</span> );</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">100</span></pre></td><td class="code"><pre><span class="line">	Add(Polya, Polyb);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">101</span></pre></td><td class="code"><pre><span class="line">	PrintPoly(Polya);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">102</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">103</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 
 
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2019/12/01/DataStructer/">
-    <time datetime="2019-12-01T14:05:27.000Z" class="entry-date">
-        2019-12-01
-    </time>
-</a>
-    
-    
-  <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Note/" rel="tag">Note</a></li></ul>
-
-    </footer>
-</article>
-
-
-    
-<nav class="nav-single">
-    <h3 class="assistive-text">文章导航</h3>
-    
-        <span class="nav-previous"><a href="/2019/12/05/Python/" rel="prev"><span class="meta-nav">←</span> Python</a></span>
-    
-    
-        <span class="nav-next"><a href="/2019/11/30/About%20me/" rel="next">About  me <span class="meta-nav">→</span></a></span>
-    
-</nav><!-- .nav-single -->
-
-
-
-
-
-
-
-</div></div>
-        <div id="secondary" class="widget-area" role="complementary">
-  
-    
-<link rel="stylesheet" href="/dist/APlayer.min.css">
-<div id="aplayer"></div>
-<script type="text/javascript" src="/dist/APlayer.min.js"></script>
-<script type="text/javascript" src="/dist/music.js"></script>
-
-  
-    
-  
-    
-  <aside class="widget">
-    <h3 class="widget-title">Recents</h3>
-    <div class="widget-content">
-      <ul>
-        
-          <li>
-            <a href="/2020/03/14/%E6%B1%89%E5%AD%97%E7%BC%96%E7%A0%81/">汉字编码</a>
-          </li>
-        
-          <li>
-            <a href="/2019/12/31/2019/">2019</a>
-          </li>
-        
-          <li>
-            <a href="/2019/12/23/Web-Design/">Web Design</a>
-          </li>
-        
-          <li>
-            <a href="/2019/12/05/C%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/">C语言笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2019/12/05/Python/">Python</a>
-          </li>
-        
-      </ul>
     </div>
-  </aside>
 
-  
     
-  <aside class="widget">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget-content">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Note/" rel="tag">Note</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" rel="tag">年度总结</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" rel="tag">自然语言处理</a><span class="tag-list-count">1</span></li></ul>
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Note/" rel="tag"># Note</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/11/30/About%20me/" rel="prev" title="About  me">
+      <i class="fa fa-chevron-left"></i> About  me
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/05/Python/" rel="next" title="Python">
+      Python <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
-  </aside>
-
+      </footer>
+    
+  </article>
   
-</div>
-      </div>
-      <footer id="colophon" role="contentinfo">
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-    <p>&copy; 2020 xxxxAmor
-    All rights reserved.</p>
-	<div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  本站访客数:<span id="busuanzi_value_site_uv"></span>
-</span>
-</div>
-
-    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
-</footer>
-    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
-
-<script src="/js/jquery-3.3.1.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
-<script src="/js/navigation.js"></script>
-
-<div id="bg"></div>
+  
+  
 
   </div>
-  <!-- 页面点击小红心 -->
-<script type="text/javascript" src="/js/clicklove.js"></script>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#链表"><span class="nav-number">1.</span> <span class="nav-text">链表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1链表的定义"><span class="nav-number">1.1.</span> <span class="nav-text">1.1链表的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-单链表"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.2 单链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-单链表的结构定义"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2.1 单链表的结构定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-单链表的插入"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.2.2 单链表的插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-单链表的删除"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.2.3 单链表的删除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-带表头结点的单链表"><span class="nav-number">1.2.</span> <span class="nav-text">2 带表头结点的单链表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-前插法建立单链表"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 前插法建立单链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-后插法建立单链表"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 后插法建立单链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-单链表清空"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 单链表清空</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-计算单链表长度"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4 计算单链表长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-在单链表中按值查找"><span class="nav-number">1.2.5.</span> <span class="nav-text">2.5 在单链表中按值查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-在单链表中按序号查找（定位）"><span class="nav-number">1.2.6.</span> <span class="nav-text">2.6 在单链表中按序号查找（定位）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-在单链表中插入新元素"><span class="nav-number">1.2.7.</span> <span class="nav-text">2.7  在单链表中插入新元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-8-在单链表中删除一个结点"><span class="nav-number">1.2.8.</span> <span class="nav-text">2.8 在单链表中删除一个结点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-循环链表"><span class="nav-number">1.3.</span> <span class="nav-text">3 循环链表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-带尾指针的循坏链表"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 带尾指针的循坏链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-双向链表"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 双向链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-双向循坏链表"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.3 双向循坏链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-建立空的双向循坏链表"><span class="nav-number">1.3.4.</span> <span class="nav-text">3.4  建立空的双向循坏链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-双向循坏链表的查找"><span class="nav-number">1.3.5.</span> <span class="nav-text">3.5 双向循坏链表的查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-双向循坏链表的插入（非空表）"><span class="nav-number">1.3.6.</span> <span class="nav-text">3.6 双向循坏链表的插入（非空表）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-7-双向循坏链表的插入（空表）"><span class="nav-number">1.3.7.</span> <span class="nav-text">3.7 双向循坏链表的插入（空表）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-8-双向循坏链表的删除"><span class="nav-number">1.3.8.</span> <span class="nav-text">3.8 双向循坏链表的删除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-字符串"><span class="nav-number">1.4.</span> <span class="nav-text">4  字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-在C中常用的字符串操作"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 在C中常用的字符串操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-字符串类型的主要操作"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 字符串类型的主要操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-多项式"><span class="nav-number">1.5.</span> <span class="nav-text">5 多项式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-多项式的存储表示"><span class="nav-number">1.5.1.</span> <span class="nav-text">5.1 多项式的存储表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-两个多项式的相加"><span class="nav-number">1.5.2.</span> <span class="nav-text">5.2 两个多项式的相加</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">xxxxAmor</p>
+  <div class="site-description" itemprop="description">Not all girls are made of sugar and spice and everything nice.Some girls are made of adventures,fine beer,brains and no fear</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xxxxAmor</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/chitose.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":"True#是否在手机端显示"},"log":false});</script></body>
 </html>
