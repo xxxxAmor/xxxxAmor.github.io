@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="如何快速高效解决问题​                                                  —又名《我是怎样抄代码的》 相信大家在平时的学习过程中都遇到过和我一样的问题，有一道编程题没有思路，安装环境遇到奇怪报错，去百度搜索，出来的结果都是博客园，百度知道，CSDN，有时候看了一大堆也没有看出解决方案，最后心情大概就是像这张图一样。   因此，在这里十分有必要安利我摸">
+<meta name="keywords" content="攻略">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何快速高效解决问题">
+<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;2020&#x2F;03&#x2F;22&#x2F;%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%AB%98%E6%95%88%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98&#x2F;index.html">
+<meta property="og:site_name" content="Geek is the new chic">
+<meta property="og:description" content="如何快速高效解决问题​                                                  —又名《我是怎样抄代码的》 相信大家在平时的学习过程中都遇到过和我一样的问题，有一道编程题没有思路，安装环境遇到奇怪报错，去百度搜索，出来的结果都是博客园，百度知道，CSDN，有时候看了一大堆也没有看出解决方案，最后心情大概就是像这张图一样。   因此，在这里十分有必要安利我摸">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;github.com&#x2F;2020&#x2F;03&#x2F;22&#x2F;%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%AB%98%E6%95%88%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98&#x2F;5.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;github.com&#x2F;2020&#x2F;03&#x2F;22&#x2F;%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%AB%98%E6%95%88%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98&#x2F;2019%5C1.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;github.com&#x2F;2020&#x2F;03&#x2F;22&#x2F;%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%AB%98%E6%95%88%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98&#x2F;2019%5C3.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;github.com&#x2F;2020&#x2F;03&#x2F;22&#x2F;%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%AB%98%E6%95%88%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98&#x2F;2019%5C4.png">
+<meta property="og:updated_time" content="2020-03-22T10:29:37.109Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;github.com&#x2F;2020&#x2F;03&#x2F;22&#x2F;%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%AB%98%E6%95%88%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98&#x2F;5.png">
+
+<link rel="canonical" href="https://github.com/2020/03/22/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%AB%98%E6%95%88%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>如何快速高效解决问题 | Geek is the new chic</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Geek is the new chic</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/2020/03/22/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%AB%98%E6%95%88%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="xxxxAmor">
+      <meta itemprop="description" content="Not all girls are made of sugar and spice and everything nice.Some girls are made of adventures,fine beer,brains and no fear">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Geek is the new chic">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何快速高效解决问题
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-22 18:23:07 / 修改时间：18:29:37" itemprop="dateCreated datePublished" datetime="2020-03-22T18:23:07+08:00">2020-03-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="如何快速高效解决问题"><a href="#如何快速高效解决问题" class="headerlink" title="如何快速高效解决问题"></a>如何快速高效解决问题</h3><p>​                                                  —又名《我是怎样抄代码的》</p>
+<p>相信大家在平时的学习过程中都遇到过和我一样的问题，有一道编程题没有思路，安装环境遇到奇怪报错，去百度搜索，出来的结果都是博客园，百度知道，CSDN，有时候看了一大堆也没有看出解决方案，最后心情大概就是像这张图一样。</p>
+<img src="/2020/03/22/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%AB%98%E6%95%88%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98/5.png" alt="image-20200322181821934" style="zoom: 50%;">
+
+<p>因此，在这里十分有必要安利我摸索出来的三大法宝。</p>
+<h4 id="Google"><a href="#Google" class="headerlink" title="Google"></a>Google</h4><p>在我对谷歌的力量一无所知的时候，天真地以为它就是一个普通的搜索引擎，直到我学会了一些“黑魔法”，才体会到它的方便好用。</p>
+<ul>
+<li>OR, AND</li>
+</ul>
+<p>OR: 返回的结果是包含OR两边的任意关键词，比如: amazon OR ebay</p>
+<p>AND: 返回的结果是包含AND两边的关键词，比如: amazon AND ebay</p>
+<p>注意：OR, AND 必须是大写</p>
+<ul>
+<li>用 “-“ 在搜索结果中排除某个关键词。比如搜索 amazon -ebay，搜索的结果就不会出现ebay。</li>
+</ul>
+<ul>
+<li>用 * 星号搜索指定关键词</li>
+</ul>
+<p>在Google中搜索 “amazon * guide”，其中的*号代表任何文字。返回的结果就不仅包含 Amazon Quick Start Guide 还包括 Amazon PPC Guide</p>
+<ul>
+<li>intext: 指返回的页面正文中包含关键词的页面。</li>
+</ul>
+<p>例如：在google中搜索 “intext:amazon ebay wish” 就会返回页面正文中包含 “amazon ebay wish”的页面</p>
+<ul>
+<li>allintitle：搜索返回的是页面标题中包含多组关键词的文件。</li>
+</ul>
+<p>例如：allintitle:amazon ebay wish</p>
+<p>就相当于:intitle:amazon intitle:ebay intitle:wish</p>
+<p>返回的是标题中既包含“amazon”, “ebay” , “wish” 的页面。</p>
+<ul>
+<li>filetype:</li>
+</ul>
+<p>基本查询语法：[关键字1]+ [空格]+[filetype]+[:]+[文件类型标识]　　</p>
+<p>filetype:指令用来搜索特定的资源，比如PDF电子书、Word文件等非常有用。</p>
+<p>例子: SEO filetype:pdf 返回的就是包含SEO这个关键词的所有 PDF文件。</p>
+<ul>
+<li>related:</li>
+</ul>
+<p>查询与某个网站相关联或者相类似的页面</p>
+<p>例如搜索：related:amazon.com，就得出了 Rakuten 等电商平台</p>
+<h4 id="Stack-over-flow"><a href="#Stack-over-flow" class="headerlink" title="Stack over flow"></a>Stack over flow</h4><p>我强烈建议学会使用，并习惯Stackoverflow.。这是个英文网站，很多问题和回答都是英文的，因此最好养成用英文来搜索问题的习惯。想要得到准确的解决方案的前提是能精确定位你的问题，我把它简单概括为三步。<code>第一步：你使用的编程语言是什么</code>.永远在输入问题关键词的时候先输入你使用的是哪种编程语言。<code>第二步：定位你在做什么事情时遇到了什么问题</code>。比如我曾经在使用Anaconda时遇到了安装包装不上的问题，就可以这样描述：Anaconda install package.<code>第三步：复制错误信息</code>。有了这三步，只要你不是第一个遇见某个技术问题的人，你基本就会在 stackoverflow 找到相同或者类似的问题。</p>
+<p>在Stackoverflow上也是可以提问的，但是我建议提问前一定要搜索，当实在找不到答案后再提问。对于那些靠搜索就能得到答案的问题，StackOverFlow 上的广大程序员是毫不留情的，会让你的反对票快速上升。。。如果你问了一些低质量的提问，是会被关闭或者删除的。既然讲到提问，还是要学习一些典型的提问/回答习惯，这里提供一些笔记</p>
+<p>提问：<br>1，In my limited experience with ..    谦虚表达自己在某方面的经验</p>
+<p>2， I am searching for a long time on net. But no use. Please help or try to give some ideas how to achieve this.   找了很久未果，求助</p>
+<p>3，after searching around for a decent XX solution and found that everything out there was difficult to use.  找了N种方法都发现太难了。</p>
+<p>4，I’ ve looked around and apparently I’ve got the choice between these libraries/ solutions:   说明自己是努力搜索过的，然后目前有了哪几种方案</p>
+<p>5，which seems it’s a promising solution.  看起来是一个好解决方案</p>
+<p>6,I haveve tried multiple variations of this, but none of them seem to work. Any ideas? 试了很多种方法都无效，求助</p>
+<p>7，Wanted to know if it’s good practice to do that and what would be the best way to do that? 我的做法是否正确，是否有更好的方法？</p>
+<p>稍微提一句，在它的官方说明里有一段话：Please do not add a comment on your question or on an answer to say “Thank you”. Comments are meant for requesting clarification, leaving constructive criticism, or adding relevant but minor additional information – not for socializing. If you want to say “thank you,” vote on or accept that person’s answer, or simply pay it forward by providing a great answer to someone else’s question.也就是说在提问的时候不要写“Thank you”,你的点赞就是对回答者的感谢。</p>
+<p>之所以写出如何提问，是因为之前老师讲过的提问的智慧让我印象很深刻。当你拋出一个技术问题时，最终是否能得到有用的回答，往往取决于你所提问和追问的方式。 有时候，清晰描述一个问题，特别是技术问题没有想象的那么简单。提问从来就是一门学问，可惜很多人没有意识到这一点，或者没有给予足够的重视。</p>
+<h4 id><a href="#" class="headerlink" title></a></h4><h4 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h4><p>全球最大的同性交友社区，同时也是程序员托管代码的平台，有很多优秀的开源项目。经常去逛逛，说不定会发现惊喜。我来推荐几个收藏的仓库。</p>
+<p>设计工具：<a href="https://github.com/LisaDziuba/Awesome-Design-Tools">https://github.com/LisaDziuba/Awesome-Design-Tools</a></p>
+<p><img src="/2020/03/22/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%AB%98%E6%95%88%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98/2019%5C1.png" alt="image-20200322174219056"></p>
+<p>NLP民工的乐园: 几乎最全的中文NLP资源库：<a href="https://github.com/fighting41love/funNLP">https://github.com/fighting41love/funNLP</a></p>
+<p><img src="/2020/03/22/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%AB%98%E6%95%88%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98/2019%5C3.png" alt="image-20200322174721780"></p>
+<p>爬虫集合：<a href="https://github.com/facert/awesome-spider">https://github.com/facert/awesome-spider</a></p>
+<p><img src="/2020/03/22/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%AB%98%E6%95%88%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98/2019%5C4.png" alt="image-20200322175246748"></p>
+<p>以上就是基本介绍，至于怎么访问，相信大家会找到办法的~</p>
+
+    </div>
+
+    
+    
+    
+	  
+	  <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%94%BB%E7%95%A5/" rel="tag"># 攻略</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/20/%E9%9A%90%E5%96%BB%E7%9A%84%E9%AD%94%E6%B3%95%E5%B8%88/" rel="prev" title="隐喻的魔法师">
+      <i class="fa fa-chevron-left"></i> 隐喻的魔法师
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何快速高效解决问题"><span class="nav-text">如何快速高效解决问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Google"><span class="nav-text">Google</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Stack-over-flow"><span class="nav-text">Stack over flow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-text"></span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GitHub"><span class="nav-text">GitHub</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="xxxxAmor"
+      src="/images/touxiang.jpg">
+  <p class="site-author-name" itemprop="name">xxxxAmor</p>
+  <div class="site-description" itemprop="description">Not all girls are made of sugar and spice and everything nice.Some girls are made of adventures,fine beer,brains and no fear</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+  
+
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Amor</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">119k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:48</span>
+</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/chitose.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":"True#是否在手机端显示"},"log":false});</script></body>
+</html>
