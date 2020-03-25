@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="2.1 关系模型的数据结构及其形式化定义关系的形式化定义及有关概念域 ：域是一组具有相同数据类型的值的集合，又称为值域。整数，实数和字符串的集合都是域。域中所包含的值的个数称为域的基数。  笛卡尔积：给定一组域D1,D2…Dn(它们可以包含相同的元素，即可以完全不同，也可以部分或全部相同)，D1.D2…Dn的笛卡尔积为：  笛卡尔积实际上是一个二维表 关系：笛卡尔积D1XD2X…Dn的任一子集称为">
+<meta name="keywords" content="数据库原理与应用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库原理与应用（二）">
+<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%8C%EF%BC%89&#x2F;index.html">
+<meta property="og:site_name" content="Geek is the new chic">
+<meta property="og:description" content="2.1 关系模型的数据结构及其形式化定义关系的形式化定义及有关概念域 ：域是一组具有相同数据类型的值的集合，又称为值域。整数，实数和字符串的集合都是域。域中所包含的值的个数称为域的基数。  笛卡尔积：给定一组域D1,D2…Dn(它们可以包含相同的元素，即可以完全不同，也可以部分或全部相同)，D1.D2…Dn的笛卡尔积为：  笛卡尔积实际上是一个二维表 关系：笛卡尔积D1XD2X…Dn的任一子集称为">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8XSEwt.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8XSKSg.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8XSnfS.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8XSsTx.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8XSr01.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8XS0X9.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8XpKN6.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8Xp8jH.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8Xp3ge.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8XpIv4.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8Xp7r9.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8Xp48U.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8Xp52F.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8XphCT.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8XpHbR.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8XpO56.png">
+<meta property="og:updated_time" content="2020-03-25T01:38:56.389Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8XSEwt.png">
+
+<link rel="canonical" href="https://github.com/2020/03/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%8C%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>数据库原理与应用（二） | Geek is the new chic</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Geek is the new chic</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/2020/03/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%8C%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="xxxxAmor">
+      <meta itemprop="description" content="Not all girls are made of sugar and spice and everything nice.Some girls are made of adventures,fine beer,brains and no fear">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Geek is the new chic">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据库原理与应用（二）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-25 09:36:55 / 修改时间：09:38:56" itemprop="dateCreated datePublished" datetime="2020-03-25T09:36:55+08:00">2020-03-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="2-1-关系模型的数据结构及其形式化定义"><a href="#2-1-关系模型的数据结构及其形式化定义" class="headerlink" title="2.1 关系模型的数据结构及其形式化定义"></a>2.1 关系模型的数据结构及其形式化定义</h4><h5 id="关系的形式化定义及有关概念"><a href="#关系的形式化定义及有关概念" class="headerlink" title="关系的形式化定义及有关概念"></a>关系的形式化定义及有关概念</h5><p><code>域</code> ：域是一组具有相同数据类型的值的集合，又称为值域。整数，实数和字符串的集合都是域。域中所包含的值的个数称为域的基数。</p>
+<p> <code>笛卡尔积</code>：给定一组域D1,D2…Dn(它们可以包含相同的元素，即可以完全不同，也可以部分或全部相同)，D1.D2…Dn的笛卡尔积为：</p>
+<p><a href="https://imgchr.com/i/8XSEwt" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XSEwt.png" alt="8XSEwt.png"></a></p>
+<p>笛卡尔积实际上是一个二维表</p>
+<p><code>关系</code>：笛卡尔积D1XD2X…Dn的任一子集称为定义在域D1,D2….Dn上的n元关系</p>
+<p><a href="https://imgchr.com/i/8XSKSg" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XSKSg.png" alt="8XSKSg.png"></a></p>
+<p>在关系模型中，关系可以进一步定义成关系头+关系体</p>
+<h5 id="关系的性质"><a href="#关系的性质" class="headerlink" title="关系的性质"></a>关系的性质</h5><p>关系是一种规范化了的二维表中行的集合</p>
+<ul>
+<li>每一列中的分量必须来自同一个域，必须是同一类型的数据</li>
+<li>不同的属性可以来自同一个域，不同的属性必须有不同的名字</li>
+<li>列的顺序可以任意交换</li>
+<li>关系中元组的顺序可以任意</li>
+<li>关系中不允许出现相同的元组</li>
+<li>关系中每一分量必须是不可分的数据项</li>
+</ul>
+<h5 id="关系模式"><a href="#关系模式" class="headerlink" title="关系模式"></a>关系模式</h5><p>关系的描述称为关系模式</p>
+<p><a href="https://imgchr.com/i/8XSnfS" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XSnfS.png" alt="8XSnfS.png"></a></p>
+<h4 id="2-2-关系的码与关系的完整性"><a href="#2-2-关系的码与关系的完整性" class="headerlink" title="2.2 关系的码与关系的完整性"></a>2.2 关系的码与关系的完整性</h4><h5 id="候选码与主码"><a href="#候选码与主码" class="headerlink" title="候选码与主码"></a>候选码与主码</h5><p><code>候选码</code>：能唯一标识关系中元组的一个最小属性或属性集</p>
+<p><code>主码</code>：从多个候选码中选择一个作为查询，插入或删除元组的操作变量，被选用的候选码称为主码</p>
+<p><a href="https://imgchr.com/i/8XSsTx" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XSsTx.png" alt="8XSsTx.png"></a></p>
+<p><a href="https://imgchr.com/i/8XSr01" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XSr01.png" alt="8XSr01.png"></a></p>
+<p><code>主属性</code>：包含在候选码中的各个属性</p>
+<p><code>非码属性</code>：不包含在任何候选码中的属性</p>
+<p><code>全码</code>：所有属性的集合是关系的候选码</p>
+<h5 id="外码"><a href="#外码" class="headerlink" title="外码"></a>外码</h5><p><a href="https://imgchr.com/i/8XS0X9" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XS0X9.png" alt="8XS0X9.png"></a></p>
+<h5 id="关系的完整性"><a href="#关系的完整性" class="headerlink" title="关系的完整性"></a>关系的完整性</h5><ul>
+<li><p>实体完整性</p>
+<p>主码的值不能为空或部分为空</p>
+</li>
+</ul>
+<ul>
+<li><p>参照完整性</p>
+<p>如果关系R2的外码X与关系R1的主码X相符，则X的每个值等于R1中主码的某个值，或者取空值</p>
+</li>
+</ul>
+<ul>
+<li>用户定义完整性</li>
+</ul>
+<h4 id="2-3-关系代数"><a href="#2-3-关系代数" class="headerlink" title="2.3 关系代数"></a>2.3 关系代数</h4><h5 id="关系代数的分类及其运算符"><a href="#关系代数的分类及其运算符" class="headerlink" title="关系代数的分类及其运算符"></a>关系代数的分类及其运算符</h5><p>关系代数是一种抽象的查询语言，关系代数的运算对象和运算结果都是关系</p>
+<p>关系代数运算符：</p>
+<p><a href="https://imgchr.com/i/8XpKN6" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XpKN6.png" alt="8XpKN6.png"></a></p>
+<ul>
+<li>传统的集合运算</li>
+</ul>
+<p>设给定两个关系R，S，若满足：（1）具有相同的列数n （2）R中第i个属性和S中第i个属性必须来自同一个域，则说E,S是相容的。<code>除笛卡尔积外，其他的集合运算要求参加运算的关系必须满足上述的相容性定义</code></p>
+<p><a href="https://imgchr.com/i/8Xp8jH" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8Xp8jH.png" alt="8Xp8jH.png"></a></p>
+<p><a href="https://imgchr.com/i/8Xp3ge" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8Xp3ge.png" alt="8Xp3ge.png"></a></p>
+<p><a href="https://imgchr.com/i/8XpIv4" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XpIv4.png" alt="8XpIv4.png"></a></p>
+<ul>
+<li>专门的关系运算</li>
+</ul>
+<p>1.设关系模式为R（A1,A2…An),它的一个关系为R，t属于R表示t是R的一个元组，t[A1]表示元组t中相应于属性A1的一个分量</p>
+<p><a href="https://imgchr.com/i/8Xp7r9" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8Xp7r9.png" alt="8Xp7r9.png"></a></p>
+<p><a href="https://imgchr.com/i/8Xp48U" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8Xp48U.png" alt="8Xp48U.png"></a></p>
+<p><code>选取</code></p>
+<p><a href="https://imgchr.com/i/8Xp52F" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8Xp52F.png" alt="8Xp52F.png"></a></p>
+<p><code>投影</code></p>
+<p><a href="https://imgchr.com/i/8XphCT" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XphCT.png" alt="8XphCT.png"></a></p>
+<p><code>连接</code></p>
+<p><a href="https://imgchr.com/i/8XpHbR" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XpHbR.png" alt="8XpHbR.png"></a></p>
+<p>自然连接和等值连接的区别：自然连接要求相等属性值的属性名相同，等值连接不要求</p>
+<p>自然连接是去掉重复列的等值连接</p>
+<p><code>除法</code></p>
+<p><a href="https://imgchr.com/i/8XpO56" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XpO56.png" alt="8XpO56.png"></a></p>
+
+    </div>
+
+    
+    
+    
+	  
+	  <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/" rel="tag"># 数据库原理与应用</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/23/Art-Basel-2020/" rel="prev" title="Art Basel 2020">
+      <i class="fa fa-chevron-left"></i> Art Basel 2020
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-关系模型的数据结构及其形式化定义"><span class="nav-text">2.1 关系模型的数据结构及其形式化定义</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#关系的形式化定义及有关概念"><span class="nav-text">关系的形式化定义及有关概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关系的性质"><span class="nav-text">关系的性质</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关系模式"><span class="nav-text">关系模式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-关系的码与关系的完整性"><span class="nav-text">2.2 关系的码与关系的完整性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#候选码与主码"><span class="nav-text">候选码与主码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#外码"><span class="nav-text">外码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关系的完整性"><span class="nav-text">关系的完整性</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-关系代数"><span class="nav-text">2.3 关系代数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#关系代数的分类及其运算符"><span class="nav-text">关系代数的分类及其运算符</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="xxxxAmor"
+      src="/images/touxiang.jpg">
+  <p class="site-author-name" itemprop="name">xxxxAmor</p>
+  <div class="site-description" itemprop="description">Not all girls are made of sugar and spice and everything nice.Some girls are made of adventures,fine beer,brains and no fear</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+  
+
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Amor</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">121k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:50</span>
+</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/chitose.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":"True#是否在手机端显示"},"log":false});</script></body>
+</html>
