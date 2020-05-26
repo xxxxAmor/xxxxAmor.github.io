@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="VHDL基础VHDL概述VHDL的程序结构一个VHDL程序对应着一项具体工程设置，通常被称为设计实体。设计实体一般由库，程序包，实体，结构体，配置五个部分组成。实体和结构体是一个设计实体中必须包含的两个基本组成部分。 实体实体用于描述设计实体与外部的接口信号，它从外观上描述了一个设计实体，规定了其输入输出接口信号，是设计实体对外的一个通信界面 实体说明一般具有以下语句结构： 1ENTITY 实体名">
+<meta name="keywords" content="Note">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VHDL基础">
+<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;2020&#x2F;05&#x2F;26&#x2F;VHDL%E5%9F%BA%E7%A1%80&#x2F;index.html">
+<meta property="og:site_name" content="Geek is the new chic">
+<meta property="og:description" content="VHDL基础VHDL概述VHDL的程序结构一个VHDL程序对应着一项具体工程设置，通常被称为设计实体。设计实体一般由库，程序包，实体，结构体，配置五个部分组成。实体和结构体是一个设计实体中必须包含的两个基本组成部分。 实体实体用于描述设计实体与外部的接口信号，它从外观上描述了一个设计实体，规定了其输入输出接口信号，是设计实体对外的一个通信界面 实体说明一般具有以下语句结构： 1ENTITY 实体名">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-26T11:34:05.888Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://github.com/2020/05/26/VHDL%E5%9F%BA%E7%A1%80/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>VHDL基础 | Geek is the new chic</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Geek is the new chic</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/2020/05/26/VHDL%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="xxxxAmor">
+      <meta itemprop="description" content="Not all girls are made of sugar and spice and everything nice.Some girls are made of adventures,fine beer,brains and no fear">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Geek is the new chic">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VHDL基础
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-26 19:32:17 / 修改时间：19:34:05" itemprop="dateCreated datePublished" datetime="2020-05-26T19:32:17+08:00">2020-05-26</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="VHDL基础"><a href="#VHDL基础" class="headerlink" title="VHDL基础"></a>VHDL基础</h3><h4 id="VHDL概述"><a href="#VHDL概述" class="headerlink" title="VHDL概述"></a>VHDL概述</h4><h5 id="VHDL的程序结构"><a href="#VHDL的程序结构" class="headerlink" title="VHDL的程序结构"></a>VHDL的程序结构</h5><p>一个VHDL程序对应着一项具体工程设置，通常被称为设计实体。设计实体一般由库，程序包，实体，结构体，配置五个部分组成。实体和结构体是一个设计实体中必须包含的两个基本组成部分。</p>
+<h6 id="实体"><a href="#实体" class="headerlink" title="实体"></a>实体</h6><p>实体用于描述设计实体与外部的接口信号，它从外观上描述了一个设计实体，规定了其输入输出接口信号，是设计实体对外的一个通信界面</p>
+<p>实体说明一般具有以下语句结构：</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ENTITY</span> 实体名 <span class="keyword">IS</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">[<span class="keyword">GENERIC</span>(类属表);]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">[<span class="keyword">PORT</span>(端口表);]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">END</span> <span class="keyword">ENTITY</span> 实体名;</span></pre></td></tr></table></figure>
+
+<p><code>类属参数说明</code></p>
+<p>类属参数说明语句由关键词GENERIC引导一个类属参数表，表中提供设计实体和外部环境通信的各种静态信息</p>
+<p><strong>格式</strong>  </p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">GENERIC</span>（常数名：数据类型[:=设定值];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">​       ......</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">​       常数名：数据类型[:=设定值]）;</span></pre></td></tr></table></figure>
+
+<p><code>端口说明</code></p>
+<p>端口说明语句是对一个设计实体界面的说明。端口为设计实体和外部坏境的动态通信提供通道</p>
+<p><strong>格式</strong> </p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"> <span class="keyword">PORT</span>（端口名：端口模式 数据类型；</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">​     ......</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">​     端口名：端口模式 数据类型）</span></pre></td></tr></table></figure>
+
+
+
+<table>
+<thead>
+<tr>
+<th>端口模式</th>
+<th>模式说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IN</td>
+<td>输入，只读模式，主要用于时钟输入，控制输入及单向的数据输入</td>
+</tr>
+<tr>
+<td>OUT</td>
+<td>输出，单向赋值模式，常用于计数器输出</td>
+</tr>
+<tr>
+<td>BUFFER</td>
+<td>具有读功能的输出模式</td>
+</tr>
+<tr>
+<td>INOUT</td>
+<td>信号是双向的，既可以进入实体，也可以离开实体</td>
+</tr>
+</tbody></table>
+<p>​                       </p>
+<h6 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h6><p><strong>结构体的一般语句格式</strong></p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ARCHITECTURE</span> 结构体名 <span class="keyword">OF</span> 实体名 <span class="keyword">IS</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">[说明语句]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">BEGIN</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">[功能描述语句]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">END</span> <span class="keyword">ARCHITECTURE</span> 结构体名;</span></pre></td></tr></table></figure>
+
+<p><strong>结构体说明语句</strong></p>
+<p>结构体说明语句用于对结构体内部使用的信号，常数，数据类型，元件，函数和过程等进行说明，不是必须的，有时可以省略</p>
+<p><strong>功能描述语句结构</strong></p>
+<p>它含有5种不同类型，以并行方式工作的语句结构，分别是：块语句，进程语句，子程序调用语句，信号赋值语句，元件例化语句。</p>
+<h6 id="库"><a href="#库" class="headerlink" title="库"></a>库</h6><p>库是一种用来存储预先完成的程序包和数据集合体的仓库。库的说明总是放在设计实体的最前面，格式如下：</p>
+<p><code>LIARARY.库名</code></p>
+<table>
+<thead>
+<tr>
+<th>常用的库</th>
+<th>库的说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IEEE</td>
+<td>最常见的库</td>
+</tr>
+<tr>
+<td>STD</td>
+<td>标准程序包STANDARD,TEXTIO都包含在STD库中</td>
+</tr>
+<tr>
+<td>WORK</td>
+<td>用于存放用户设计和定义的一些设计单元和程序包</td>
+</tr>
+<tr>
+<td>VITAL</td>
+<td>可以提高VHDL门级时序模拟的精度</td>
+</tr>
+</tbody></table>
+<h6 id="程序包"><a href="#程序包" class="headerlink" title="程序包"></a>程序包</h6><p>程序包是构成库的单元，一个库中可以包含多个不同的程序包。通过将已说明或定义的信号，常数，数据类型，元件，函数和过程等收集到一个程序包中，并将它们并入一个库中，可以使它们适应一般额访问和调用范围。</p>
+<p><strong>格式</strong></p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">PACKAGE</span> 程序包名  <span class="keyword">IS</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"> [程序包首说明部分]   </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">END</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">PACKAGE</span> <span class="keyword">BODY</span>  <span class="keyword">IS</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"> [程序包体说明部分]       </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">END</span>  程序包名 ;</span></pre></td></tr></table></figure>
+
+
+
+<h6 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h6><p><strong>格式</strong></p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CONFIGURATION</span>  配置名 <span class="keyword">OF</span> 实体名   <span class="keyword">IS</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    [配置说明语句]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">END</span> 配置名 ;</span></pre></td></tr></table></figure>
+
+
+
+<h5 id="VHDL-的描述风格"><a href="#VHDL-的描述风格" class="headerlink" title="VHDL 的描述风格"></a>VHDL 的描述风格</h5><ul>
+<li>行为描述：只考虑电路输入与输出之间的转换行为，而不关心实现预定功能的硬件结构</li>
+<li>数据流描述：数据从输入到输出流动</li>
+<li>结构描述：对设计单元的硬件结构进行描述</li>
+</ul>
+<h4 id="VHDL的语言要素"><a href="#VHDL的语言要素" class="headerlink" title="VHDL的语言要素"></a>VHDL的语言要素</h4><h5 id="文字规则"><a href="#文字规则" class="headerlink" title="文字规则"></a>文字规则</h5><h6 id="数字型文字"><a href="#数字型文字" class="headerlink" title="数字型文字"></a>数字型文字</h6><ol>
+<li>整型文字：由数字和下划线组成</li>
+<li>实数文字：带有小数点的一种十进制的数</li>
+<li>以数制基数表示的文字：例如10#36#2 表示3600</li>
+<li>物理量文字：如50s,100m等</li>
+</ol>
+<h6 id="字符串型文字"><a href="#字符串型文字" class="headerlink" title="字符串型文字"></a>字符串型文字</h6><ol>
+<li>文字字符串：放在双引号中的一串文字，如“RIGHT”</li>
+<li>数字字符串：如B’ ‘110110010 代表二进制数数组，位矢量长度为9</li>
+<li>字符：放在单引号里的ASCII字符，如‘R’，‘6’</li>
+</ol>
+<h6 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h6><p>标识符用来定义常数，变量，信号，端口，子程序，或参数的名字。VHDL的基本标识符是以英文字母开头，不连续使用下划线，不以下划线结尾的，由26个英文大小写字母，数字0~9及下划线“_”组成的字符串</p>
+<h6 id="下标名及下标段名"><a href="#下标名及下标段名" class="headerlink" title="下标名及下标段名"></a>下标名及下标段名</h6><p>下标名用于指示数组型变量或信号的某一元素，下标段名用于指示数组型变量或信号的某一段元素</p>
+<h5 id="数据对象"><a href="#数据对象" class="headerlink" title="数据对象"></a>数据对象</h5><table>
+<thead>
+<tr>
+<th>数据对象</th>
+<th>格式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>常量</td>
+<td>CONSTANT 常量名：数据类型[:=表达式];</td>
+<td>恒定不变的值，具有全局意义</td>
+</tr>
+<tr>
+<td>变量</td>
+<td>VARIABLE 变量名：数据类型[:=初始值];</td>
+<td>局部量，只能在进程和子程序中使用</td>
+</tr>
+<tr>
+<td>信号</td>
+<td>SIGNAL 信号名：数据类型[:=初始值];</td>
+<td>可以容纳当前值，也可以保持历史值</td>
+</tr>
+</tbody></table>
+<h5 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h5><p><strong>预定义数据类型</strong></p>
+<ul>
+<li>整数类型</li>
+<li>实数类型</li>
+<li>位类型</li>
+<li>位矢量类型</li>
+<li>字符类型</li>
+<li>布尔类型</li>
+<li>时间类型</li>
+<li>错误等级类型</li>
+</ul>
+<p><strong>自定义数据类型</strong></p>
+<ul>
+<li>枚举类型</li>
+<li>数组类型</li>
+<li>记录类型</li>
+</ul>
+<h5 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h5><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>操作符</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>算术操作符</td>
+<td>+, -, /, &amp;,*,MOD, REM, SLL, SRL, SLA, SRA, ROL, ROR , ABS</td>
+</tr>
+<tr>
+<td>关系操作符</td>
+<td>=,/=,&lt;,&gt;, &lt;=, &gt;=</td>
+</tr>
+<tr>
+<td>逻辑操作符</td>
+<td>AAND,OR,NAND,NOR,XOR,XNOR,NOT</td>
+</tr>
+<tr>
+<td>符号操作符</td>
+<td>+，-</td>
+</tr>
+</tbody></table>
+<h4 id="VHDL的基本语句"><a href="#VHDL的基本语句" class="headerlink" title="VHDL的基本语句"></a>VHDL的基本语句</h4><h5 id="顺序语句"><a href="#顺序语句" class="headerlink" title="顺序语句"></a>顺序语句</h5><h6 id="赋值语句"><a href="#赋值语句" class="headerlink" title="赋值语句"></a>赋值语句</h6><table>
+<thead>
+<tr>
+<th></th>
+<th>格式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>变量赋值语句</td>
+<td>变量赋值目标：=赋值源;</td>
+<td>有效范围只局限于其所定义的进程或子程序</td>
+</tr>
+<tr>
+<td>信号赋值语句</td>
+<td>信号赋值目标&lt;=赋值源;</td>
+<td>信号具有全局特征，赋值发生在一个进程结束时</td>
+</tr>
+</tbody></table>
+<h6 id="转向控制语句"><a href="#转向控制语句" class="headerlink" title="转向控制语句"></a>转向控制语句</h6><table>
+<thead>
+<tr>
+<th></th>
+<th>格式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IF语句</td>
+<td>IF 条件句 THEN</td>
+<td>至少包含一个条件句</td>
+</tr>
+<tr>
+<td>CASE语句</td>
+<td>CASE 表达式 IS</td>
+<td>每一条语句的选择值只能出现一次</td>
+</tr>
+<tr>
+<td>LOOP语句</td>
+<td>FOR_LOOP /WHILE_LOOP</td>
+<td>使一组顺序语句重复执行</td>
+</tr>
+<tr>
+<td>NEXT语句</td>
+<td>NEXT[标号] [WHEN条件表达式]</td>
+<td>用于LOOP语句执行中的转向控制</td>
+</tr>
+<tr>
+<td>EXIT语句</td>
+<td>EXIT[标号] [WHEN条件表达式]</td>
+<td>控制LOOP循坏，从循坏中跳出，结束循坏</td>
+</tr>
+</tbody></table>
+<h6 id="等待语句"><a href="#等待语句" class="headerlink" title="等待语句"></a>等待语句</h6><table>
+<thead>
+<tr>
+<th></th>
+<th>格式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>格式1</td>
+<td>WAIT</td>
+<td>无限等待</td>
+</tr>
+<tr>
+<td>格式2</td>
+<td>WAIT ON信号表</td>
+<td>敏感信号等待</td>
+</tr>
+<tr>
+<td>格式3</td>
+<td>WAIT UNTIL 条件表达式</td>
+<td>条件等待</td>
+</tr>
+<tr>
+<td>格式4</td>
+<td>WAIT FOR 时间表达式</td>
+<td>超时等待</td>
+</tr>
+</tbody></table>
+<h6 id="返回语句"><a href="#返回语句" class="headerlink" title="返回语句"></a>返回语句</h6><table>
+<thead>
+<tr>
+<th></th>
+<th>格式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>格式1</td>
+<td>RETURN</td>
+<td>只用于过程，不返回任何值</td>
+</tr>
+<tr>
+<td>格式2</td>
+<td>RETURN 表达式</td>
+<td>用于函数，必须返回一个值</td>
+</tr>
+</tbody></table>
+<h6 id="空操作语句"><a href="#空操作语句" class="headerlink" title="空操作语句"></a>空操作语句</h6><p>不完成任何操作，只是让程序走到下一个流程</p>
+<p><strong>格式</strong>   NULL</p>
+<h5 id="并行语句"><a href="#并行语句" class="headerlink" title="并行语句"></a>并行语句</h5><h6 id="进程语句"><a href="#进程语句" class="headerlink" title="进程语句"></a>进程语句</h6><p><strong>格式</strong></p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[进程标号：]:<span class="keyword">PROCESS</span> [(敏感信号参数表)] [<span class="keyword">IS</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    [进程说明语句]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">   <span class="keyword">BEGIN</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    顺序执行语句;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">   <span class="keyword">END</span> <span class="keyword">PROCESS</span></span></pre></td></tr></table></figure>
+
+
+
+<h6 id="块语句"><a href="#块语句" class="headerlink" title="块语句"></a>块语句</h6><p><strong>格式</strong></p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">块标号：<span class="keyword">BLOCK</span>[]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">       [说明语句;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">       <span class="keyword">BEGIN</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">       并行语句;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">END</span> <span class="keyword">BLOCK</span> 块标号;</span></pre></td></tr></table></figure>
+
+
+
+<h6 id="并行信号赋值语句"><a href="#并行信号赋值语句" class="headerlink" title="并行信号赋值语句"></a>并行信号赋值语句</h6><ul>
+<li>简单信号赋值语句</li>
+</ul>
+<p><strong>格式</strong>    赋值目标信号&lt;=表达式</p>
+<p>信号赋值目标的对象必须是信号，且其数据类型必须与赋值号右边表达式的数据类型一致</p>
+<ul>
+<li>条件信号赋值语句</li>
+</ul>
+<p><strong>格式</strong></p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">赋值目标信号&lt;=表达式<span class="number">1</span> <span class="keyword">WHEN</span> 条件表达式<span class="number">1</span> <span class="keyword">ELSE</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">            表达式<span class="number">2</span> <span class="keyword">WHEN</span> 条件表达式<span class="number">2</span> <span class="keyword">ELSE</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">            ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">            表达式n <span class="keyword">WHEN</span> 条件表达式n <span class="keyword">ELSE</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">            表达式n+<span class="number">1</span>;</span></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>选择信号赋值语句</li>
+</ul>
+<p><strong>格式</strong></p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">WITH</span> 选择表达式 <span class="keyword">SELECT</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">赋值目标信号&lt;=表达式<span class="number">1</span> <span class="keyword">WHEN</span> 选择值<span class="number">1</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">            表达式<span class="number">2</span> <span class="keyword">WHEN</span> 选择值<span class="number">2</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">            .....</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">            表达式n <span class="keyword">WHEN</span> 选择值n,</span></pre></td></tr></table></figure>
+
+
+
+<h6 id="并行过程调用语句"><a href="#并行过程调用语句" class="headerlink" title="并行过程调用语句"></a>并行过程调用语句</h6><p>过程是一种子程序，过程调用语句可以出现在进程中，也可以出现在结构体和块语句中。过程调用前需要在包集合前进行定义</p>
+<ul>
+<li>过程语句</li>
+</ul>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">PROCEDURE</span>  过程名（参数表）</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">PRECEDURE 过程名（参数表）  <span class="keyword">IS</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">[说明部分]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">BEGIN</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">顺序语句;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">END</span> ;</span></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>过程调用语句</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[过程标号]:过程名[([形参名=&gt;]实参表达式</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">          &#123;,[形参名=&gt;]实参表达式&#125;)];</span></pre></td></tr></table></figure>
+
+
+
+<h6 id="元件例化语句"><a href="#元件例化语句" class="headerlink" title="元件例化语句"></a>元件例化语句</h6><p>元件例化语句由两部分组成，第一部分是将一个现成的设计实体封装起来，使其只留出对外的接口界面，称为元件定义语句，第二部分是此元件与当前设计实体中端口的连接说明，称为端口映射语句。</p>
+<p><strong>格式</strong></p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">CONPONENT 元件名 <span class="keyword">IS</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">GENERIC</span>(类属表);的设计实体进行封装，使其留出</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">PORT</span>(端口名);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">END</span> CONPONENT 元件名;</span></pre></td></tr></table></figure>
+
+
+
+
+    </div>
+
+    
+    
+    
+	  
+	  <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Note/" rel="tag"># Note</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/08/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%B8%89%EF%BC%89/" rel="prev" title="数据库原理与应用（三)">
+      <i class="fa fa-chevron-left"></i> 数据库原理与应用（三)
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#VHDL基础"><span class="nav-text">VHDL基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#VHDL概述"><span class="nav-text">VHDL概述</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#VHDL的程序结构"><span class="nav-text">VHDL的程序结构</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#实体"><span class="nav-text">实体</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#结构体"><span class="nav-text">结构体</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#库"><span class="nav-text">库</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#程序包"><span class="nav-text">程序包</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#配置"><span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#VHDL-的描述风格"><span class="nav-text">VHDL 的描述风格</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#VHDL的语言要素"><span class="nav-text">VHDL的语言要素</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#文字规则"><span class="nav-text">文字规则</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#数字型文字"><span class="nav-text">数字型文字</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#字符串型文字"><span class="nav-text">字符串型文字</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#标识符"><span class="nav-text">标识符</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#下标名及下标段名"><span class="nav-text">下标名及下标段名</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据对象"><span class="nav-text">数据对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据类型"><span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#操作符"><span class="nav-text">操作符</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#VHDL的基本语句"><span class="nav-text">VHDL的基本语句</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#顺序语句"><span class="nav-text">顺序语句</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#赋值语句"><span class="nav-text">赋值语句</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#转向控制语句"><span class="nav-text">转向控制语句</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#等待语句"><span class="nav-text">等待语句</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#返回语句"><span class="nav-text">返回语句</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#空操作语句"><span class="nav-text">空操作语句</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#并行语句"><span class="nav-text">并行语句</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#进程语句"><span class="nav-text">进程语句</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#块语句"><span class="nav-text">块语句</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#并行信号赋值语句"><span class="nav-text">并行信号赋值语句</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#并行过程调用语句"><span class="nav-text">并行过程调用语句</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#元件例化语句"><span class="nav-text">元件例化语句</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="xxxxAmor"
+      src="/images/touxiang.jpg">
+  <p class="site-author-name" itemprop="name">xxxxAmor</p>
+  <div class="site-description" itemprop="description">Not all girls are made of sugar and spice and everything nice.Some girls are made of adventures,fine beer,brains and no fear</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+  
+
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Amor</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">131k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:59</span>
+</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/chitose.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":"True#是否在手机端显示"},"log":false});</script></body>
+</html>
