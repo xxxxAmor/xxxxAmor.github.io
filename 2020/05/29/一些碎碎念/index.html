@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="写下这篇分析是因为我这学期去蹭课了，听老师讲了很多关于镜头分析的东西。因为不用和必修的同学们一样交期末大作业，所以可以随心所欲写一些东西。如果GD和TOP能出首新歌，我也不至于自己营业，去分析以前的东西。写完这篇已经觉得像是重新认识了他们一次一样（接下来我会用权和崔来代指他们）。  ZUTTER是2015年GD和TOP合作的一首单曲，展现了他们独有的hip-pop风格。它的MV我已经看过无数次了，">
+<meta name="keywords" content="关于小脆">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一些碎碎念">
+<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;2020&#x2F;05&#x2F;29&#x2F;%E4%B8%80%E4%BA%9B%E7%A2%8E%E7%A2%8E%E5%BF%B5&#x2F;index.html">
+<meta property="og:site_name" content="Geek is the new chic">
+<meta property="og:description" content="写下这篇分析是因为我这学期去蹭课了，听老师讲了很多关于镜头分析的东西。因为不用和必修的同学们一样交期末大作业，所以可以随心所欲写一些东西。如果GD和TOP能出首新歌，我也不至于自己营业，去分析以前的东西。写完这篇已经觉得像是重新认识了他们一次一样（接下来我会用权和崔来代指他们）。  ZUTTER是2015年GD和TOP合作的一首单曲，展现了他们独有的hip-pop风格。它的MV我已经看过无数次了，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;29&#x2F;tKnmLQ.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;29&#x2F;tKm8DH.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;29&#x2F;tKmFvF.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;29&#x2F;tKmp40.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;29&#x2F;tKejBj.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;29&#x2F;tKeb38.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;29&#x2F;tKec9K.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;29&#x2F;tKeyh6.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;29&#x2F;tKeN1U.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;29&#x2F;tKemp8.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;29&#x2F;tKZOT1.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;29&#x2F;tKZ7y4.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;29&#x2F;tKZ3RO.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;29&#x2F;tKZuZR.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;29&#x2F;tKV0v4.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;29&#x2F;tKVYEq.png">
+<meta property="og:updated_time" content="2020-05-29T14:06:32.988Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;05&#x2F;29&#x2F;tKnmLQ.png">
+
+<link rel="canonical" href="https://github.com/2020/05/29/%E4%B8%80%E4%BA%9B%E7%A2%8E%E7%A2%8E%E5%BF%B5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>一些碎碎念 | Geek is the new chic</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Geek is the new chic</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/2020/05/29/%E4%B8%80%E4%BA%9B%E7%A2%8E%E7%A2%8E%E5%BF%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="xxxxAmor">
+      <meta itemprop="description" content="Not all girls are made of sugar and spice and everything nice.Some girls are made of adventures,fine beer,brains and no fear">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Geek is the new chic">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          一些碎碎念
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-29 22:05:19 / 修改时间：22:06:32" itemprop="dateCreated datePublished" datetime="2020-05-29T22:05:19+08:00">2020-05-29</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>写下这篇分析是因为我这学期去蹭课了，听老师讲了很多关于镜头分析的东西。因为不用和必修的同学们一样交期末大作业，所以可以随心所欲写一些东西。如果GD和TOP能出首新歌，我也不至于自己营业，去分析以前的东西。写完这篇已经觉得像是重新认识了他们一次一样（接下来我会用权和崔来代指他们）。</p>
+<p> ZUTTER是2015年GD和TOP合作的一首单曲，展现了他们独有的hip-pop风格。它的MV我已经看过无数次了，可是每次看完，总觉得好像明白了什么，但又感觉隔着一层纱，隐隐约约总有一种答案就在眼前，可是就差那么一点，有种怎么也摸不到核心的迷茫感。</p>
+<p>可以确定的是，这个MV借鉴了《雌雄大盗》和《低俗小说》的元素，各种暗喻已经很明显了，之前也有粉丝各种分析非常精彩。但是我始终有种直觉，这个MV如此精彩，那么它应该是自成闭环的。也就是说，这个MV不单单只是在“老子有钱有品位，老子有亡命天涯的伴侣”这样空洞的喊话，它应该是讲述了一个完整的故事，只是我看不懂。</p>
+<p> 有一天又刷到这个MV的视频，点开看了一遍，突然发现了一个奇妙的切入点——“造型”。在这个MV里，他们两个人换过很多套造型，但很奇怪，有的造型只出现一次，有的却出现了好几次。于是我突然找到了一个思路，难道造型里藏着什么秘密吗？以此为切入点观察，仿佛打开了新世界的大门。原来他们五年前玩的梗，我现在才看懂。</p>
+<p> 首先mv里有个巨大的用时间和空间组成的障眼法。时间上是线性推进的，并没有倒叙或插叙，而空间上有两个地方，两个地方各代表不同的含义。为了方便理解，我要给每个造型赋予一个清晰的人格。</p>
+<p>先说第一套造型+第一个人格，也就是运动服对应的“自信”人格。从最开始，两个人就都有“我最酷最帅最有钱”的基本认知，但这个人格开始时是背对着观众的，没有露出脸来。</p>
+<p><img src="https://s1.ax1x.com/2020/05/29/tKnmLQ.png" alt="tKnmLQ.png"></p>
+<p>然后镜头切换，两个落魄的人被捆在了椅子上，第二套造型+第二个人格出现了。这一段借鉴的就是《低俗小说》里的画面，所以这个人格，先借用电影的名字命名为“低俗”人格吧。这时，一个不露脸的PRETTYBOY出现，准备伤害他们两个，画面一闪而过。</p>
+<p><img src="https://s1.ax1x.com/2020/05/29/tKm8DH.png" alt="tKm8DH.png"></p>
+<p>接下来是第三套造型+第三个人格，帽衫搭配牛仔裤，是两个年轻人的造型，我把它命名为“年轻”人格。两个年轻人在一个通道里来回游走，其他仓库都被上了锁，只有最尽头的2088仓库是开着的，于是打开门，“年轻”人格进去了（寓意进入名利场）。</p>
+<p><img src="https://s1.ax1x.com/2020/05/29/tKmFvF.png" alt="tKmFvF.png"></p>
+<p><img src="https://s1.ax1x.com/2020/05/29/tKmp40.png" alt="tKmp40.png"></p>
+<p> 从这里开始，故事开始分成了两个视角，一个是权的游戏人间，另一个是崔的疯狂玩乐，里面都包含了大量的隐喻，但那些大多是个人的部分，按造型细分的话会有很多人格定义，为方便整理故事，我把他们统称为“有钱”人格。</p>
+<p>注意看权的这件衣服，只出现了一次，只在一个场景里。旁边是女人，背后有沙滩，衣服上是红唇，直白点来说就是像这首歌表现出来的基本基调那样：纵情享乐。可是接下来这件衣服再也没有出现过，而在同样的场景里，崔出现了。</p>
+<p><img src="https://s1.ax1x.com/2020/05/29/tKejBj.png" alt="tKejBj.png"></p>
+<p><img src="https://s1.ax1x.com/2020/05/29/tKeb38.png" alt="tKeb38.png"></p>
+<p>这个镜头，是进入2088仓库中之后，两人第一次碰面。两人都穿了一身花西装，在满是美女的沙滩边上开心地玩着剪刀石头布。这就是第四套造型+第四个人格，张扬的花西装，潇洒至极的人生状态，这个人格，就称为“得意”人格吧。有意思的事情是，这两个“得意”人格在沙滩上旁若无人的玩着，下一秒镜头切换回了“自信”人格，然后镜头又切换回沙滩美女，“得意”人格依然无视所有背景板，开心地玩着弹彼此额头这种幼稚又亲密的游戏。这一段都是“得意”人格和“自信”人格来回切换，只有他们两个人，其他一切都是背景。</p>
+<p>​              <img src="https://s1.ax1x.com/2020/05/29/tKec9K.png" alt="tKec9K.png">   </p>
+<p><img src="https://s1.ax1x.com/2020/05/29/tKeyh6.png" alt="tKeyh6.png"></p>
+<p> 下一段，另一个关键人格出现了，是第五套造型+第五个人格，雌雄大盗，从电影里也能得知，这个人格的关键词就是“破坏”了。而“破坏”人格出现后，又变成了“破坏”人格和“自信”人格不停闪回。</p>
+<p><img src="https://s1.ax1x.com/2020/05/29/tKeN1U.png" alt="tKeN1U.png"></p>
+<p> 如果仔细去看一下MV，会发现这一段非常妙。这段是副歌，从中间被一分为二，前半部分崔在唱的时候，是“得意”+“自信”来回切换，同时也是“自信”人格第一次正面看向了观众。后半部分是权，他在开口的瞬间，一下子变成了“破坏”+“自信”来回切换。简单来说，就是一段副歌分成了两段，前半段得意、自信闪回，后半段破坏、自信闪回。这种安排是偶然还是故意的呢？我认为是故意的，因为下面剧情的发展马上就给出了解释。</p>
+<p> 接下来进入了崔的人格中，各种自恋炫耀愤怒，可以稍微细分一点。在崔自恋的过程中，插入了一个两人头对头睡着的画面。这套造型只出现在一个场景中，是第六套造型+第六个人格，两人睡得很安心，是一种彼此互为依靠的感觉，这个就称为“依赖”人格吧。然后又是崔的愤怒和抗议，从歌词大意也能看出来，中心思想就是“不要对我指手画脚，不懂规矩的人离我远点”。但这里要插播一个白衬衣的造型。这件白衬衣在BABY GOOD NIGHT里出现过，崔又把这件白衬衣穿到了ZUTTER里。</p>
+<p><img src="https://s1.ax1x.com/2020/05/29/tKemp8.png" alt="tKemp8.png"></p>
+<p><img src="https://s1.ax1x.com/2020/05/29/tKZOT1.png" alt="tKZOT1.png"></p>
+<p>而这时一个关键点出现了，还记得之前的花西装造型吗？也就是“得意”人格，但是这个人格所在的场景切换了，从海滩边，变成了寒冷的冰室里。也正是这一幕，让我在看过无数次MV之后，突然有了从造型上找剧情脉络的灵感。从正常思路来看，这个镜头拍的是他俩被困在冷库里，那么造型的目的应该是想要突出他们很冷很惨。既然是这样，穿雌雄大盗那套西装不行，可是穿运动服那套不行吗？又或者，最开始的被绑在椅子上穿的那套破衣服也不行吗？这明显比花西装看上去更可怜。可为什么那一套破衣服只出现了一次，但花西装却出现在了两个场景中呢？</p>
+<p><img src="https://s1.ax1x.com/2020/05/29/tKZ7y4.png" alt="tKZ7y4.png"></p>
+<p>也就是从这里，我相信每套造型背后都是有隐喻的，那就是，两个曾在海滩边被环绕着的“得意”男人，后来一起被冷库困住了，从“得意”变成了“失意”。而且还通过造型暗示了，只能是从“春风得意”变成“寥落失意”，而不是“自信”变失意，也不是“破坏”变失意。接下来的发展则验证了这个想法，因为就在两人迷茫无助的时候，突然窗户打开了，暗示有人来救他们。 最开始我一直以为，是别人救了他们，但当我把各个造型用人格具象化之后，真正的答案却自动浮现了出来——救他们的不是别人，是他们自己。</p>
+<p><img src="https://s1.ax1x.com/2020/05/29/tKZ3RO.png" alt="tKZ3RO.png"></p>
+<p>为什么这样说呢？还是要先从正常思路来想。如果是路人，怎么什么镜头都没有呢？这是一个连客串的猪都有特写镜头和名字的MV，救他们的人不可能没有任何信息出现。整个MV里没有名字的是他们自己的各种造型，也就是各种人格。所以推理下来，那个打开窗子拯救“得意→失意”人格的，正是他们自己，而且据我推测，是雌雄大盗造型的“破坏”人格。</p>
+<p>​                 <img src="https://s1.ax1x.com/2020/05/29/tKZuZR.png" alt="tKZuZR.png"></p>
+<p>最开始出现在上图这个场景里的是“低俗”人格。现在的场景是，绑匪还在，被绑在了后面的椅子上，但“低俗”人格消失不见了。换句话说，“低俗”人格并没有反杀后拯救自己，而是“自信”人格出现，解决了绑匪，同化了仓库里的“低俗”人格。而且，这个绑架的密室并不在2088仓库里，是另一个“地方”。</p>
+<p> 再看“破坏”人格，“破坏”人格潇洒地推开大门，从2088仓库里走出来了。之前讲过，两个年轻人进入2088仓库，进入名利场，经历了“得意”、“失意”，然后“破坏”（隐喻无畏）出现，终结一切后潇洒离开。于是一切就很清晰了，“自信”人格救了被绑架的“低俗”人格，“破坏”人格救了困在冰室里的“失意”人格。</p>
+<p><img src="https://s1.ax1x.com/2020/05/29/tKV0v4.png" alt="tKV0v4.png"></p>
+<p> 同时因为“自信”和“低俗”是固有的本性特征，所以不在仓库里，而在心灵密室中。但“得意→失意”和想要“破坏逃离”，都是一种人生经历，而且是在2088号仓库里经历的，于是青年进去，雌雄大盗出来。所以两个空间并行，同步推进故事，才是这个MV真正的框架。</p>
+<p> 从头整理一下，会发现只有三套造型曾出现在两个场景里。</p>
+<p>1、运动服+“自信”：厕所里，绑匪密室里</p>
+<p>2、花西装+“得意→失意”：海滩边，冷库里</p>
+<p>3、雌雄大盗+“破坏”：走廊里，大街上</p>
+<p>这三个人格共同交错之下，这个故事才终于完整了。</p>
+<p>结合着MV能更明显的发现，“自信”人格的主导者是崔（每次出现运动服造型，都是崔的声音，而且自信人格的部分崔的动作更大，连舞都跳得更欢脱）。“破坏”人格的主导者是权（早年R.O.D里，他就用了雌雄大盗的梗。ZUTTER的MV里每次出现雌雄大盗造型，都是他的声音，然后他打开大门带着崔从爆炸的仓库开车离开）。而“得意→失意”的部分，两人都有唱，很平均（花西装第一次出现时是崔的声音，第二次出现时是权的声音）。理清了最关键的双人部分后，各自单人部分隐喻也就都清晰明确起来了。权穿着睡衣赌博赢了，寓意钱很多，存折里的“0”如同球桌上的球；往油画后面的保险箱里藏东西，寓意着他最在意的是艺术。崔养猪，给猪（猪在韩语里的谐音是钱）撒食物，寓意自己在持续“赚钱”，财富不停增长；崔的杀戮秀，寓意着我不好惹，不守规矩的人就是在自寻死路。</p>
+<p> 整体概括下来就是，开场是两个人天生自信，坚信“我超拽”。然后是故事的引子，“低俗”人格被绑架，接着被威胁、被伤害。此后故事正式开始，年轻的权和崔敲开2088仓库的大门，进入了名利场，开始追逐财富，追逐享乐。他们分开行动，经历了很多事情，但也一起得到了许多，一起春风得意。然而问题接连发生，两人被困在了冷库里，就连最后一点用来取暖的火都没了。这时“破坏”人格及时出现，把“失意”救了。这就是2088仓库里的故事线。 另一条线上，“低俗”人格部分也被拯救了（崔主导的自信人格把绑匪绑了起来），最终雌雄大盗冲出2088仓库，浪迹天涯（寓意自由），自信人格接手低俗人格。同时也正因为“自信”人格和“低俗”人格一开始就不在2088仓库里，是他们的本我部分，所以“破坏”人格炸掉仓库后，“自信”人格毫发无伤，还在开心地跳舞。</p>
+<p> 对应的歌词也很有意思，“自信”人格在密室里跳舞的时候，是很完整的一段RAP词，“这是GD和大吉的合作”，中途没有任何场景和画面的切换，很显然，GD和大吉是他们事业上的代表作。这都是在从不同角度诠释他们的本质人格，而这个诠释，又是一定要配对。</p>
+<p>最终不管是在本我认知上，还是人生经历上，两个人都依然在一起。MV的最后，他们改了雌雄大盗原型的结局，变成开车浪迹天涯，标准的happy ending。一个完整的闭环，在ZUTTER的MV里完美成型。</p>
+<p><img src="https://s1.ax1x.com/2020/05/29/tKVYEq.png" alt="tKVYEq.png"></p>
+<p>【下面这段话本来想放在最前面，但怕影响阅读体验，就放在了最后。】</p>
+<p> 我之前找过很多ZUTTER的分析，在没怎么细究的情况下，好像大家一般认为这个MV讲述了两个人过于自信和享乐，被绑架，然后又自己跑出来的故事。可我一直觉得这个故事线不完整，前后有好几个地方对不上。MV里虽然出现了很多造型，但造型的出现都是有意义的，这条单一的故事线并不能解释它们以及《雌雄大盗》和《低俗小说》出现的意义。所以我一直对这个MV念念不忘，直到今天，也算是拼出了一个逻辑线清晰的故事。</p>
+<p> 下面紧接着就是另一个问题了，那就是：他们本人有没有想这么多呢？又或者，MV是导演拍的，代表的是导演的意图。但是我想说，凡是艺术作品，导演和表演者彼此之间，一定是要有绝对信任的，不然出来的东西就会驴唇不对马嘴，一团混乱。毫无疑问，ZUTTER的MV非常有逻辑，而且真正看懂了之后就会发现，它是没有漏洞、自成闭环的。里面借用的各种电影元素和隐喻意象，也全是崔和权的审美取向，如果全是导演的意思，那导演要对他们两个人有多深入的了解才能达到这种程度呢？再看造型上，崔拿出了多年前BABY GOOD NIGHT时候的衣服，后面权发INS宣传的时候，还把ZUTTER的打歌服拍了一张断背山风格的照片，衣服有什么含义，我不信他们不懂。</p>
+<p> 这个MV当然可以用很正常的思路去看，从头到尾就是讲了“我超有钱超帅”。可是一上来就是《低俗小说》，后面又跟着《雌雄大盗》，但凡深入一点，就会发现这里面的私货和暗号太多了，多到没办法推给造型师、导演、道具师、摄影师……那么排除掉种种“不可能”之后，就只剩下一种可能，他们两个知道自己在拍什么，有足够的默契，最终作品成型，就像这首歌的名字一样，ZUTTER！</p>
+<p> 很多时候，可能分析的人最被吐槽的点就是想太多，但就像老师讲过的那样，所谓的想太多，很多是建立在原著的空白上，所以不管多夸张的脑洞都能塞进去。然而这个MV里，一切都已经表达出来了，低俗小说和雌雄大盗明晃晃摆在那里了，只不过是看粉丝能不能看懂而已。所以面对着这两个喜欢暗戳戳的人，我只觉得，我想得是不是还不够多？不然为什么一个MV里，就有这么多严丝合缝的“巧合”呢？如果这个作品没有那么多的寓意，为什么每个点都能对上呢？甚至就连两人rap的段落，也能和造型，故事线对上。这么多巧合只能说明，是他们有意制造的。</p>
+<p>最后的最后，补一个MV的链接<a href="http://music.163.com/mv/?id=477463&amp;userid=487616607，再次赞叹这个MV真的拍得好绝，五年之后我才看懂！至于为什么没有深入介绍《低俗小说》和《雌雄大盗》在这里面的含义，是还想替我的爱豆堵一堵柜门。" target="_blank" rel="noopener">http://music.163.com/mv/?id=477463&amp;userid=487616607，再次赞叹这个MV真的拍得好绝，五年之后我才看懂！至于为什么没有深入介绍《低俗小说》和《雌雄大盗》在这里面的含义，是还想替我的爱豆堵一堵柜门。</a></p>
+
+    </div>
+
+    
+    
+    
+	  
+	  <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%85%B3%E4%BA%8E%E5%B0%8F%E8%84%86/" rel="tag"># 关于小脆</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/26/VHDL%E5%9F%BA%E7%A1%80/" rel="prev" title="VHDL基础">
+      <i class="fa fa-chevron-left"></i> VHDL基础
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="xxxxAmor"
+      src="/images/touxiang.jpg">
+  <p class="site-author-name" itemprop="name">xxxxAmor</p>
+  <div class="site-description" itemprop="description">Not all girls are made of sugar and spice and everything nice.Some girls are made of adventures,fine beer,brains and no fear</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+  
+
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Amor</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">136k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:03</span>
+</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/chitose.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":"True#是否在手机端显示"},"log":false});</script></body>
+</html>
