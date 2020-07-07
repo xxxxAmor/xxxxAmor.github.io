@@ -20,17 +20,18 @@
     var CONFIG = {"hostname":"github.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="2.1 关系模型的数据结构及其形式化定义关系的形式化定义及有关概念域 ：域是一组具有相同数据类型的值的集合，又称为值域。整数，实数和字符串的集合都是域。域中所包含的值的个数称为域的基数。  笛卡尔积：给定一组域D1,D2…Dn(它们可以包含相同的元素，即可以完全不同，也可以部分或全部相同)，D1.D2…Dn的笛卡尔积为：  笛卡尔积实际上是一个二维表 关系：笛卡尔积D1XD2X…Dn的任一子集称为">
+  <meta name="description" content="2.1 关系模型的数据结构及其形式化定义关系的形式化定义及有关概念域 ：域是一组具有相同数据类型的值的集合，又称为值域。整数，实数和字符串的集合都是域。域中所包含的值的个数称为域的基数。  笛卡尔积：给定一组域D1,D2…Dn(它们可以包含相同的元素，既可以完全不同，也可以部分或全部相同)，D1.D2…Dn的笛卡尔积为：  笛卡尔积实际上是一个二维表 关系：笛卡尔积D1XD2X…Dn的任一子集称为">
 <meta name="keywords" content="数据库原理与应用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库原理与应用（二）">
 <meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%8C%EF%BC%89&#x2F;index.html">
 <meta property="og:site_name" content="Geek is the new chic">
-<meta property="og:description" content="2.1 关系模型的数据结构及其形式化定义关系的形式化定义及有关概念域 ：域是一组具有相同数据类型的值的集合，又称为值域。整数，实数和字符串的集合都是域。域中所包含的值的个数称为域的基数。  笛卡尔积：给定一组域D1,D2…Dn(它们可以包含相同的元素，即可以完全不同，也可以部分或全部相同)，D1.D2…Dn的笛卡尔积为：  笛卡尔积实际上是一个二维表 关系：笛卡尔积D1XD2X…Dn的任一子集称为">
+<meta property="og:description" content="2.1 关系模型的数据结构及其形式化定义关系的形式化定义及有关概念域 ：域是一组具有相同数据类型的值的集合，又称为值域。整数，实数和字符串的集合都是域。域中所包含的值的个数称为域的基数。  笛卡尔积：给定一组域D1,D2…Dn(它们可以包含相同的元素，既可以完全不同，也可以部分或全部相同)，D1.D2…Dn的笛卡尔积为：  笛卡尔积实际上是一个二维表 关系：笛卡尔积D1XD2X…Dn的任一子集称为">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8XSEwt.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8XSKSg.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8XSnfS.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;01&#x2F;N7CpY8.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8XSsTx.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8XSr01.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8XS0X9.png">
@@ -44,7 +45,8 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8XphCT.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8XpHbR.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8XpO56.png">
-<meta property="og:updated_time" content="2020-03-25T01:38:56.389Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;01&#x2F;N7ZTYR.png">
+<meta property="og:updated_time" content="2020-07-07T07:32:12.145Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;03&#x2F;25&#x2F;8XSEwt.png">
 
@@ -201,10 +203,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-03-25 09:36:55 / 修改时间：09:38:56" itemprop="dateCreated datePublished" datetime="2020-03-25T09:36:55+08:00">2020-03-25</time>
+              <time title="创建时间：2020-03-25 09:36:55" itemprop="dateCreated datePublished" datetime="2020-03-25T09:36:55+08:00">2020-03-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-07 15:32:12" itemprop="dateModified" datetime="2020-07-07T15:32:12+08:00">2020-07-07</time>
+              </span>
 
           
 
@@ -218,7 +226,7 @@
 
       
         <h4 id="2-1-关系模型的数据结构及其形式化定义"><a href="#2-1-关系模型的数据结构及其形式化定义" class="headerlink" title="2.1 关系模型的数据结构及其形式化定义"></a>2.1 关系模型的数据结构及其形式化定义</h4><h5 id="关系的形式化定义及有关概念"><a href="#关系的形式化定义及有关概念" class="headerlink" title="关系的形式化定义及有关概念"></a>关系的形式化定义及有关概念</h5><p><code>域</code> ：域是一组具有相同数据类型的值的集合，又称为值域。整数，实数和字符串的集合都是域。域中所包含的值的个数称为域的基数。</p>
-<p> <code>笛卡尔积</code>：给定一组域D1,D2…Dn(它们可以包含相同的元素，即可以完全不同，也可以部分或全部相同)，D1.D2…Dn的笛卡尔积为：</p>
+<p> <code>笛卡尔积</code>：给定一组域D1,D2…Dn(它们可以包含相同的元素，既可以完全不同，也可以部分或全部相同)，D1.D2…Dn的笛卡尔积为：</p>
 <p><a href="https://imgchr.com/i/8XSEwt" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XSEwt.png" alt="8XSEwt.png"></a></p>
 <p>笛卡尔积实际上是一个二维表</p>
 <p><code>关系</code>：笛卡尔积D1XD2X…Dn的任一子集称为定义在域D1,D2….Dn上的n元关系</p>
@@ -233,16 +241,18 @@
 <li>关系中不允许出现相同的元组</li>
 <li>关系中每一分量必须是不可分的数据项</li>
 </ul>
-<h5 id="关系模式"><a href="#关系模式" class="headerlink" title="关系模式"></a>关系模式</h5><p>关系的描述称为关系模式</p>
+<h5 id="关系模式"><a href="#关系模式" class="headerlink" title="关系模式"></a>关系模式</h5><p>在数据库中，要区分型和值。关系数据库中，关系模式是型，关系是值。关系的描述称为关系模式</p>
 <p><a href="https://imgchr.com/i/8XSnfS" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XSnfS.png" alt="8XSnfS.png"></a></p>
 <h4 id="2-2-关系的码与关系的完整性"><a href="#2-2-关系的码与关系的完整性" class="headerlink" title="2.2 关系的码与关系的完整性"></a>2.2 关系的码与关系的完整性</h4><h5 id="候选码与主码"><a href="#候选码与主码" class="headerlink" title="候选码与主码"></a>候选码与主码</h5><p><code>候选码</code>：能唯一标识关系中元组的一个最小属性或属性集</p>
+<p><img src="https://s1.ax1x.com/2020/07/01/N7CpY8.png" alt="N7CpY8.png"></p>
 <p><code>主码</code>：从多个候选码中选择一个作为查询，插入或删除元组的操作变量，被选用的候选码称为主码</p>
 <p><a href="https://imgchr.com/i/8XSsTx" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XSsTx.png" alt="8XSsTx.png"></a></p>
 <p><a href="https://imgchr.com/i/8XSr01" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XSr01.png" alt="8XSr01.png"></a></p>
-<p><code>主属性</code>：包含在候选码中的各个属性</p>
-<p><code>非码属性</code>：不包含在任何候选码中的属性</p>
+<p><code>主属性</code>：包含在主码中的各个属性</p>
+<p><code>非主属性</code>：不包含在任何候选码中的属性</p>
 <p><code>全码</code>：所有属性的集合是关系的候选码</p>
-<h5 id="外码"><a href="#外码" class="headerlink" title="外码"></a>外码</h5><p><a href="https://imgchr.com/i/8XS0X9" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XS0X9.png" alt="8XS0X9.png"></a></p>
+<h5 id="外码"><a href="#外码" class="headerlink" title="外码"></a>外码</h5><p>如果关系R2的一个或一组属性X不是R2的主码，而是另一关系R1的主码，则该属性或属性组X称为关系R2的外码。关系R2为参照关系，关系R1为被参照关系</p>
+<p><a href="https://imgchr.com/i/8XS0X9" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XS0X9.png" alt="8XS0X9.png"></a></p>
 <h5 id="关系的完整性"><a href="#关系的完整性" class="headerlink" title="关系的完整性"></a>关系的完整性</h5><ul>
 <li><p>实体完整性</p>
 <p>主码的值不能为空或部分为空</p>
@@ -259,29 +269,43 @@
 <h4 id="2-3-关系代数"><a href="#2-3-关系代数" class="headerlink" title="2.3 关系代数"></a>2.3 关系代数</h4><h5 id="关系代数的分类及其运算符"><a href="#关系代数的分类及其运算符" class="headerlink" title="关系代数的分类及其运算符"></a>关系代数的分类及其运算符</h5><p>关系代数是一种抽象的查询语言，关系代数的运算对象和运算结果都是关系</p>
 <p>关系代数运算符：</p>
 <p><a href="https://imgchr.com/i/8XpKN6" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XpKN6.png" alt="8XpKN6.png"></a></p>
+<h5 id="传统的集合运算"><a href="#传统的集合运算" class="headerlink" title="传统的集合运算"></a>传统的集合运算</h5><p>设给定两个关系R，S，若满足：（1）具有相同的列数n （2）R中第i个属性和S中第i个属性必须来自同一个域，则说E,S是相容的。<code>除笛卡尔积外，其他的集合运算要求参加运算的关系必须满足上述的相容性定义</code></p>
 <ul>
-<li>传统的集合运算</li>
+<li><p>并</p>
+</li>
+<li><p>差</p>
+</li>
+<li><p>交</p>
+</li>
+<li><p>广义笛卡尔积</p>
+</li>
 </ul>
-<p>设给定两个关系R，S，若满足：（1）具有相同的列数n （2）R中第i个属性和S中第i个属性必须来自同一个域，则说E,S是相容的。<code>除笛卡尔积外，其他的集合运算要求参加运算的关系必须满足上述的相容性定义</code></p>
 <p><a href="https://imgchr.com/i/8Xp8jH" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8Xp8jH.png" alt="8Xp8jH.png"></a></p>
 <p><a href="https://imgchr.com/i/8Xp3ge" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8Xp3ge.png" alt="8Xp3ge.png"></a></p>
 <p><a href="https://imgchr.com/i/8XpIv4" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XpIv4.png" alt="8XpIv4.png"></a></p>
-<ul>
-<li>专门的关系运算</li>
-</ul>
-<p>1.设关系模式为R（A1,A2…An),它的一个关系为R，t属于R表示t是R的一个元组，t[A1]表示元组t中相应于属性A1的一个分量</p>
+<h5 id="专门的关系运算"><a href="#专门的关系运算" class="headerlink" title="专门的关系运算"></a>专门的关系运算</h5><p>1.设关系模式为R（A1,A2…An),它的一个关系为R，t属于R表示t是R的一个元组，t[A1]表示元组t中相应于属性A1的一个分量</p>
 <p><a href="https://imgchr.com/i/8Xp7r9" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8Xp7r9.png" alt="8Xp7r9.png"></a></p>
 <p><a href="https://imgchr.com/i/8Xp48U" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8Xp48U.png" alt="8Xp48U.png"></a></p>
-<p><code>选取</code></p>
+<ul>
+<li><code>选取</code></li>
+</ul>
 <p><a href="https://imgchr.com/i/8Xp52F" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8Xp52F.png" alt="8Xp52F.png"></a></p>
-<p><code>投影</code></p>
+<ul>
+<li><code>投影</code></li>
+</ul>
 <p><a href="https://imgchr.com/i/8XphCT" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XphCT.png" alt="8XphCT.png"></a></p>
-<p><code>连接</code></p>
+<ul>
+<li><code>连接</code></li>
+</ul>
 <p><a href="https://imgchr.com/i/8XpHbR" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XpHbR.png" alt="8XpHbR.png"></a></p>
 <p>自然连接和等值连接的区别：自然连接要求相等属性值的属性名相同，等值连接不要求</p>
 <p>自然连接是去掉重复列的等值连接</p>
-<p><code>除法</code></p>
+<ul>
+<li><code>除法</code></li>
+</ul>
 <p><a href="https://imgchr.com/i/8XpO56" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XpO56.png" alt="8XpO56.png"></a></p>
+<p>例：</p>
+<p><img src="https://s1.ax1x.com/2020/07/01/N7ZTYR.png" alt="N7ZTYR.png"></p>
 
     </div>
 
@@ -377,7 +401,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-关系模型的数据结构及其形式化定义"><span class="nav-text">2.1 关系模型的数据结构及其形式化定义</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#关系的形式化定义及有关概念"><span class="nav-text">关系的形式化定义及有关概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关系的性质"><span class="nav-text">关系的性质</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关系模式"><span class="nav-text">关系模式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-关系的码与关系的完整性"><span class="nav-text">2.2 关系的码与关系的完整性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#候选码与主码"><span class="nav-text">候选码与主码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#外码"><span class="nav-text">外码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关系的完整性"><span class="nav-text">关系的完整性</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-关系代数"><span class="nav-text">2.3 关系代数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#关系代数的分类及其运算符"><span class="nav-text">关系代数的分类及其运算符</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-关系模型的数据结构及其形式化定义"><span class="nav-text">2.1 关系模型的数据结构及其形式化定义</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#关系的形式化定义及有关概念"><span class="nav-text">关系的形式化定义及有关概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关系的性质"><span class="nav-text">关系的性质</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关系模式"><span class="nav-text">关系模式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-关系的码与关系的完整性"><span class="nav-text">2.2 关系的码与关系的完整性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#候选码与主码"><span class="nav-text">候选码与主码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#外码"><span class="nav-text">外码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关系的完整性"><span class="nav-text">关系的完整性</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-关系代数"><span class="nav-text">2.3 关系代数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#关系代数的分类及其运算符"><span class="nav-text">关系代数的分类及其运算符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#传统的集合运算"><span class="nav-text">传统的集合运算</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#专门的关系运算"><span class="nav-text">专门的关系运算</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -441,7 +465,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:03</span>
+    <span title="站点阅读时长">2:04</span>
 </div>
   <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
   </div>
