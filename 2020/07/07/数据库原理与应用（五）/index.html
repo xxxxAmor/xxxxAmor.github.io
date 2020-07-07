@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="数据库安全保护5.1 数据库的安全性数据库的安全性是指保护数据库以防止非法使用所造成的数据泄露，更改或破坏 安全性控制的一般方法：   用户标识和鉴定  用户存取权限控制  定义视图  数据加密  审计  SQL server 2012的数据安全性机制SQL server 2012的安全模型分为三层结构，分别为服务器安全管理，数据库安全管理和数据库对象的访问权限管理  SQL server 201">
+<meta name="keywords" content="数据库原理与应用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库原理与应用（五）">
+<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;2020&#x2F;07&#x2F;07&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89&#x2F;index.html">
+<meta property="og:site_name" content="Geek is the new chic">
+<meta property="og:description" content="数据库安全保护5.1 数据库的安全性数据库的安全性是指保护数据库以防止非法使用所造成的数据泄露，更改或破坏 安全性控制的一般方法：   用户标识和鉴定  用户存取权限控制  定义视图  数据加密  审计  SQL server 2012的数据安全性机制SQL server 2012的安全模型分为三层结构，分别为服务器安全管理，数据库安全管理和数据库对象的访问权限管理  SQL server 201">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;github.com&#x2F;2020&#x2F;07&#x2F;07&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89&#x2F;D:%5Cxxxxamor%5Cpic%5Cimage-20200523085155825.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;github.com&#x2F;2020&#x2F;07&#x2F;07&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89&#x2F;D:%5Cxxxxamor%5Cpic%5Cimage-20200523090754890.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;github.com&#x2F;2020&#x2F;07&#x2F;07&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89&#x2F;D:%5Cxxxxamor%5Cpic%5Cimage-20200523091134763.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;github.com&#x2F;2020&#x2F;07&#x2F;07&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89&#x2F;D:%5Cxxxxamor%5Cpic%5Cimage-20200523100513833.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;github.com&#x2F;2020&#x2F;07&#x2F;07&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89&#x2F;D:%5Cxxxxamor%5Cpic%5Cimage-20200523093717559.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;github.com&#x2F;2020&#x2F;07&#x2F;07&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89&#x2F;D:%5Cxxxxamor%5Cpic%5Cimage-20200523093849337.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;github.com&#x2F;2020&#x2F;07&#x2F;07&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89&#x2F;D:%5Cxxxxamor%5Cpic%5Cimage-20200523094126768.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;github.com&#x2F;2020&#x2F;07&#x2F;07&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89&#x2F;D:%5Cxxxxamor%5Cpic%5Cimage-20200531175750134.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;github.com&#x2F;2020&#x2F;07&#x2F;07&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89&#x2F;D:%5Cxxxxamor%5Cpic%5Cimage-20200523094746478.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;github.com&#x2F;2020&#x2F;07&#x2F;07&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89&#x2F;D:%5Cxxxxamor%5Cpic%5Cimage-20200531180331555.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;github.com&#x2F;2020&#x2F;07&#x2F;07&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89&#x2F;D:%5Cxxxxamor%5Cpic%5Cimage-20200531181900692.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;04&#x2F;NxGnIg.png">
+<meta property="og:updated_time" content="2020-07-07T08:04:45.958Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;github.com&#x2F;2020&#x2F;07&#x2F;07&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89&#x2F;D:%5Cxxxxamor%5Cpic%5Cimage-20200523085155825.png">
+
+<link rel="canonical" href="https://github.com/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>数据库原理与应用（五） | Geek is the new chic</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Geek is the new chic</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="xxxxAmor">
+      <meta itemprop="description" content="Not all girls are made of sugar and spice and everything nice.Some girls are made of adventures,fine beer,brains and no fear">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Geek is the new chic">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据库原理与应用（五）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-07 16:03:48 / 修改时间：16:04:45" itemprop="dateCreated datePublished" datetime="2020-07-07T16:03:48+08:00">2020-07-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="数据库安全保护"><a href="#数据库安全保护" class="headerlink" title="数据库安全保护"></a>数据库安全保护</h2><h3 id="5-1-数据库的安全性"><a href="#5-1-数据库的安全性" class="headerlink" title="5.1 数据库的安全性"></a>5.1 数据库的安全性</h3><p>数据库的安全性是指保护数据库以防止非法使用所造成的数据泄露，更改或破坏</p>
+<p>安全性控制的一般方法：</p>
+<ul>
+<li><input disabled type="checkbox"> 用户标识和鉴定</li>
+<li><input disabled type="checkbox"> 用户存取权限控制</li>
+<li><input disabled type="checkbox"> 定义视图</li>
+<li><input disabled type="checkbox"> 数据加密</li>
+<li><input disabled type="checkbox"> 审计</li>
+</ul>
+<h4 id="SQL-server-2012的数据安全性机制"><a href="#SQL-server-2012的数据安全性机制" class="headerlink" title="SQL server 2012的数据安全性机制"></a>SQL server 2012的数据安全性机制</h4><p>SQL server 2012的安全模型分为三层结构，分别为服务器安全管理，数据库安全管理和数据库对象的访问权限管理</p>
+<p><img src="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/D:%5Cxxxxamor%5Cpic%5Cimage-20200523085155825.png" alt="image-20200523085155825"></p>
+<h4 id="SQL-server-2012的身份验证模式"><a href="#SQL-server-2012的身份验证模式" class="headerlink" title="SQL server 2012的身份验证模式"></a>SQL server 2012的身份验证模式</h4><p>SQL server 2012提供两种身份验证模式：windows身份验证模式，混合身份验证模式</p>
+<ul>
+<li>windows身份验证</li>
+</ul>
+<p>​        <img src="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/D:%5Cxxxxamor%5Cpic%5Cimage-20200523090754890.png" alt="image-20200523090754890"></p>
+<p>​        <code>如果网络中有多个SQL server服务器，</code>就可以选择通过windows身份验证机制来验证</p>
+<ul>
+<li>混合身份验证</li>
+</ul>
+<p>​       <img src="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/D:%5Cxxxxamor%5Cpic%5Cimage-20200523091134763.png" alt="image-20200523091134763"></p>
+<p><code>设置身份验证模式：</code></p>
+<p><img src="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/D:%5Cxxxxamor%5Cpic%5Cimage-20200523100513833.png" alt="image-20200523100513833"></p>
+<h4 id="SQL-server-2012的登录账号和服务器角色"><a href="#SQL-server-2012的登录账号和服务器角色" class="headerlink" title="SQL server 2012的登录账号和服务器角色"></a>SQL server 2012的登录账号和服务器角色</h4><p>在SQL server 中，账号有两种，一是登录服务器的登录账号，另外一种是使用数据库的用户账号。登录账号是指能登录sql server的账号，她属于服务器的层面，本身并不能让用户使用服务器中的数据库，如果登录者想使用数据库，必须有用户账号。</p>
+<ul>
+<li><p>创建登录账号</p>
+<p><img src="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/D:%5Cxxxxamor%5Cpic%5Cimage-20200523093717559.png" alt="image-20200523093717559"></p>
+</li>
+</ul>
+<p>​      </p>
+<p>​       <img src="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/D:%5Cxxxxamor%5Cpic%5Cimage-20200523093849337.png" alt="image-20200523093849337"></p>
+<ul>
+<li>修改与删除登录账号</li>
+</ul>
+<p>​     <img src="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/D:%5Cxxxxamor%5Cpic%5Cimage-20200523094126768.png" alt="image-20200523094126768"></p>
+<ul>
+<li><p>sql server的服务器角色</p>
+<p>角色是对权限集中管理的一种机制，将不同的权限组合在一起就变成了一种角色</p>
+</li>
+</ul>
+<h4 id="SQL-server-2012的数据库账号和数据库角色"><a href="#SQL-server-2012的数据库账号和数据库角色" class="headerlink" title="SQL server 2012的数据库账号和数据库角色"></a>SQL server 2012的数据库账号和数据库角色</h4><p>新的登录名创建以后，才能创建数据库用户。数据库用户在特定的数据库内创建，必须和某个登录名相关联。一个登录账户可以与服务器的所有数据库进行关联，而数据库用户是一个登录账户在某数据库中的映射。也就是说，一个登录账户可以映射到不同的数据库，产生多个数据库用户，但一个登录账户在一个数据库至多映射一个数据库用户。</p>
+<ul>
+<li><p>创建数据库用户账号</p>
+<p>1 利用对象资源管理器创建数据库用户</p>
+<p>2 利用 Create user语句来创建数据库用户</p>
+</li>
+</ul>
+<ul>
+<li>查看或修改数据库用户账号<img src="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/D:%5Cxxxxamor%5Cpic%5Cimage-20200531175750134.png" alt="image-20200531175750134"></li>
+</ul>
+<ul>
+<li><p>数据库角色</p>
+<p><img src="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/D:%5Cxxxxamor%5Cpic%5Cimage-20200523094746478.png" alt="image-20200523094746478"></p>
+</li>
+</ul>
+<p>​                    </p>
+<p>​                     <img src="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/D:%5Cxxxxamor%5Cpic%5Cimage-20200531180331555.png" alt="image-20200531180331555"> </p>
+<ul>
+<li><p>用户权限管理</p>
+<p>权限用来指定授权某些用户可以使用的数据库对象和这些授权用户可以对这些数据库对象执行的那些操作。<code>在数据库中，权限可以分为系统权限和对象权限，这两种权限都是可以授予和收回的。</code></p>
+<p>系统权限表示用户对数据库的操作权限，即创建数据库或者创建数据库中的其他内容所需要的权限类型。</p>
+<p>对象权限是授予数据库用户对特定数据库中的表，视图和存储过程等对象的操作权限。</p>
+</li>
+</ul>
+<h3 id="5-2-完整性控制"><a href="#5-2-完整性控制" class="headerlink" title="5.2  完整性控制"></a>5.2  完整性控制</h3><h4 id="数据库完整性的定义"><a href="#数据库完整性的定义" class="headerlink" title="数据库完整性的定义"></a>数据库完整性的定义</h4><p>数据库的完整性是指保护数据库中数据的正确性，有效性和相容性，防止错误的数据进入数据库中进行无效的操作。<code>完整性措施的防范对象是不合语义的数据</code></p>
+<h4 id="完整性规则的组成"><a href="#完整性规则的组成" class="headerlink" title="完整性规则的组成"></a>完整性规则的组成</h4><p><img src="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/D:%5Cxxxxamor%5Cpic%5Cimage-20200531181900692.png" alt="image-20200531181900692"></p>
+<p>一条完整性规则可以用一个五元组（D，O，A，C，P）来形式化地表示 </p>
+<p>D（Data）：代表约束作用的数据对象，可以是关系、元组和列三种对象；<br>O（Operation）：代表触发完整性检查的数据库操作，即当用户发出什么操作请求时需要检查该完整性规则，是立即执行还是延迟执行；<br>A（Assertion）：代表数据对象必须满足的语义约束，这是规则的主体；<br>C（Condition）：代表选择A作用的数据对象值的谓词；<br>P（Procedure）：代表违反完整性规则时触发执行的操作过程。</p>
+<p><img src="https://s1.ax1x.com/2020/07/04/NxGnIg.png" alt="NxGnIg.png"></p>
+<p><code>完整性约束条件是完整性控制机制的核心</code></p>
+<h4 id="完整性约束条件的分类"><a href="#完整性约束条件的分类" class="headerlink" title="完整性约束条件的分类"></a>完整性约束条件的分类</h4><p>按照约束条件使用的对象来分，分为值的约束和结构的约束</p>
+<ul>
+<li><p>值的约束</p>
+<p>值的约束即对数据类型、数据格式、取值范围和空值等进行规定。<br>（1）对数据类型的约束，包括数据的类型、长度、单位和精度等。<br>（2）对数据格式的约束。<br>（3）对取值范围的约束。<br>（4）对空值的约束。  </p>
+</li>
+<li><p>结构的约束</p>
+<p>结构的约束即对数据之间联系的约束。<br>（1）函数依赖约束。<br>（2）实体完整性约束。<br>（3）参照完整性约束。<br>（4）统计约束。</p>
+</li>
+</ul>
+<p>按照对象的状态来分，分为静态约束和动态约束</p>
+<ul>
+<li><p>静态约束</p>
+<p>静态约束是指对数据库每一个确定状态所应满足的约束条件，是反映数据库状态合理性的约束，这是最重要的一类完整性约束。上面介绍的值的约束和结构的约束均属于静态约束。</p>
+</li>
+<li><p>动态约束</p>
+<p>动态约束是指数据库从一种状态转变为另一种状态时，新旧值之间所应满足的约束条件，动态约束反映的是数据库状态变迁的约束。例如，学生年龄在更改时只能增长，职工工资在调整时不得低于其原来的工资。</p>
+</li>
+</ul>
+<h4 id="数据完整性的实施"><a href="#数据完整性的实施" class="headerlink" title="数据完整性的实施"></a>数据完整性的实施</h4><p>数据完整性通过以下两种形式来实施：</p>
+<ul>
+<li><p>声明式数据完整性</p>
+<p>声明式数据完整性是将数据所需符合的条件融入到对象的定义中，这样SQL Server会自动确保数据符合事先制定的条件。这是实施数据完整性的首选。</p>
+<p>声明式数据完整性的特点是：<br>① 通过针对表和字段定义声明的约束，可使声明式数据完整性成为数据定义的一部分。<br>② 使用约束、默认值与规则实施声明式数据完整性。 </p>
+</li>
+<li><p>程序化数据完整性</p>
+<p>如果所需符合的条件以及该条件的实施均通过所编写的程序代码完成，则这种形式的数据完整性称为程序化数据完整性。</p>
+<p>程序化数据完整性的特点是：<br>（1）程序化数据完整性可以通过相关的程序语言及工具在客户端或服务器端实施。<br>（2）SQL Server可以使用存储过程或触发器实施程序化数据完整性。</p>
+</li>
+</ul>
+<h4 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h4><p>规则就是数据库对存储在表中的列或用户自定义数据类型中的值的规定和限制。<br>规则与其作用的表或用户自定义数据类型是相互独立的，即表或用户自定义对象的删除、修改不会对与之相连的规则产生影响。 </p>
+<ul>
+<li><p>创建规则</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> RULE rule_name <span class="keyword">AS</span> condition_expression</span></pre></td></tr></table></figure>
+
+<p>例：创建学生年龄规则</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> RULE age_rule</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">AS</span> @age &gt;= <span class="number">18</span> <span class="keyword">and</span> @age &lt;= <span class="number">50</span></span></pre></td></tr></table></figure>
+</li>
+<li><p>规则的绑定与松绑</p>
+<p>创建规则后，规则仅仅是一个存在于数据库中的对象，并未发生作用。需要将规则与数据库表或用户自定义对象联系起来，才能达到创建规则的目的。<br>所谓绑定就是指定规则作用于哪个表的哪一列或哪个用户自定义数据类型。<br>解除规则与对象的绑定称为“松绑”。 </p>
+<p>*<em>用存储过程sp_bindrule绑定规则 *</em></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sp_bindrule [@rulename =] 'rule’,	</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">[@objname =] 'object_name'	[, 'futureonly']</span></pre></td></tr></table></figure>
+
+<p>例：绑定规则age_rule 到S表的字段Age。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">EXEC sp_bindrule 'age_rule', 'S.Age‘</span></pre></td></tr></table></figure>
+
+<p><code>规则对已经输入到表中的数据不起作用</code></p>
+</li>
+</ul>
+<p>​        <strong>用存储过程sp_unbindrule解除规则的绑定</strong>  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sp_unbindrule [@objname =] 'object_name'	[,'futureonly'] </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">//例：解除已绑定到S表的字段Age的规则age_rule。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">EXEC sp_unbindrule 'S.Age'</span></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>删除规则：在删除一个规则前必须先将与其绑定的对象解除绑定</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">//使用<span class="keyword">DROP</span> RULE命令删除规则 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">                     <span class="keyword">DROP</span> RULE &#123;rule_name&#125; [,...n] </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">//例:删除age_rule规则。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">                     <span class="keyword">DROP</span> RULE age_rule</span></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="默认"><a href="#默认" class="headerlink" title="默认"></a>默认</h4><p>默认（Default）是用户在向表中添加数据时，如果没有明确地给出一个值，这时SQL Server所自动使用的值。<br>表的一列或一个用户自定义数据类型只能与一个默认绑定。 </p>
+<ul>
+<li><p>创建默认</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DEFAULT</span> default_name <span class="keyword">AS</span> constant_expression </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">//例：创建出生日期默认birthday_defa。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DEFAULT</span> birthday_defa 			</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">AS</span> ‘<span class="number">1990</span><span class="number">-1</span><span class="number">-1</span><span class="string">'</span></span></pre></td></tr></table></figure>
+</li>
+<li><p>默认的绑定与松绑</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">//用存储过程sp_bindefault 绑定默认 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sp_bindefault [@defname =] 'default',	[@objname =] 'object_name'	[, 'futureonly'] </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">//绑定默认birthday_defa到数据表S的Birthday列上。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">EXEC sp_bindefault birthday_defa, 'S.[Birthday] '</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">//用存储过程sp_unbindefault 解除默认的绑定 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">sp_unbindefault [@objname =] 'object_name' [,'futureonly'] </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">//解除默认birthday_defa与表S的Birthday列的绑定。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">EXEC sp_unbindefault 'S.[Birthday] '</span></pre></td></tr></table></figure>
+</li>
+<li><p>删除默认：在删除一个默认前必须先将与其绑定的对象解除绑定 </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">//使用<span class="keyword">DROP</span> RULE命令删除默认 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">DEFAULT</span> &#123;default_name&#125; [,...n]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">//例:删除学生生日默认birthday_defa。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span>  <span class="keyword">DEFAULT</span> birthday_defa</span></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="并发控制与封锁"><a href="#并发控制与封锁" class="headerlink" title="并发控制与封锁"></a>并发控制与封锁</h3><h4 id="数据库并发性的含义"><a href="#数据库并发性的含义" class="headerlink" title="数据库并发性的含义"></a>数据库并发性的含义</h4><p>为了充分利用数据库资源，很多时候数据库用户都是对数据库系统并行存取数据，这样就会发生多个用户并发存取同一数据的情况，如果对并发操作不加控制可能会产生不正确的数据，破坏数据的完整性。<br>并发控制就是解决这类问题，以保持数据库中数据的一致性，即在任何一个时刻数据库都将以相同的形式给用户提供数据。 </p>
+<h4 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h4><p><strong>事务的定义</strong></p>
+<p>事务是数据库系统中执行的一个工作单位，它是由用户定义的一组操作序列。 </p>
+<p>一个事务可以是一组SQL语句、一条SQL语句或整个程序，一个应用程序可以包括多个事务。 </p>
+<p>定义事务的语句有三条：</p>
+<ul>
+<li>BEGIN TRANSACTION    事务的开始</li>
+<li>COMMIT    事务的提交</li>
+<li>ROLLBACK    事务的回滚</li>
+</ul>
+<p><strong>事务的特征</strong></p>
+<ul>
+<li><p>原子性</p>
+<p>一个事务是一个不可分割的工作单位，事务在执行时，应该遵守“要么不做，要么全做”（Nothing or All）的原则，即不允许完成部分的事务。</p>
+</li>
+<li><p>一致性</p>
+<p>事务对数据库的作用是数据库从一个一致状态转变到另一个一致状态。所谓数据库的一致状态是指数据库中的数据满足完整性约束。 </p>
+</li>
+<li><p>隔离性</p>
+<p>如果多个事务并发地执行，应像各个事务独立执行一样，一个事务的执行不能被其他事务干扰。</p>
+</li>
+<li><p>持久性</p>
+<p>持久性指一个事务一旦提交，它对数据库中数据的改变就应该是持久的，即使数据库因故障而受到破坏，DBMS也应该能够恢复。</p>
+</li>
+</ul>
+<h4 id="并发操作与数据的不一致性"><a href="#并发操作与数据的不一致性" class="headerlink" title="并发操作与数据的不一致性"></a>并发操作与数据的不一致性</h4><p>当同一数据库系统中有多个事务并发运行时，如果不加以适当控制，可能产生数据的不一致</p>
+<p>数据库的并发操作导致的数据库不一致性主要有以下三种：</p>
+<ul>
+<li><p>丢失更新</p>
+<p>当两个事务T1和T2读入同一数据，并发执行修改操作时，T2把T1或T1把T2的修改结果覆盖掉，造成了数据的丢失更新问题，导致数据的不一致。</p>
+</li>
+<li><p>污读</p>
+<p>事务T1更新了数据R，事务T2读取了更新后的数据R，事务T1由于某种原因被撤销，修改无效，数据R恢复原值。事务T2得到的数据与数据库的内容不一致，这种情况称为“污读”。 </p>
+</li>
+<li><p>不可重读</p>
+<p>事务T1读取了数据R，事务T2读取并更新了数据R，当事务T1再读取数据R以进行核对时，得到的两次读取值不一致，这种情况称为“不可重读”。 </p>
+</li>
+</ul>
+<p><code>产生上述三种数据不一致的主要原因就是并发操作破坏了事务的隔离性</code></p>
+<p><code>并发控制就是要求DBMS提供并发控制功能，以正确的方式管理并发事务，保证数据库的完整性</code></p>
+<h4 id="封锁"><a href="#封锁" class="headerlink" title="封锁"></a>封锁</h4><p>实现并发控制的方法主要有两种：封锁技术和时标技术。 这里只介绍封锁技术。</p>
+<p><strong>封锁类型</strong></p>
+<p>所谓封锁就是当一个事务在对某个数据对象（可以是数据项、记录、数据集以至整个数据库）进行操作之前，必须获得相应的锁，以保证数据操作的正确性和一致性。<code>基本的封锁类型有两种：排他型封锁和共享封锁</code></p>
+<ul>
+<li><p>排他型封锁</p>
+<p>排它型封锁又称写封锁，简称为X封锁，它采用的原理是禁止并发操作。当事务T对某个对象R实现X封锁后，其他事务要等T解除X封锁后，才能对R进行操作</p>
+</li>
+<li><p>共享封锁</p>
+<p>共享封锁又称读封锁，简称为S锁，它采用的原理是允许其他用户对同一数据对象进行查询，但不能对该数据对象进行修改。 </p>
+</li>
+</ul>
+<p><strong>封锁协议</strong></p>
+<p>封锁可以保证合理地进行并发控制，保证数据的一致性。<br>在封锁时，要考虑一定的封锁规则，例如，何时开始封锁、封锁多长时间、何时释放等，这些封锁规则称为封锁协议。 </p>
+<p>对并发操作带来的丢失更新，污读，不可重读问题，可以通过三级封锁协议在不同程度上给予解决 ：</p>
+<ul>
+<li>一级封锁协议<br>事务T在修改数据对象之前必须对其加X锁，直到事务结束。<code>一级封锁协议只有修改数据时才进行加锁，如果只是读取数据则并不加锁，所以它不能防止“污读”和“不可重读”数据</code></li>
+<li>二级封锁协议<br>在一级封锁协议的基础上，另外加上事务T在读取数据R之前必须先对其加S锁，读完后释放S锁。<code>二级封锁协议可以解决更新时的数据丢失问题，还可以进一步防止污读</code> </li>
+<li>三级封锁协议<br>在一级封锁协议的基础上，另外加上事务T在读取数据R之前必须先对其加S锁，读完后并不释放S锁，而直到事务T结束才释放。<code>三级封锁协议彻底解决了并发操作带来的三个不一致问题</code></li>
+</ul>
+<p><strong>封锁粒度</strong></p>
+<p>封锁粒度指封锁的单位。<br>根据对数据的不同处理，封锁的对象可以是这样一些逻辑单元：字段、记录、表、数据库等，封锁的数据对象的大小叫封锁粒度。 </p>
+<p>封锁粒度越小，系统中能够被封锁的对象就越多，并发度越高，但封锁机构复杂，系统开销也就越大。<br>封锁粒度越大，系统中能够被封锁的对象就越少，并发度越低，封锁机构越简单，相应系统开销也就越小。</p>
+<p><strong>死锁和活锁</strong></p>
+<ul>
+<li><p>活锁</p>
+<p>当某个事务请求对某一数据进行排他性封锁时，由于其他事务对该数据的操作而使这个事务处于永久等待状态，这种状态称为活锁。</p>
+</li>
+<li><p>死锁</p>
+<p>在同时处于等待状态的两个或多个事务中，其中的每一个在它能够进行之前，都等待着某个数据，而这个数据已被它们中的某个事务所封锁，这种状态称为死锁。</p>
+<p><em>死锁产生的条件</em></p>
+<ol>
+<li>互斥条件：<br>一个数据对象一次只能被一个事务所使用，即对数据的封锁采用排他式。</li>
+<li>不可抢占条件：<br>一个数据对象只能被占有它的事务所释放，而不能被别的事务强行抢占。</li>
+<li>部分分配条件：<br>一个事务已经封锁分给它的数据对象，但仍然要求封锁其他数据。</li>
+<li>循环等待条件：<br>允许等待其他事务释放数据对象，系统处于加锁请求相互等待的状态。</li>
+</ol>
+<p><em>死锁的预防</em></p>
+<ol>
+<li>一次加锁法:<br>一次加锁法是每个事物必须将所有要使用的数据对象全部一次加锁，并要求加锁成功，只要一个加锁不成功，表示本次加锁失败，则应该立即释放所有加锁成功的数据对象，然后重新开始加锁。</li>
+<li>顺序加锁法:<br>预先对所有可加锁的数据对象规定一个加锁顺序，每个事务都需要按此顺序加锁，在释放时，按逆序进行。</li>
+</ol>
+</li>
+</ul>
+<h3 id="数据库的恢复"><a href="#数据库的恢复" class="headerlink" title="数据库的恢复"></a>数据库的恢复</h3><h4 id="数据库恢复的含义"><a href="#数据库恢复的含义" class="headerlink" title="数据库恢复的含义"></a>数据库恢复的含义</h4><p>系统必须具有检测故障并把数据从错误状态中恢复到某一正确状态的功能，这就是数据库的恢复。</p>
+<h4 id="数据库恢复的原理和技术"><a href="#数据库恢复的原理和技术" class="headerlink" title="数据库恢复的原理和技术"></a>数据库恢复的原理和技术</h4><p>恢复系统应该提供两种类型的功能：一种是生成冗余数据，即对可能发生的故障做某些准备；另一种是冗余重建，即利用这些冗余数据恢复数据库。<br>生成冗余数据最常用的技术是<code>登记日志文件和数据转储</code>，在实际应用中，这两种方法常常结合在一起使用。</p>
+<ul>
+<li><p>登记日志文件</p>
+<p>典型的日志文件主要包含以下内容：<br>（1）更新数据库的事务标识（标明是哪个事务）；<br>（2）操作的类型（插入、删除或修改）；<br>（3）操作对象；<br>（4）更新前数据的旧值（对于插入操作，没有旧值）；<br>（5）更新后数据的新值（对于删除操作，没有新值）；<br>（6）事务处理中各个关键时刻（事务开始、结束及其真正回写时间）。</p>
+<p>日志编辑的原则：先写原则</p>
+<p>（1）至少要等到相应运行记录的撤销部分已经写入日志文件中以后，才允许该事务向物理数据库中写入记录；<br>（2）直到事务的所有运行记录的撤销和重做两部分都已写入日志文件中以后，才允许事务完成提交处理</p>
+</li>
+<li><p>数据转储</p>
+<p>数据转储是指定期地将整个数据库复制到多个存储设备（如磁带、磁盘）上保存起来的过程，它是数据库恢复中采用的基本手段。</p>
+<p>存储方式：海量转储和增量转储。<br>存储状态：静态转储和动态转储。</p>
+</li>
+</ul>
+<h4 id="数据库的故障和恢复的策略"><a href="#数据库的故障和恢复的策略" class="headerlink" title="数据库的故障和恢复的策略"></a>数据库的故障和恢复的策略</h4><p>在数据库运行过程中可能会出现各种各样的故障，可分为以下三类：</p>
+<p><strong>事务故障及其恢复</strong></p>
+<p>事务故障表示由非预期的、不正常的程序结束所造成的故障</p>
+<p>事务撤销的具体做法如下：<br>（1）反向扫描日志文件，查找该事务的更新操作；<br>（2）对该事务的更新操作执行反操作，即对已经插入的新记录进行删除操作，对已删除的记录进行插入操作，对修改的数据恢复旧值，用旧值代替新值；这样由后向前逐个扫描该事务已做的所有更新操作，并做同样处理，直到扫描到此事务的开始标记，则事务故障恢复完毕。</p>
+<p><strong>系统故障及其恢复</strong></p>
+<p>由于某种原因，造成系统停止运转，致使所有正在运行的事务都以非正常方式终止，要求系统重新启动。 </p>
+<p>恢复的具体做法如下：<br>（1）正向扫描日志文件，查找尚未提交的事务，将其事务标识记入撤销队列。同时查找已经提交的事务，将其事务标识记入重做队列。<br>（2）对撤销队列中的各个事务进行撤销处理。<br>（3）对重做队列中的各个事务进行重做处理。</p>
+<p><strong>介质故障及其恢复</strong></p>
+<p>系统在运行过程中，由于辅助存储器介质受到破坏，使存储在外存中的数据部分丢失或全部丢失。</p>
+<p>恢复的具体做法如下：<br>（1）装入最新的数据库后备副本，使数据库恢复到最近一次转储的可用状态。<br>（2）装入最新的日志文件副本，根据日志文件中的内容重做已完成的事务。<br>（3）找出发生故障前已提交的事务，将其记入重做队列。再对重做队列中的各个事务进行重做处理。 </p>
+
+    </div>
+
+    
+    
+    
+	  
+	  <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/" rel="tag"># 数据库原理与应用</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E5%9B%9B%EF%BC%89/" rel="prev" title="数据库原理与应用（四）">
+      <i class="fa fa-chevron-left"></i> 数据库原理与应用（四）
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库安全保护"><span class="nav-text">数据库安全保护</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-数据库的安全性"><span class="nav-text">5.1 数据库的安全性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL-server-2012的数据安全性机制"><span class="nav-text">SQL server 2012的数据安全性机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL-server-2012的身份验证模式"><span class="nav-text">SQL server 2012的身份验证模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL-server-2012的登录账号和服务器角色"><span class="nav-text">SQL server 2012的登录账号和服务器角色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL-server-2012的数据库账号和数据库角色"><span class="nav-text">SQL server 2012的数据库账号和数据库角色</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-完整性控制"><span class="nav-text">5.2  完整性控制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库完整性的定义"><span class="nav-text">数据库完整性的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#完整性规则的组成"><span class="nav-text">完整性规则的组成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#完整性约束条件的分类"><span class="nav-text">完整性约束条件的分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据完整性的实施"><span class="nav-text">数据完整性的实施</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#规则"><span class="nav-text">规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#默认"><span class="nav-text">默认</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发控制与封锁"><span class="nav-text">并发控制与封锁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库并发性的含义"><span class="nav-text">数据库并发性的含义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务"><span class="nav-text">事务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并发操作与数据的不一致性"><span class="nav-text">并发操作与数据的不一致性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#封锁"><span class="nav-text">封锁</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库的恢复"><span class="nav-text">数据库的恢复</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库恢复的含义"><span class="nav-text">数据库恢复的含义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库恢复的原理和技术"><span class="nav-text">数据库恢复的原理和技术</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库的故障和恢复的策略"><span class="nav-text">数据库的故障和恢复的策略</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="xxxxAmor"
+      src="/images/touxiang.jpg">
+  <p class="site-author-name" itemprop="name">xxxxAmor</p>
+  <div class="site-description" itemprop="description">Not all girls are made of sugar and spice and everything nice.Some girls are made of adventures,fine beer,brains and no fear</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+  
+
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Amor</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">146k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:12</span>
+</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/chitose.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":"True#是否在手机端显示"},"log":false});</script></body>
+</html>

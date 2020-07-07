@@ -160,6 +160,316 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="xxxxAmor">
+      <meta itemprop="description" content="Not all girls are made of sugar and spice and everything nice.Some girls are made of adventures,fine beer,brains and no fear">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Geek is the new chic">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/" class="post-title-link" itemprop="url">数据库原理与应用（五）</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-07 16:03:48 / 修改时间：16:04:45" itemprop="dateCreated datePublished" datetime="2020-07-07T16:03:48+08:00">2020-07-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="数据库安全保护"><a href="#数据库安全保护" class="headerlink" title="数据库安全保护"></a>数据库安全保护</h2><h3 id="5-1-数据库的安全性"><a href="#5-1-数据库的安全性" class="headerlink" title="5.1 数据库的安全性"></a>5.1 数据库的安全性</h3><p>数据库的安全性是指保护数据库以防止非法使用所造成的数据泄露，更改或破坏</p>
+<p>安全性控制的一般方法：</p>
+<ul>
+<li><input disabled type="checkbox"> 用户标识和鉴定</li>
+<li><input disabled type="checkbox"> 用户存取权限控制</li>
+<li><input disabled type="checkbox"> 定义视图</li>
+<li><input disabled type="checkbox"> 数据加密</li>
+<li><input disabled type="checkbox"> 审计</li>
+</ul>
+<h4 id="SQL-server-2012的数据安全性机制"><a href="#SQL-server-2012的数据安全性机制" class="headerlink" title="SQL server 2012的数据安全性机制"></a>SQL server 2012的数据安全性机制</h4><p>SQL server 2012的安全模型分为三层结构，分别为服务器安全管理，数据库安全管理和数据库对象的访问权限管理</p>
+<p><img src="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/D:%5Cxxxxamor%5Cpic%5Cimage-20200523085155825.png" alt="image-20200523085155825"></p>
+<h4 id="SQL-server-2012的身份验证模式"><a href="#SQL-server-2012的身份验证模式" class="headerlink" title="SQL server 2012的身份验证模式"></a>SQL server 2012的身份验证模式</h4><p>SQL server 2012提供两种身份验证模式：windows身份验证模式，混合身份验证模式</p>
+<ul>
+<li>windows身份验证</li>
+</ul>
+<p>​        <img src="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/D:%5Cxxxxamor%5Cpic%5Cimage-20200523090754890.png" alt="image-20200523090754890"></p>
+<p>​        <code>如果网络中有多个SQL server服务器，</code>就可以选择通过windows身份验证机制来验证</p>
+<ul>
+<li>混合身份验证</li>
+</ul>
+<p>​       <img src="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/D:%5Cxxxxamor%5Cpic%5Cimage-20200523091134763.png" alt="image-20200523091134763"></p>
+<p><code>设置身份验证模式：</code></p>
+<p><img src="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/D:%5Cxxxxamor%5Cpic%5Cimage-20200523100513833.png" alt="image-20200523100513833"></p>
+<h4 id="SQL-server-2012的登录账号和服务器角色"><a href="#SQL-server-2012的登录账号和服务器角色" class="headerlink" title="SQL server 2012的登录账号和服务器角色"></a>SQL server 2012的登录账号和服务器角色</h4><p>在SQL server 中，账号有两种，一是登录服务器的登录账号，另外一种是使用数据库的用户账号。登录账号是指能登录sql server的账号，她属于服务器的层面，本身并不能让用户使用服务器中的数据库，如果登录者想使用数据库，必须有用户账号。</p>
+<ul>
+<li><p>创建登录账号</p>
+<p><img src="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/D:%5Cxxxxamor%5Cpic%5Cimage-20200523093717559.png" alt="image-20200523093717559"></p>
+</li>
+</ul>
+<p>​      </p>
+<p>​       <img src="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/D:%5Cxxxxamor%5Cpic%5Cimage-20200523093849337.png" alt="image-20200523093849337"></p>
+<ul>
+<li>修改与删除登录账号</li>
+</ul>
+<p>​     <img src="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/D:%5Cxxxxamor%5Cpic%5Cimage-20200523094126768.png" alt="image-20200523094126768"></p>
+<ul>
+<li><p>sql server的服务器角色</p>
+<p>角色是对权限集中管理的一种机制，将不同的权限组合在一起就变成了一种角色</p>
+</li>
+</ul>
+<h4 id="SQL-server-2012的数据库账号和数据库角色"><a href="#SQL-server-2012的数据库账号和数据库角色" class="headerlink" title="SQL server 2012的数据库账号和数据库角色"></a>SQL server 2012的数据库账号和数据库角色</h4><p>新的登录名创建以后，才能创建数据库用户。数据库用户在特定的数据库内创建，必须和某个登录名相关联。一个登录账户可以与服务器的所有数据库进行关联，而数据库用户是一个登录账户在某数据库中的映射。也就是说，一个登录账户可以映射到不同的数据库，产生多个数据库用户，但一个登录账户在一个数据库至多映射一个数据库用户。</p>
+<ul>
+<li><p>创建数据库用户账号</p>
+<p>1 利用对象资源管理器创建数据库用户</p>
+<p>2 利用 Create user语句来创建数据库用户</p>
+</li>
+</ul>
+<ul>
+<li>查看或修改数据库用户账号<img src="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/D:%5Cxxxxamor%5Cpic%5Cimage-20200531175750134.png" alt="image-20200531175750134"></li>
+</ul>
+<ul>
+<li><p>数据库角色</p>
+<p><img src="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/D:%5Cxxxxamor%5Cpic%5Cimage-20200523094746478.png" alt="image-20200523094746478"></p>
+</li>
+</ul>
+<p>​                    </p>
+<p>​                     <img src="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/D:%5Cxxxxamor%5Cpic%5Cimage-20200531180331555.png" alt="image-20200531180331555"> </p>
+<ul>
+<li><p>用户权限管理</p>
+<p>权限用来指定授权某些用户可以使用的数据库对象和这些授权用户可以对这些数据库对象执行的那些操作。<code>在数据库中，权限可以分为系统权限和对象权限，这两种权限都是可以授予和收回的。</code></p>
+<p>系统权限表示用户对数据库的操作权限，即创建数据库或者创建数据库中的其他内容所需要的权限类型。</p>
+<p>对象权限是授予数据库用户对特定数据库中的表，视图和存储过程等对象的操作权限。</p>
+</li>
+</ul>
+<h3 id="5-2-完整性控制"><a href="#5-2-完整性控制" class="headerlink" title="5.2  完整性控制"></a>5.2  完整性控制</h3><h4 id="数据库完整性的定义"><a href="#数据库完整性的定义" class="headerlink" title="数据库完整性的定义"></a>数据库完整性的定义</h4><p>数据库的完整性是指保护数据库中数据的正确性，有效性和相容性，防止错误的数据进入数据库中进行无效的操作。<code>完整性措施的防范对象是不合语义的数据</code></p>
+<h4 id="完整性规则的组成"><a href="#完整性规则的组成" class="headerlink" title="完整性规则的组成"></a>完整性规则的组成</h4><p><img src="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/D:%5Cxxxxamor%5Cpic%5Cimage-20200531181900692.png" alt="image-20200531181900692"></p>
+<p>一条完整性规则可以用一个五元组（D，O，A，C，P）来形式化地表示 </p>
+<p>D（Data）：代表约束作用的数据对象，可以是关系、元组和列三种对象；<br>O（Operation）：代表触发完整性检查的数据库操作，即当用户发出什么操作请求时需要检查该完整性规则，是立即执行还是延迟执行；<br>A（Assertion）：代表数据对象必须满足的语义约束，这是规则的主体；<br>C（Condition）：代表选择A作用的数据对象值的谓词；<br>P（Procedure）：代表违反完整性规则时触发执行的操作过程。</p>
+<p><img src="https://s1.ax1x.com/2020/07/04/NxGnIg.png" alt="NxGnIg.png"></p>
+<p><code>完整性约束条件是完整性控制机制的核心</code></p>
+<h4 id="完整性约束条件的分类"><a href="#完整性约束条件的分类" class="headerlink" title="完整性约束条件的分类"></a>完整性约束条件的分类</h4><p>按照约束条件使用的对象来分，分为值的约束和结构的约束</p>
+<ul>
+<li><p>值的约束</p>
+<p>值的约束即对数据类型、数据格式、取值范围和空值等进行规定。<br>（1）对数据类型的约束，包括数据的类型、长度、单位和精度等。<br>（2）对数据格式的约束。<br>（3）对取值范围的约束。<br>（4）对空值的约束。  </p>
+</li>
+<li><p>结构的约束</p>
+<p>结构的约束即对数据之间联系的约束。<br>（1）函数依赖约束。<br>（2）实体完整性约束。<br>（3）参照完整性约束。<br>（4）统计约束。</p>
+</li>
+</ul>
+<p>按照对象的状态来分，分为静态约束和动态约束</p>
+<ul>
+<li><p>静态约束</p>
+<p>静态约束是指对数据库每一个确定状态所应满足的约束条件，是反映数据库状态合理性的约束，这是最重要的一类完整性约束。上面介绍的值的约束和结构的约束均属于静态约束。</p>
+</li>
+<li><p>动态约束</p>
+<p>动态约束是指数据库从一种状态转变为另一种状态时，新旧值之间所应满足的约束条件，动态约束反映的是数据库状态变迁的约束。例如，学生年龄在更改时只能增长，职工工资在调整时不得低于其原来的工资。</p>
+</li>
+</ul>
+<h4 id="数据完整性的实施"><a href="#数据完整性的实施" class="headerlink" title="数据完整性的实施"></a>数据完整性的实施</h4><p>数据完整性通过以下两种形式来实施：</p>
+<ul>
+<li><p>声明式数据完整性</p>
+<p>声明式数据完整性是将数据所需符合的条件融入到对象的定义中，这样SQL Server会自动确保数据符合事先制定的条件。这是实施数据完整性的首选。</p>
+<p>声明式数据完整性的特点是：<br>① 通过针对表和字段定义声明的约束，可使声明式数据完整性成为数据定义的一部分。<br>② 使用约束、默认值与规则实施声明式数据完整性。 </p>
+</li>
+<li><p>程序化数据完整性</p>
+<p>如果所需符合的条件以及该条件的实施均通过所编写的程序代码完成，则这种形式的数据完整性称为程序化数据完整性。</p>
+<p>程序化数据完整性的特点是：<br>（1）程序化数据完整性可以通过相关的程序语言及工具在客户端或服务器端实施。<br>（2）SQL Server可以使用存储过程或触发器实施程序化数据完整性。</p>
+</li>
+</ul>
+<h4 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h4><p>规则就是数据库对存储在表中的列或用户自定义数据类型中的值的规定和限制。<br>规则与其作用的表或用户自定义数据类型是相互独立的，即表或用户自定义对象的删除、修改不会对与之相连的规则产生影响。 </p>
+<ul>
+<li><p>创建规则</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> RULE rule_name <span class="keyword">AS</span> condition_expression</span></pre></td></tr></table></figure>
+
+<p>例：创建学生年龄规则</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> RULE age_rule</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">AS</span> @age &gt;= <span class="number">18</span> <span class="keyword">and</span> @age &lt;= <span class="number">50</span></span></pre></td></tr></table></figure>
+</li>
+<li><p>规则的绑定与松绑</p>
+<p>创建规则后，规则仅仅是一个存在于数据库中的对象，并未发生作用。需要将规则与数据库表或用户自定义对象联系起来，才能达到创建规则的目的。<br>所谓绑定就是指定规则作用于哪个表的哪一列或哪个用户自定义数据类型。<br>解除规则与对象的绑定称为“松绑”。 </p>
+<p>*<em>用存储过程sp_bindrule绑定规则 *</em></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sp_bindrule [@rulename =] 'rule’,	</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">[@objname =] 'object_name'	[, 'futureonly']</span></pre></td></tr></table></figure>
+
+<p>例：绑定规则age_rule 到S表的字段Age。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">EXEC sp_bindrule 'age_rule', 'S.Age‘</span></pre></td></tr></table></figure>
+
+<p><code>规则对已经输入到表中的数据不起作用</code></p>
+</li>
+</ul>
+<p>​        <strong>用存储过程sp_unbindrule解除规则的绑定</strong>  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sp_unbindrule [@objname =] 'object_name'	[,'futureonly'] </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">//例：解除已绑定到S表的字段Age的规则age_rule。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">EXEC sp_unbindrule 'S.Age'</span></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>删除规则：在删除一个规则前必须先将与其绑定的对象解除绑定</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">//使用<span class="keyword">DROP</span> RULE命令删除规则 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">                     <span class="keyword">DROP</span> RULE &#123;rule_name&#125; [,...n] </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">//例:删除age_rule规则。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">                     <span class="keyword">DROP</span> RULE age_rule</span></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="默认"><a href="#默认" class="headerlink" title="默认"></a>默认</h4><p>默认（Default）是用户在向表中添加数据时，如果没有明确地给出一个值，这时SQL Server所自动使用的值。<br>表的一列或一个用户自定义数据类型只能与一个默认绑定。 </p>
+<ul>
+<li><p>创建默认</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DEFAULT</span> default_name <span class="keyword">AS</span> constant_expression </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">//例：创建出生日期默认birthday_defa。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DEFAULT</span> birthday_defa 			</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">AS</span> ‘<span class="number">1990</span><span class="number">-1</span><span class="number">-1</span><span class="string">'</span></span></pre></td></tr></table></figure>
+</li>
+<li><p>默认的绑定与松绑</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">//用存储过程sp_bindefault 绑定默认 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sp_bindefault [@defname =] 'default',	[@objname =] 'object_name'	[, 'futureonly'] </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">//绑定默认birthday_defa到数据表S的Birthday列上。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">EXEC sp_bindefault birthday_defa, 'S.[Birthday] '</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">//用存储过程sp_unbindefault 解除默认的绑定 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">sp_unbindefault [@objname =] 'object_name' [,'futureonly'] </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">//解除默认birthday_defa与表S的Birthday列的绑定。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">EXEC sp_unbindefault 'S.[Birthday] '</span></pre></td></tr></table></figure>
+</li>
+<li><p>删除默认：在删除一个默认前必须先将与其绑定的对象解除绑定 </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">//使用<span class="keyword">DROP</span> RULE命令删除默认 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">DEFAULT</span> &#123;default_name&#125; [,...n]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">//例:删除学生生日默认birthday_defa。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span>  <span class="keyword">DEFAULT</span> birthday_defa</span></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="并发控制与封锁"><a href="#并发控制与封锁" class="headerlink" title="并发控制与封锁"></a>并发控制与封锁</h3><h4 id="数据库并发性的含义"><a href="#数据库并发性的含义" class="headerlink" title="数据库并发性的含义"></a>数据库并发性的含义</h4><p>为了充分利用数据库资源，很多时候数据库用户都是对数据库系统并行存取数据，这样就会发生多个用户并发存取同一数据的情况，如果对并发操作不加控制可能会产生不正确的数据，破坏数据的完整性。<br>并发控制就是解决这类问题，以保持数据库中数据的一致性，即在任何一个时刻数据库都将以相同的形式给用户提供数据。 </p>
+<h4 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h4><p><strong>事务的定义</strong></p>
+<p>事务是数据库系统中执行的一个工作单位，它是由用户定义的一组操作序列。 </p>
+<p>一个事务可以是一组SQL语句、一条SQL语句或整个程序，一个应用程序可以包括多个事务。 </p>
+<p>定义事务的语句有三条：</p>
+<ul>
+<li>BEGIN TRANSACTION    事务的开始</li>
+<li>COMMIT    事务的提交</li>
+<li>ROLLBACK    事务的回滚</li>
+</ul>
+<p><strong>事务的特征</strong></p>
+<ul>
+<li><p>原子性</p>
+<p>一个事务是一个不可分割的工作单位，事务在执行时，应该遵守“要么不做，要么全做”（Nothing or All）的原则，即不允许完成部分的事务。</p>
+</li>
+<li><p>一致性</p>
+<p>事务对数据库的作用是数据库从一个一致状态转变到另一个一致状态。所谓数据库的一致状态是指数据库中的数据满足完整性约束。 </p>
+</li>
+<li><p>隔离性</p>
+<p>如果多个事务并发地执行，应像各个事务独立执行一样，一个事务的执行不能被其他事务干扰。</p>
+</li>
+<li><p>持久性</p>
+<p>持久性指一个事务一旦提交，它对数据库中数据的改变就应该是持久的，即使数据库因故障而受到破坏，DBMS也应该能够恢复。</p>
+</li>
+</ul>
+<h4 id="并发操作与数据的不一致性"><a href="#并发操作与数据的不一致性" class="headerlink" title="并发操作与数据的不一致性"></a>并发操作与数据的不一致性</h4><p>当同一数据库系统中有多个事务并发运行时，如果不加以适当控制，可能产生数据的不一致</p>
+<p>数据库的并发操作导致的数据库不一致性主要有以下三种：</p>
+<ul>
+<li><p>丢失更新</p>
+<p>当两个事务T1和T2读入同一数据，并发执行修改操作时，T2把T1或T1把T2的修改结果覆盖掉，造成了数据的丢失更新问题，导致数据的不一致。</p>
+</li>
+<li><p>污读</p>
+<p>事务T1更新了数据R，事务T2读取了更新后的数据R，事务T1由于某种原因被撤销，修改无效，数据R恢复原值。事务T2得到的数据与数据库的内容不一致，这种情况称为“污读”。 </p>
+</li>
+<li><p>不可重读</p>
+<p>事务T1读取了数据R，事务T2读取并更新了数据R，当事务T1再读取数据R以进行核对时，得到的两次读取值不一致，这种情况称为“不可重读”。 </p>
+</li>
+</ul>
+<p><code>产生上述三种数据不一致的主要原因就是并发操作破坏了事务的隔离性</code></p>
+<p><code>并发控制就是要求DBMS提供并发控制功能，以正确的方式管理并发事务，保证数据库的完整性</code></p>
+<h4 id="封锁"><a href="#封锁" class="headerlink" title="封锁"></a>封锁</h4><p>实现并发控制的方法主要有两种：封锁技术和时标技术。 这里只介绍封锁技术。</p>
+<p><strong>封锁类型</strong></p>
+<p>所谓封锁就是当一个事务在对某个数据对象（可以是数据项、记录、数据集以至整个数据库）进行操作之前，必须获得相应的锁，以保证数据操作的正确性和一致性。<code>基本的封锁类型有两种：排他型封锁和共享封锁</code></p>
+<ul>
+<li><p>排他型封锁</p>
+<p>排它型封锁又称写封锁，简称为X封锁，它采用的原理是禁止并发操作。当事务T对某个对象R实现X封锁后，其他事务要等T解除X封锁后，才能对R进行操作</p>
+</li>
+<li><p>共享封锁</p>
+<p>共享封锁又称读封锁，简称为S锁，它采用的原理是允许其他用户对同一数据对象进行查询，但不能对该数据对象进行修改。 </p>
+</li>
+</ul>
+<p><strong>封锁协议</strong></p>
+<p>封锁可以保证合理地进行并发控制，保证数据的一致性。<br>在封锁时，要考虑一定的封锁规则，例如，何时开始封锁、封锁多长时间、何时释放等，这些封锁规则称为封锁协议。 </p>
+<p>对并发操作带来的丢失更新，污读，不可重读问题，可以通过三级封锁协议在不同程度上给予解决 ：</p>
+<ul>
+<li>一级封锁协议<br>事务T在修改数据对象之前必须对其加X锁，直到事务结束。<code>一级封锁协议只有修改数据时才进行加锁，如果只是读取数据则并不加锁，所以它不能防止“污读”和“不可重读”数据</code></li>
+<li>二级封锁协议<br>在一级封锁协议的基础上，另外加上事务T在读取数据R之前必须先对其加S锁，读完后释放S锁。<code>二级封锁协议可以解决更新时的数据丢失问题，还可以进一步防止污读</code> </li>
+<li>三级封锁协议<br>在一级封锁协议的基础上，另外加上事务T在读取数据R之前必须先对其加S锁，读完后并不释放S锁，而直到事务T结束才释放。<code>三级封锁协议彻底解决了并发操作带来的三个不一致问题</code></li>
+</ul>
+<p><strong>封锁粒度</strong></p>
+<p>封锁粒度指封锁的单位。<br>根据对数据的不同处理，封锁的对象可以是这样一些逻辑单元：字段、记录、表、数据库等，封锁的数据对象的大小叫封锁粒度。 </p>
+<p>封锁粒度越小，系统中能够被封锁的对象就越多，并发度越高，但封锁机构复杂，系统开销也就越大。<br>封锁粒度越大，系统中能够被封锁的对象就越少，并发度越低，封锁机构越简单，相应系统开销也就越小。</p>
+<p><strong>死锁和活锁</strong></p>
+<ul>
+<li><p>活锁</p>
+<p>当某个事务请求对某一数据进行排他性封锁时，由于其他事务对该数据的操作而使这个事务处于永久等待状态，这种状态称为活锁。</p>
+</li>
+<li><p>死锁</p>
+<p>在同时处于等待状态的两个或多个事务中，其中的每一个在它能够进行之前，都等待着某个数据，而这个数据已被它们中的某个事务所封锁，这种状态称为死锁。</p>
+<p><em>死锁产生的条件</em></p>
+<ol>
+<li>互斥条件：<br>一个数据对象一次只能被一个事务所使用，即对数据的封锁采用排他式。</li>
+<li>不可抢占条件：<br>一个数据对象只能被占有它的事务所释放，而不能被别的事务强行抢占。</li>
+<li>部分分配条件：<br>一个事务已经封锁分给它的数据对象，但仍然要求封锁其他数据。</li>
+<li>循环等待条件：<br>允许等待其他事务释放数据对象，系统处于加锁请求相互等待的状态。</li>
+</ol>
+<p><em>死锁的预防</em></p>
+<ol>
+<li>一次加锁法:<br>一次加锁法是每个事物必须将所有要使用的数据对象全部一次加锁，并要求加锁成功，只要一个加锁不成功，表示本次加锁失败，则应该立即释放所有加锁成功的数据对象，然后重新开始加锁。</li>
+<li>顺序加锁法:<br>预先对所有可加锁的数据对象规定一个加锁顺序，每个事务都需要按此顺序加锁，在释放时，按逆序进行。</li>
+</ol>
+</li>
+</ul>
+<h3 id="数据库的恢复"><a href="#数据库的恢复" class="headerlink" title="数据库的恢复"></a>数据库的恢复</h3><h4 id="数据库恢复的含义"><a href="#数据库恢复的含义" class="headerlink" title="数据库恢复的含义"></a>数据库恢复的含义</h4><p>系统必须具有检测故障并把数据从错误状态中恢复到某一正确状态的功能，这就是数据库的恢复。</p>
+<h4 id="数据库恢复的原理和技术"><a href="#数据库恢复的原理和技术" class="headerlink" title="数据库恢复的原理和技术"></a>数据库恢复的原理和技术</h4><p>恢复系统应该提供两种类型的功能：一种是生成冗余数据，即对可能发生的故障做某些准备；另一种是冗余重建，即利用这些冗余数据恢复数据库。<br>生成冗余数据最常用的技术是<code>登记日志文件和数据转储</code>，在实际应用中，这两种方法常常结合在一起使用。</p>
+<ul>
+<li><p>登记日志文件</p>
+<p>典型的日志文件主要包含以下内容：<br>（1）更新数据库的事务标识（标明是哪个事务）；<br>（2）操作的类型（插入、删除或修改）；<br>（3）操作对象；<br>（4）更新前数据的旧值（对于插入操作，没有旧值）；<br>（5）更新后数据的新值（对于删除操作，没有新值）；<br>（6）事务处理中各个关键时刻（事务开始、结束及其真正回写时间）。</p>
+<p>日志编辑的原则：先写原则</p>
+<p>（1）至少要等到相应运行记录的撤销部分已经写入日志文件中以后，才允许该事务向物理数据库中写入记录；<br>（2）直到事务的所有运行记录的撤销和重做两部分都已写入日志文件中以后，才允许事务完成提交处理</p>
+</li>
+<li><p>数据转储</p>
+<p>数据转储是指定期地将整个数据库复制到多个存储设备（如磁带、磁盘）上保存起来的过程，它是数据库恢复中采用的基本手段。</p>
+<p>存储方式：海量转储和增量转储。<br>存储状态：静态转储和动态转储。</p>
+</li>
+</ul>
+<h4 id="数据库的故障和恢复的策略"><a href="#数据库的故障和恢复的策略" class="headerlink" title="数据库的故障和恢复的策略"></a>数据库的故障和恢复的策略</h4><p>在数据库运行过程中可能会出现各种各样的故障，可分为以下三类：</p>
+<p><strong>事务故障及其恢复</strong></p>
+<p>事务故障表示由非预期的、不正常的程序结束所造成的故障</p>
+<p>事务撤销的具体做法如下：<br>（1）反向扫描日志文件，查找该事务的更新操作；<br>（2）对该事务的更新操作执行反操作，即对已经插入的新记录进行删除操作，对已删除的记录进行插入操作，对修改的数据恢复旧值，用旧值代替新值；这样由后向前逐个扫描该事务已做的所有更新操作，并做同样处理，直到扫描到此事务的开始标记，则事务故障恢复完毕。</p>
+<p><strong>系统故障及其恢复</strong></p>
+<p>由于某种原因，造成系统停止运转，致使所有正在运行的事务都以非正常方式终止，要求系统重新启动。 </p>
+<p>恢复的具体做法如下：<br>（1）正向扫描日志文件，查找尚未提交的事务，将其事务标识记入撤销队列。同时查找已经提交的事务，将其事务标识记入重做队列。<br>（2）对撤销队列中的各个事务进行撤销处理。<br>（3）对重做队列中的各个事务进行重做处理。</p>
+<p><strong>介质故障及其恢复</strong></p>
+<p>系统在运行过程中，由于辅助存储器介质受到破坏，使存储在外存中的数据部分丢失或全部丢失。</p>
+<p>恢复的具体做法如下：<br>（1）装入最新的数据库后备副本，使数据库恢复到最近一次转储的可用状态。<br>（2）装入最新的日志文件副本，根据日志文件中的内容重做已完成的事务。<br>（3）找出发生故障前已提交的事务，将其记入重做队列。再对重做队列中的各个事务进行重做处理。 </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://github.com/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E5%9B%9B%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1889,233 +2199,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/2020/03/14/%E6%B1%89%E5%AD%97%E7%BC%96%E7%A0%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="xxxxAmor">
-      <meta itemprop="description" content="Not all girls are made of sugar and spice and everything nice.Some girls are made of adventures,fine beer,brains and no fear">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Geek is the new chic">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/14/%E6%B1%89%E5%AD%97%E7%BC%96%E7%A0%81/" class="post-title-link" itemprop="url">汉字编码</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-03-14 20:55:23 / 修改时间：20:56:28" itemprop="dateCreated datePublished" datetime="2020-03-14T20:55:23+08:00">2020-03-14</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="汉字编码"><a href="#汉字编码" class="headerlink" title="汉字编码"></a>汉字编码</h2><h3 id="编码问题"><a href="#编码问题" class="headerlink" title="编码问题 "></a><font color="#F8EFBA" size="3" face="黑体">编码问题 </font></h3><ul>
-<li>文件 </li>
-<li>网页 </li>
-<li>console 终端   </li>
-</ul>
-<h3 id="主要编码方案"><a href="#主要编码方案" class="headerlink" title="主要编码方案 "></a><font color="#F8EFBA" size="3" face="黑体">主要编码方案 </font></h3><p>最早的字符串编码是 ASCII 编码，它仅仅对 10 个数字、26 个大小写英文字母以及一些特殊字符进行了编码。ASCII 码最多只能表示 256 个符号，每个字符只需要占用 1 个字节。</p>
-<p>随着信息技术的发展，各国的文字都需要进行编码，于是相继出现了 GBK、GB2312、UTF-8 编码等，其中 GBK 和 GB2312 是我国制定的中文编码标准，规定英文字符占用 1 个字节，中文字符占用 2 个字节；而 UTF-8 是国际通过的编码格式，它包含了全世界所有国家需要用到的字符，其规定英文字符占用 1 个字节，中文字符占用 3 个字节。</p>
-<ul>
-<li><font color="#F97F51" size="3" face="黑体">汉字字符集 </font>  </li>
-</ul>
-<ol>
-<li><p>GBK   (兼容GB2312)<br>GBK：不再要求低字节一定是127号之后的编码，只要第一个字节是大于127就固定表示这是一个汉字的开始，不管后面跟的是不是扩展字符集里的内容  </p>
-</li>
-<li><p>GB2312  (分级，排序，2个字节，编码表)    </p>
-</li>
-</ol>
-<p><font color="#BBFFFF" size="3" face="黑体">GB2312：一个小于127的字符意义与原来的相同，但是两个大于127的字符连在一起时，就表示一个汉字；前面的一个字节（高字节）从0xA1用到0xF7，后面一个字节（低字节）从0xA1到0xFE；其中，在ASCII里本来就有的数字、标点、字母都统统重新编了两个字节长的编码，这就是常说的“全角”字符，而原来在127号以下的那些就叫“半角”字符 </font> </p>
-<p>GB2312共收录6763个汉字，其中一级汉字3755个，二级汉字3008个；同时收录包括拉丁字母、希腊字母、日文平假名及片假名字母、俄罗斯语西里尔字母在内的682个全形字符。       </p>
-<p><font color="#82589F" size="3" face="黑体">GB2312区位码</font></p>
-<p>GB2312对所收汉字进行了“分区”处理，每区含有94个汉字/符号。这种表示方式也称为区位码。</p>
-<p>01-09区为特殊符号。<br>16-55区为一级汉字，按拼音排序。<br>56-87区为二级汉字，按部首/笔画排序。<br>10-15区及88-94区则未有编码。        </p>
-<p>举例来说，“啊”字是GB2312之中的第一个汉字，它的区位码就是1601。字节编码，通常采用EUC储存方法，以便兼容于ASCII。每个汉字及符号以两个字节来表示 。 第一个字节称为“高位字节”，第二个字节称为“低位字节”。 “高位字节”使用了0xA1-0xF7(把01-87区的区号加上0xA0)，“低位字节”使用了0xA1-0xFE(把01-94加上0xA0)。例如 “啊”字在大多数程序中，会以0xB0A1储存（与区位码对比：0xB0=0xA0+16,0xA1=0xA0+1）。        </p>
-<p>所以GB2312编码中汉字区码的十进制是从176到247，位码是从161到255.之所以存储了6763小于82*94=6768，是因为在区码为215，位码为250-254之间共五个编码没有汉字编码，所以6768-5=6763个。</p>
-<p><font color="#82589F" size="3" face="黑体">GB2312编码规则</font></p>
-<p><font color="#1B9CFC" size="3" face="黑体">2字节编码，高位为0xA1-0xF7，低位为0xA1-0xFE  </font></p>
-<p>汉字区域，高位为0xB0-0xF7，低位为0xA1-0xFE  </p>
-<p>特殊符号，高位为0xA1-0xA9，低位为0xA1-0xFE</p>
-<ol start="3">
-<li>Big5 </li>
-<li>HZ </li>
-</ol>
-<ul>
-<li><font color="#F97F51" size="3" face="黑体">Unicode字符集  </font></li>
-</ul>
-<ol>
-<li>utf8  </li>
-<li>utf16 (utf16LE,utf16BE)</li>
-</ol>
-<h3 id="编码相关编程"><a href="#编码相关编程" class="headerlink" title=" 编码相关编程  "></a><font color="#F8EFBA" size="3" face="黑体"> 编码相关编程  </font></h3><ul>
-<li><font color="#F97F51" size="3" face="黑体"> 汉字相关  </font></li>
-</ul>
-<ol>
-<li>生成GB2312汉字  </li>
-<li>汉字ID计算  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">def HZ2ID(HZ):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">	HZ&#x3D;HZ.encode(&quot;gbk&quot;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">	ID&#x3D;-1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">	if len(HZ) &gt;0  and (HZ[0]&amp; 0x80) !&#x3D; 0:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">		ID&#x3D;(HZ[0]-0xb0)*(6*16-2)+(HZ[1]-0xa1)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">	if ID &gt; 3755:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">		ID-&#x3D;5	</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">	return ID</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">print(&quot;pls input HZ&quot;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">while 1:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">	HZ&#x3D;input(&quot;&quot;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">	if HZ &#x3D;&#x3D; &#39;q&#39;:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">		break</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">	ID&#x3D;HZ2ID(HZ)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">	print(ID)</span></pre></td></tr></table></figure></li>
-</ol>
-<ul>
-<li><font color="#F97F51" size="3" face="黑体">文件相关 </font> </li>
-</ul>
-<p><font color="#FEA47F" size="3" face="黑体">打开文件</font>    </p>
-<p>假设在当前目录下有一个文件名为’test.txt’的文本文件，里面的数据如下：  </p>
-<pre><code>19871104
-崔胜铉  
-T.O.P  </code></pre><p><font color="#FEA47F" size="3" face="黑体">读取txt文本 </font> </p>
-<p>read() 一次性读取文本中全部的内容，以字符串的形式返回结果  </p>
-<pre><code>with open(&quot;d:/nlp/EX/test.txt&quot;, &quot;r&quot;) as f:  # 打开文件
-    data = f.read()  # 读取文件
-    print(data)</code></pre><p>readline()   只读取文本第一行的内容，以字符串的形式返回结果</p>
-<pre><code>f=open(&quot;d:/nlp/EX/test.txt&quot;,&quot;r&quot;,encoding=&apos;gbk&apos;)
-    data = f.readline()
-    print (data)   </code></pre><p>readlines() 读取文本所有内容，并且以数列的格式返回结果，一般配合for in使用    </p>
-<pre><code>with open(&quot;d:/nlp/EX/test.txt&quot;, &quot;r&quot;) as f:
-for line in f.readlines():
-    line = line.strip(&apos;\n&apos;)  #去掉列表中每一个元素的换行符
-    print(line)   </code></pre><p><font color="#FEA47F" size="3" face="黑体">写入txt文本</font>  </p>
-<pre><code>with open(&quot;d:/nlp/EX/test.txt&quot;,&quot;w&quot;) as f:
-    f.write(&quot;这是个测试！&quot;)  # 自带文件关闭功能，不需要再f.close()   </code></pre><p>要了解文件读写模式，需要了解几种模式的区别，以及对应指针</p>
-<p>r :   读取文件，若文件不存在则会报错</p>
-<p>w:   写入文件，若文件不存在则会先创建再写入，会覆盖原文件</p>
-<p>a :   写入文件，若文件不存在则会先创建再写入，但不会覆盖原文件，而是追加在文件末尾</p>
-<p>rb,wb：  分别于r,w类似，但是用于读写二进制文件</p>
-<p>r+ :   可读、可写，文件不存在也会报错，写操作时会覆盖</p>
-<p>w+ :   可读，可写，文件不存在先创建，会覆盖</p>
-<p>a+ :  可读、可写，文件不存在先创建，不会覆盖，追加在末尾</p>
-<p><font color="#F97F51" size="3" face="黑体">读取文件时的编码问题</font></p>
-<p>在 Python 中，有 2 种常用的字符串类型，分别为 str 和 bytes 类型，其中 str 用来表示 Unicode 字符，bytes 用来表示二进制数据。str 类型和 bytes 类型之间就需要使用 encode() 和 decode() 方法进行转换。Python 3.x 默认采用 UTF-8 编码格式，有效地解决了中文乱码的问题。  </p>
-<p><font color="#F97F51" size="3" face="黑体">Python  encode()方法 </font>  </p>
-<p>encode() 方法为字符串类型（str）提供的方法，用于将 str 类型转换成 bytes 类型，这个过程也称为“编码”。</p>
-<p> <font color="#F97F51" size="3" face="黑体">encode() 方法的语法格式如下： </font> </p>
-<pre><code>str.encode([encoding=&quot;utf-8&quot;][,errors=&quot;strict&quot;])   </code></pre><p>注意，格式中用 [] 括起来的参数为可选参数，也就是说，在使用此方法时，可以使用 [] 中的参数，也可以不使用。</p>
-<table>
-<thead>
-<tr>
-<th align="center">参数</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">str</td>
-<td align="center">表示要进行转换的字符串。</td>
-</tr>
-<tr>
-<td align="center">encoding = “utf-8”</td>
-<td align="center">指定进行编码时采用的字符编码，该选项默认采用 utf-8 编码。例如，如果想使用简体中文，可以设置 gb2312。当方法中只使用这一个参数时，可以省略前边的“encoding=”，直接写编码格式，例如 str.encode(“UTF-8”)。</td>
-</tr>
-<tr>
-<td align="center">errors = “strict”</td>
-<td align="center">指定错误处理方式，其可选择值可以是：</td>
-</tr>
-<tr>
-<td align="center">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;strict：遇到非法字符就抛出异常。</td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ignore：忽略非法字符。  </p>
-<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;replace：用“？”替换非法字符。  </p>
-<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;xmlcharrefreplace：使用 xml 的字符引用。该参数的默认值 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;为strict。 |  </p>
-<p>注意，使用 encode() 方法对原字符串进行编码，不会直接修改原字符串，如果想修改原字符串，需要重新赋值。 </p>
-<p>【例 】将 str 类型字符串“崔胜铉什么时候出solo”转换成 bytes 类型。  </p>
-<pre><code>str =&quot;崔胜铉什么时候出solo&quot;
-str.encode(&quot;gbk&quot;)</code></pre><p>【输出结果】b’\xb4\xde\xca\xa4\xee\xe7\xca\xb2\xc3\xb4\xca\xb1\xba\xf2\xb3\xf6solo’  </p>
-<p> <font color="#F97F51" size="3" face="黑体">Python decode()方法  </font></p>
-<p>和 encode() 方法正好相反，decode() 方法用于将 bytes 类型的二进制数据转换为 str 类型，这个过程也称为“解码”。</p>
-<p> <font color="#F97F51" size="3" face="黑体">decode() 方法的语法格式如下：</font></p>
-<pre><code>bytes.decode([encoding=&quot;utf-8&quot;][,errors=&quot;strict&quot;])    </code></pre><table>
-<thead>
-<tr>
-<th align="center">参数</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">bytes</td>
-<td align="center">表示要进行转换的二进制数据。</td>
-</tr>
-<tr>
-<td align="center">encoding=”utf-8”</td>
-<td align="center">指定解码时采用的字符编码，默认采用 utf-8 格式。当方法中只使用这一个参数时，可以省略“encoding=”，直接写编码方式即可。注意，对 bytes 类型数据解码，要选择和当初编码时一样的格式。</td>
-</tr>
-<tr>
-<td align="center">errors = “strict”</td>
-<td align="center">指定错误处理方式，其可选择值可以是：strict：遇到非法字符就抛出异常。ignore：忽略非法字符。replace：用“？”替换非法字符。xmlcharrefreplace：使用 xml 的字符引用。该参数的默认值为 strict。</td>
-</tr>
-</tbody></table>
-<p>【例 】     </p>
-<pre><code>str = &quot;崔胜铉什么时候出solo&quot;
-bytes=str.encode()
-bytes.decode()  </code></pre><p><font color="#FEA47F" size="3" face="黑体">统计汉字字频 </font> </p>
-<p>思路：是先把每个字符提出来放在列表里；再过滤掉其中的标点符号；最后用字典对某个字出现的频率进行累加。  </p>
-<pre><code>#coding:utf-8
-
-word_lst = []
-word_dict = {}
-
-exclude_str = &quot;，。！？、（）【】&lt;&gt;《》=：+-*—“”…&quot; 
-
-with open(&quot;d:/nlp/EX/top.txt&quot;,&quot;r&quot;) as fileIn ,open(&quot;d:/nlp/EX/字频.txt&quot;,&apos;w&apos;) as fileOut:
-
-# 添加每一个字到列表中
-for line in fileIn:
-    for char in line:
-        word_lst.append(char)
-
-# 用字典统计每个字出现的个数       
-for char in word_lst:
-    if char not in exclude_str:
-        if char.strip() not in word_dict: # strip去除各种空白
-            word_dict[char] = 1
-        else :
-            word_dict[char] += 1
-
-# 排序
-#   x[1]是按字频排序，x[0]则是按字排序
-lstWords = sorted(word_dict.items(), key=lambda x:x[1],  reverse=True) 
-
-# 输出结果 (前100)
-print (&apos;字符\t字频&apos;)
-print (&apos;=============&apos;)
-for e in lstWords[:100]:
-    print (&apos;%s\t%d&apos; % e)
-    fileOut.write(&apos;%s, %d\n&apos; % e)  </code></pre>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -2188,7 +2271,7 @@ for e in lstWords[:100]:
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2231,12 +2314,12 @@ for e in lstWords[:100]:
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">139k</span>
+    <span title="站点总字数">146k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:06</span>
+    <span title="站点阅读时长">2:12</span>
 </div>
   <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
   </div>
