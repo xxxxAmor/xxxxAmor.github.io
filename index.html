@@ -160,6 +160,517 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%B8%89%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="xxxxAmor">
+      <meta itemprop="description" content="Not all girls are made of sugar and spice and everything nice.Some girls are made of adventures,fine beer,brains and no fear">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Geek is the new chic">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%B8%89%EF%BC%89/" class="post-title-link" itemprop="url">数据库原理与应用（三)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-07 15:40:25 / 修改时间：15:40:30" itemprop="dateCreated datePublished" datetime="2020-07-07T15:40:25+08:00">2020-07-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="单表查询的SQL语句"><a href="#单表查询的SQL语句" class="headerlink" title="单表查询的SQL语句"></a>单表查询的SQL语句</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span>  表名或视图名</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span>  条件</span></pre></td></tr></table></figure>
+
+<p>例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> s</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> age&gt;<span class="number">18</span></span></pre></td></tr></table></figure>
+
+<h5 id="单表查询重点在WHERE语句中的条件写法，包括："><a href="#单表查询重点在WHERE语句中的条件写法，包括：" class="headerlink" title="单表查询重点在WHERE语句中的条件写法，包括："></a>单表查询重点在WHERE语句中的条件写法，包括：</h5><ul>
+<li>数值类型的查询</li>
+<li>字符类型的查询（包括精确和部分匹配）</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> s</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> dept=<span class="string">'计算机'</span></span></pre></td></tr></table></figure>
+
+<p><code>利用通配符匹配</code></p>
+<p>【例】查询姓张的老师</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> t</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> tn <span class="keyword">like</span> <span class="string">'张%'</span></span></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> t</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> tn <span class="keyword">like</span> <span class="string">'张_'</span>  //只匹配张x，不是张xx</span></pre></td></tr></table></figure>
+
+<p>【例】查询名字里有‘铉’的人</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> t</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> tn <span class="keyword">like</span> <span class="string">'%铉'</span></span></pre></td></tr></table></figure>
+
+<p>【例】查询表格中职称是教授或副教授的人</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> t</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> prof <span class="keyword">like</span> <span class="string">'%教授%'</span></span></pre></td></tr></table></figure>
+
+<p>数据类型：</p>
+<ul>
+<li>日期类型的查询</li>
+</ul>
+<p>【例】查询具体日期</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> battales</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> <span class="built_in">date</span>=<span class="string">'2000-02-02'</span></span></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>逻辑（bit）类型的查询</li>
+</ul>
+<p>【例】</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> printer</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> <span class="built_in">date</span>&lt;<span class="string">'1942-01-01'</span></span></pre></td></tr></table></figure>
+
+<h5 id="集合操作"><a href="#集合操作" class="headerlink" title="集合操作"></a>集合操作</h5><p>【例】查询80分到90分的同学</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">frome sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> score &gt;=<span class="number">80</span> <span class="keyword">and</span> score &lt;=<span class="number">90</span></span></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">frome sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> score <span class="keyword">between</span> <span class="number">80</span> <span class="keyword">and</span> <span class="number">90</span></span></pre></td></tr></table></figure>
+
+<p>【例】查询选修了C1或C2课程的同学</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> cno <span class="keyword">in</span> (<span class="string">'C1'</span>,<span class="string">'C2'</span>)</span></pre></td></tr></table></figure>
+
+
+
+<h5 id="去重"><a href="#去重" class="headerlink" title="去重"></a>去重</h5><p>【例】</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> dept</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> s</span></pre></td></tr></table></figure>
+
+<h5 id="空值判定"><a href="#空值判定" class="headerlink" title="空值判定"></a>空值判定</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> score <span class="keyword">is</span> <span class="literal">null</span></span></pre></td></tr></table></figure>
+
+<h5 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span>  //从高到低</span></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span>，cno <span class="keyword">desc</span></span></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> top3*   //显示前三名</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></span></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> top3 <span class="keyword">with</span> <span class="keyword">ties</span> *   //显示并列前三名</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></span></pre></td></tr></table></figure>
+
+<h5 id="在一个属性列上运算"><a href="#在一个属性列上运算" class="headerlink" title="在一个属性列上运算"></a>在一个属性列上运算</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> sno,cno,scor,score+<span class="number">10</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> cno=<span class="string">'c2'</span></span></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *,<span class="keyword">num</span>*price <span class="keyword">as</span> total</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> caidan</span></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="多表查询的SQL语句"><a href="#多表查询的SQL语句" class="headerlink" title="多表查询的SQL语句"></a>多表查询的SQL语句</h4><h5 id="按笛卡尔积理解（cross-join）"><a href="#按笛卡尔积理解（cross-join）" class="headerlink" title="按笛卡尔积理解（cross join）"></a>按笛卡尔积理解（cross join）</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> 表名<span class="number">1</span>，表名<span class="number">2</span>，....</span></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> 表名<span class="number">1</span> <span class="keyword">cross</span> <span class="keyword">join</span> 表名<span class="number">2</span></span></pre></td></tr></table></figure>
+
+<p>【例】</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> s,sc</span></pre></td></tr></table></figure>
+
+<p>再加上where语句相当于在笛卡尔积上进行选取</p>
+<p>【例】</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> s,sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> s.sno=sc.sno</span></pre></td></tr></table></figure>
+
+
+
+<h5 id="使用内连接（inner-join-join）"><a href="#使用内连接（inner-join-join）" class="headerlink" title="使用内连接（inner join|join）"></a>使用内连接（inner join|join）</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> 表<span class="number">1</span> <span class="keyword">inner</span> <span class="keyword">join</span> 表<span class="number">2</span> <span class="keyword">on</span> 条件<span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> 条件<span class="number">2</span></span></pre></td></tr></table></figure>
+
+<p>【例】查询‘刘伟’老师所教授的课程，要求列出教师号，教师姓名，课程名字</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> TN,T.TNO,CNO</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> T,TC</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> (T.TNO=TC.TNO) <span class="keyword">and</span> (TN=<span class="string">'刘伟'</span>)</span></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> TN.T.TNO,CNO</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> T <span class="keyword">inner</span> <span class="keyword">join</span> TC <span class="keyword">on</span> T.TNO=TC.TNO</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span>(TN=<span class="string">'刘伟'</span>)</span></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> R1.TNO,R2.TN,R1.CNO</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">(<span class="keyword">select</span> TNO,CNO <span class="keyword">from</span> TC) <span class="keyword">as</span> R1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">(<span class="keyword">select</span> TNO,TN <span class="keyword">from</span> T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> TN=<span class="string">'刘伟'</span>) <span class="keyword">as</span> R2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">on</span> R1.TNO=R2.TNO</span></pre></td></tr></table></figure>
+
+
+
+<h5 id="使用外连接-outer-join-left-join-right-join-full-join"><a href="#使用外连接-outer-join-left-join-right-join-full-join" class="headerlink" title="使用外连接(outer join|left join|right join|full join)"></a>使用外连接(outer join|left join|right join|full join)</h5><p>【例】查询所有学生的学号，姓名，选课名称及成绩（没有选课的同学的选课信息显示为空）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> S.SNO,SN,CN,SCORE</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> S</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">left</span> <span class="keyword">outer</span> <span class="keyword">join</span> SC <span class="keyword">on</span> S.SNO=SC.SNO</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">left</span> <span class="keyword">outer</span> <span class="keyword">join</span> C <span class="keyword">on</span> C.CNO=SC.CNO</span></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="子查询的SQL语句"><a href="#子查询的SQL语句" class="headerlink" title="子查询的SQL语句"></a>子查询的SQL语句</h4><p>子查询是指：一个查询是另一查询的一部分</p>
+<h5 id="普通子查询"><a href="#普通子查询" class="headerlink" title="普通子查询"></a>普通子查询</h5><ul>
+<li><p>返回一个值的子查询</p>
+<p>【例】查询与刘伟老师职称相同的教师号，姓名</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> TNO,TN</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> Prof=(<span class="keyword">select</span> Prof</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">           <span class="keyword">from</span> T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">           <span class="keyword">where</span> TN=<span class="string">'刘伟'</span>)</span></pre></td></tr></table></figure>
+</li>
+<li><p>返回一组值的子查询</p>
+</li>
+</ul>
+<p>集合成员运算符使用“IN”，表达式[NOT] IN</p>
+<p>【例】查询教C5课程的老师的编号</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> TN <span class="keyword">from</span> T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span>(TNO <span class="keyword">in</span> (<span class="keyword">select</span> TNO</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">              <span class="keyword">from</span> TC</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">              <span class="keyword">where</span> CNO=<span class="string">'C5'</span>))</span></pre></td></tr></table></figure>
+
+
+
+<p>集合成员进行比较时使用：ANY,ALL</p>
+<p>元组 <del>ANY（ 集合）：元组和右边集合中的至少一个元素满足</del>运算</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> TN <span class="keyword">from</span> T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span>(TNO =<span class="keyword">any</span> (<span class="keyword">select</span> TNO</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">              <span class="keyword">from</span> TC</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">              <span class="keyword">where</span> CNO=<span class="string">'C5'</span>))</span></pre></td></tr></table></figure>
+
+<p>NOT 元组<del>ANY（集合）：没有元组与右边集合中的任意元素满足</del>运算</p>
+<p>元组 <del>ALL（ 集合）:元组和右边集合中的所有元素都满足</del>运算</p>
+<p>【例】查询其他系中比计算机系所有教师工资都高的教师的姓名和工资</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> TN,Sal</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span>(Sal&gt;<span class="keyword">ALL</span>(<span class="keyword">select</span> Sal</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">              <span class="keyword">from</span> T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">              <span class="keyword">where</span> Dept=<span class="string">'计算机'</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">and</span> (Dept&lt;&gt;<span class="string">'计算机'</span>)</span></pre></td></tr></table></figure>
+
+<p>NOT 元组~ALL（集合）：</p>
+<h5 id="相关（关联）子查询"><a href="#相关（关联）子查询" class="headerlink" title="相关（关联）子查询"></a>相关（关联）子查询</h5><p>相关子查询的执行顺序是：首先选取父查询表中的第一行记录，内部的子查询利用此行中相关的属性值进行查询，然后父查询根据子查询返回的结果判断此行是否满足查询条件。如果满足条件，则把改行放入父查询的查询结果集合中。重复执行这一过程，直到处理完父查询表中的每一行数据。</p>
+<p>【例】查询不讲授C5课程的老师名字</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span>(<span class="string">'C5'</span><span class="keyword">not</span> <span class="keyword">in</span>(<span class="keyword">select</span> CNO</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">                 <span class="keyword">from</span> TC</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">                 <span class="keyword">where</span> TNO=T.TNO))</span></pre></td></tr></table></figure>
+
+<p>【例】查询至少选修了两门课的学生学号</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> sc.sno</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc,sc <span class="keyword">as</span> sc1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> sc.sno=sc1.sno <span class="keyword">and</span> sc.cno&gt;sc1.cno</span></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc <span class="keyword">as</span> sc1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> cno&lt;<span class="keyword">any</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">(<span class="keyword">select</span> cno</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"> <span class="keyword">from</span> sc <span class="keyword">as</span> sc2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"> <span class="keyword">where</span> sc1.sno=sc2,sno)</span></pre></td></tr></table></figure>
+
+<p>使用exists</p>
+<ul>
+<li>使用带有exists的子查询不返回任何实际数据，它只得到逻辑值“真”或“假”</li>
+<li>当子查询的查询结果集合为非空时，外层的where子句返回真值，否则返回假值</li>
+<li>not exists与此相反</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> T   //<span class="keyword">exists</span>判断一个集合是否为空</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> <span class="keyword">exists</span>(<span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">              <span class="keyword">from</span> TC</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">              <span class="keyword">where</span> TNO=T.TNO <span class="keyword">and</span> CNO=<span class="string">'C5'</span>)</span></pre></td></tr></table></figure>
+
+
+
+<p>查询选修了所有课程的学生姓名</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> SN</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> S</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> (<span class="keyword">not</span> <span class="keyword">exists</span> (<span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">                   <span class="keyword">from</span> C1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">                   <span class="keyword">where</span> <span class="keyword">not</span> <span class="keyword">exists</span>(<span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">                                    <span class="keyword">from</span> SC</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">                                    <span class="keyword">where</span> SNO=S.SNO</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">                                    <span class="keyword">and</span> CNO=C1.CNO)))</span></pre></td></tr></table></figure>
+
+
+
+<h4 id="使用聚合函数的SQL语句"><a href="#使用聚合函数的SQL语句" class="headerlink" title="使用聚合函数的SQL语句"></a>使用聚合函数的SQL语句</h4><p>通过在select子句中返回聚合函数的值，丰富查询结果</p>
+<h5 id="标准SQL语句提供的函数有以下五种："><a href="#标准SQL语句提供的函数有以下五种：" class="headerlink" title="标准SQL语句提供的函数有以下五种："></a>标准SQL语句提供的函数有以下五种：</h5><p>AVG：按列计算平均值</p>
+<p>SUM：按列计算值的总和</p>
+<p>MAX：求一列中的最大值</p>
+<p>MIN：求一列中的最小值</p>
+<p>COUNT：按列值计个数</p>
+<p>【例】求学号为S1的学生的总分和平均分</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">sum</span>(Score) <span class="keyword">as</span> Totalscore,<span class="keyword">avg</span>(Score) <span class="keyword">as</span> Avgscore</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span>(sno=<span class="string">"s1"</span>)</span></pre></td></tr></table></figure>
+
+<p>【例】求选修C1课程的最高分，最低分及之间相差的分数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">MAX</span>(score) <span class="keyword">as</span> Maxscore,<span class="keyword">MIN</span>(score) <span class="keyword">as</span> Minscore,<span class="keyword">MAX</span>(score)-<span class="keyword">MIN</span>(score) <span class="keyword">as</span> diff</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span>(cno=<span class="string">"C1"</span>)</span></pre></td></tr></table></figure>
+
+<p>【例】求计算机系学生的总数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(sno) <span class="keyword">from</span> s</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> dept=<span class="string">'计算机'</span></span></pre></td></tr></table></figure>
+
+<p>【例】求学校中共有多少个系</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(<span class="keyword">distinct</span> dept) <span class="keyword">as</span> deptnum</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">feom s</span></pre></td></tr></table></figure>
+
+
+
+<h5 id="数据分组查询"><a href="#数据分组查询" class="headerlink" title="数据分组查询"></a>数据分组查询</h5><p>group by 子句将表中的元组按指定列上值相等的原则分组，然后在每一分组使用聚合函数，得到单一值</p>
+<p>【例】查询各个教师的教师号及其任课的门数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> tno,<span class="keyword">count</span>(*) <span class="keyword">as</span> c_num</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> tno</span></pre></td></tr></table></figure>
+
+
+
+<p> <code>易错问题示例</code>：列出每个同学的姓名，学号，平均分</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> s,sno,sn,<span class="keyword">avg</span>(score)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> s,sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> sc.sno=s.sno</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> s.sno</span></pre></td></tr></table></figure>
+
+<p><code>该语句是错误的，因为如果有group by 子句，那么select子句只能出现gruop by 子句中的属性及聚集函数</code> </p>
+<p>改正方法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> s,sno,sn,<span class="keyword">avg</span>(score)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> s,sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> sc.sno=s.sno</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> s.sno，sn</span></pre></td></tr></table></figure>
+
+
+
+<p>若在分组后还要按照一定的条件进行筛选，则需使用having子句</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--查询选修两门以上课程的学生的学号和选课门数</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> sno,<span class="keyword">count</span>(*) <span class="keyword">as</span> sc_num</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> sno</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">having</span> (<span class="keyword">count</span>(*)&gt;=<span class="number">2</span>)</span></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--查询平均成绩最高的学生学号</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> sno </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> sno</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">having</span> <span class="keyword">AVG</span>(score)&gt;=</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">                <span class="keyword">ALL</span>(<span class="keyword">select</span> <span class="keyword">AVG</span>(score)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">                <span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">                <span class="keyword">group</span> <span class="keyword">by</span> sno)</span></pre></td></tr></table></figure>
+
+
+
+<h4 id="集合操作-1"><a href="#集合操作-1" class="headerlink" title="集合操作"></a>集合操作</h4><p><code>操作符：union,intersect,except</code></p>
+<p>要保证操作的集合结构相同,运算自动去重</p>
+<p>【例】查询选修C1或C3的学生学号</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> sno</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> cno=<span class="string">"C1"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">union</span>    //<span class="keyword">union</span> <span class="keyword">all</span> 保留重复</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> sno</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> cno=<span class="string">"C2"</span></span></pre></td></tr></table></figure>
+
+<h4 id="数据操纵的SQL语句"><a href="#数据操纵的SQL语句" class="headerlink" title="数据操纵的SQL语句"></a>数据操纵的SQL语句</h4><p>通过INSERT,DELETE,UPDATE进行数据库更新</p>
+<p>建议在操作之前进行备份</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">into</span> s2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> s1</span></pre></td></tr></table></figure>
+
+
+
+<h5 id="insert"><a href="#insert" class="headerlink" title="insert"></a>insert</h5><p><code>插入单个元组</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--在SC表中添加一条选课记录（‘s7','c1')</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> SC(SNO,CNO)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">values</span>(‘s7<span class="string">','</span>c1<span class="string">')</span></span></pre></td></tr></table></figure>
+
+<p><code>插入子查询结果</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--首先建立新表AvgSal,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> AvgSal</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">(department <span class="built_in">varchar</span>(<span class="number">20</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">average <span class="built_in">smallint</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--利用子查询求出T表中各系的平均工资，把结果放在AvgSal表中</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> AvgSal</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> dept,<span class="keyword">AVG</span>(sal)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> dept</span></pre></td></tr></table></figure>
+
+
+
+<h5 id="delete-删除表中的数据，表的结构没有变"><a href="#delete-删除表中的数据，表的结构没有变" class="headerlink" title="delete (删除表中的数据，表的结构没有变)"></a>delete (删除表中的数据，表的结构没有变)</h5><p><code>删除单个表中的记录</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--删除刘伟老师的记录</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> TN=<span class="string">'刘伟'</span></span></pre></td></tr></table></figure>
+
+
+
+<p><code>删除记录时涉及其他表的内容，需要用到子查询</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--删除刘伟老师的授课记录</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> tno=(<span class="keyword">select</span> tno</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">          <span class="keyword">from</span> t</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">          <span class="keyword">where</span> tn=<span class="string">'刘伟'</span>)</span></pre></td></tr></table></figure>
+
+
+
+<h5 id="update"><a href="#update" class="headerlink" title="update"></a>update</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--把刘伟老师转到信息系</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> dept=<span class="string">'信息'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> TN=<span class="string">'刘伟'</span></span></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--把所有学生的年龄加1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> S</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> age=age+<span class="number">1</span></span></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--把讲授C5课程的老师的岗位津贴加100</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> comm=comm+<span class="number">100</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span>(tno <span class="keyword">in</span>(<span class="keyword">select</span> t.tno </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">             <span class="keyword">from</span> t,tc </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">             <span class="keyword">where</span> t.tno=tc.tno))</span></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--把所有老师的工资都在平均工资的基础上加100</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> sal=(<span class="keyword">select</span> <span class="number">100</span> + <span class="keyword">avg</span>(sal) <span class="keyword">from</span> T)</span></pre></td></tr></table></figure>
+
+
+
+<h4 id="数据表的创建和使用"><a href="#数据表的创建和使用" class="headerlink" title="数据表的创建和使用"></a>数据表的创建和使用</h4><h5 id="创建数据表"><a href="#创建数据表" class="headerlink" title="创建数据表"></a>创建数据表</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> s20</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">(sno <span class="built_in">char</span>(<span class="number">6</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">sn <span class="built_in">varchar</span>(<span class="number">10</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">sex <span class="keyword">nchar</span>(<span class="number">1</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">age <span class="built_in">int</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">dept nvar(<span class="number">20</span>))</span></pre></td></tr></table></figure>
+
+
+
+<h5 id="定义数据表的约束"><a href="#定义数据表的约束" class="headerlink" title="定义数据表的约束"></a>定义数据表的约束</h5><p>完整性约束的基本语法格式：</p>
+<p><code>constraint &lt;约束名&gt; &lt;约束类型&gt;</code></p>
+<p>约束类型包括：</p>
+<h6 id="null-not-null约束"><a href="#null-not-null约束" class="headerlink" title="null/not null约束"></a>null/not null约束</h6><p>“null”表示不确定，不知道，没有数据的意思。主键列不允许出现空值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--建立一个S表，对SNO字段进行约束</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> S</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">(sno <span class="built_in">char</span>(<span class="number">6</span>) <span class="keyword">constraint</span> S_cons <span class="keyword">not</span> <span class="literal">null</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">sn <span class="built_in">varchar</span>(<span class="number">10</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">sex <span class="keyword">nchar</span>(<span class="number">1</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">age <span class="built_in">int</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">dept nvar(<span class="number">20</span>))</span></pre></td></tr></table></figure>
+
+
+
+<h6 id="unique约束"><a href="#unique约束" class="headerlink" title="unique约束"></a>unique约束</h6><p>（唯一约束。指明基本表在某一列或多个列的组合上的取值必须一致）</p>
+<p>在使用unique约束时，需要考虑以下因素：</p>
+<p>使用unique约束的字段允许为null值</p>
+<p>一个表中可以允许有多个unique约束</p>
+<p>可以把unique约束定义在多个字段上</p>
+<p>unique约束用于强制在指定字段上创建一个unique索引，缺省为非聚集索引</p>
+<p><code>定义列约束</code>：constraint 约束名 unique</p>
+<p><code>定义表约束</code>：constraint 约束名 unique(列名，列名)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--建立一个S表，定义sn为唯一键</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> S</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">(sno <span class="built_in">char</span>(<span class="number">6</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">sn <span class="built_in">varchar</span>(<span class="number">10</span>) <span class="keyword">constraint</span> sn_cons <span class="keyword">unique</span> ,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">sex <span class="keyword">nchar</span>(<span class="number">1</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">age <span class="built_in">int</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">dept nvar(<span class="number">20</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--建立一个S表，定义sn，sex为唯一键，此为表约束</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> S</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">(sno <span class="built_in">char</span>(<span class="number">6</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">sn <span class="built_in">varchar</span>(<span class="number">10</span>) <span class="keyword">unique</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">sex <span class="keyword">nchar</span>(<span class="number">1</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">age <span class="built_in">int</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">dept nvar(<span class="number">20</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">constraint</span> s_cons <span class="keyword">unique</span>(sn,sex)</span></pre></td></tr></table></figure>
+
+
+
+<h6 id="primary-key约束"><a href="#primary-key约束" class="headerlink" title="primary key约束"></a>primary key约束</h6><p>（主键约束，用于定义基本表的主键，起唯一标识作用，不可重复，不能为null）</p>
+<p>​       主键约束和unique约束的区别：</p>
+<p>​       <img src="https://s1.ax1x.com/2020/04/08/GWLZB4.png" alt="GWLZB4.png"></p>
+<p> <code>定义列约束</code>   constraint 约束名   primary key</p>
+<p><code>定义表约束</code>   constraint  约束名   primary key(列名，列名)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--建立一个数据表S，定义sno为S的主键，再建立一个数据表C，定义CNO为C的主键</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--定义数据表S</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> S</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">(sno <span class="built_in">char</span>(<span class="number">6</span>) <span class="keyword">constraint</span> s_prim primary <span class="keyword">key</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">sn <span class="built_in">varchar</span>(<span class="number">10</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">sex <span class="keyword">nchar</span>(<span class="number">1</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">age <span class="built_in">int</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">dept nvar(<span class="number">20</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--定义数据表C</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> C</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">(CNO <span class="built_in">varchar</span>(<span class="number">6</span>) <span class="keyword">constraint</span> c_prim primary <span class="keyword">key</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"> CN  <span class="keyword">nvarchar</span>(<span class="number">20</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"> CT <span class="built_in">int</span>)</span></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--建立数据表SC，定义SNO+CNO为主键</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> SC</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">( SNO <span class="built_in">varchar</span>(<span class="number">6</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  CNO <span class="built_in">varchar</span>(<span class="number">6</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  SCORE <span class="built_in">numeric</span>(<span class="number">4</span>,<span class="number">1</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">constraint</span> SC_prim primary <span class="keyword">key</span>(SNO,CNO) </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">)</span></pre></td></tr></table></figure>
+
+
+
+<h6 id="foreign-key-约束"><a href="#foreign-key-约束" class="headerlink" title="foreign key 约束"></a>foreign key 约束</h6><p><code>cinstriant   约束名  foreign key  references 主表名（列名，列名）</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--建立一个SC表，定义SCO,CNO为外键</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> SC</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">( SNO <span class="built_in">varchar</span>(<span class="number">6</span>) <span class="keyword">not</span> <span class="literal">null</span> constriant sno_fk <span class="keyword">references</span> S(SNO),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  CNO <span class="built_in">varchar</span>(<span class="number">6</span>) <span class="keyword">not</span> <span class="literal">null</span> constriant cno_fk <span class="keyword">references</span> C(CNO), ,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  SCORE <span class="built_in">numeric</span>(<span class="number">4</span>,<span class="number">1</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">   </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">)</span></pre></td></tr></table></figure>
+
+
+
+<h6 id="check约束"><a href="#check约束" class="headerlink" title="check约束"></a>check约束</h6><p>check约束用来检查字段值所允许的范围</p>
+<p>在建立check约束时，需要考虑以下因素：</p>
+<p>一个表中可以定义多个check约束</p>
+<p>每个字段只能定义一个check约束</p>
+<p>在多个字段上定义的check约束必须为表约束</p>
+<p>当执行insert,update语句时，check约束将验证数据</p>
+<p><code>constriant 约束名 check (条件)</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--建立一个SC表，定义SCORE的取值范围为0~100之间</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> SC</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">( SNO <span class="built_in">varchar</span>(<span class="number">6</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  CNO <span class="built_in">varchar</span>(<span class="number">6</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  SCORE <span class="built_in">numeric</span>(<span class="number">4</span>,<span class="number">1</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">constraint</span> SC_chec <span class="keyword">check</span>(SCORE&gt;=<span class="number">0</span> <span class="keyword">and</span> SCORE&lt;=<span class="number">100</span>) </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">)</span></pre></td></tr></table></figure>
+
+
+
+<h5 id="用sql语句修改数据表"><a href="#用sql语句修改数据表" class="headerlink" title="用sql语句修改数据表"></a>用sql语句修改数据表</h5><p><img src="https://s1.ax1x.com/2020/04/08/GWq4ne.png" alt="GWq4ne.png"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--在S表中新加一个班号列和住址列</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">alert table s</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">add</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">class_no varchar(6),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">address nvarchar(20)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--使用此方式增加的新列自动添加null值</span></span></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--把S表中的SN列加宽到12个字符</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">alert table S</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">alert column</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">SN nvarchar(12)</span></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--删除S中的主键</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">alret table S</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">constraint</span> s_prim</span></pre></td></tr></table></figure>
+
+
+
+<p><code>删除基本表</code>    drop table 表名（只能删除自己建立的表）</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%8C%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="xxxxAmor">
+      <meta itemprop="description" content="Not all girls are made of sugar and spice and everything nice.Some girls are made of adventures,fine beer,brains and no fear">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Geek is the new chic">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%8C%EF%BC%89/" class="post-title-link" itemprop="url">数据库原理与应用（二）</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-07 15:39:55 / 修改时间：15:40:00" itemprop="dateCreated datePublished" datetime="2020-07-07T15:39:55+08:00">2020-07-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="2-1-关系模型的数据结构及其形式化定义"><a href="#2-1-关系模型的数据结构及其形式化定义" class="headerlink" title="2.1 关系模型的数据结构及其形式化定义"></a>2.1 关系模型的数据结构及其形式化定义</h4><h5 id="关系的形式化定义及有关概念"><a href="#关系的形式化定义及有关概念" class="headerlink" title="关系的形式化定义及有关概念"></a>关系的形式化定义及有关概念</h5><p><code>域</code> ：域是一组具有相同数据类型的值的集合，又称为值域。整数，实数和字符串的集合都是域。域中所包含的值的个数称为域的基数。</p>
+<p> <code>笛卡尔积</code>：给定一组域D1,D2…Dn(它们可以包含相同的元素，既可以完全不同，也可以部分或全部相同)，D1.D2…Dn的笛卡尔积为：</p>
+<p><a href="https://imgchr.com/i/8XSEwt" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XSEwt.png" alt="8XSEwt.png"></a></p>
+<p>笛卡尔积实际上是一个二维表</p>
+<p><code>关系</code>：笛卡尔积D1XD2X…Dn的任一子集称为定义在域D1,D2….Dn上的n元关系</p>
+<p><a href="https://imgchr.com/i/8XSKSg" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XSKSg.png" alt="8XSKSg.png"></a></p>
+<p>在关系模型中，关系可以进一步定义成关系头+关系体</p>
+<h5 id="关系的性质"><a href="#关系的性质" class="headerlink" title="关系的性质"></a>关系的性质</h5><p>关系是一种规范化了的二维表中行的集合</p>
+<ul>
+<li>每一列中的分量必须来自同一个域，必须是同一类型的数据</li>
+<li>不同的属性可以来自同一个域，不同的属性必须有不同的名字</li>
+<li>列的顺序可以任意交换</li>
+<li>关系中元组的顺序可以任意</li>
+<li>关系中不允许出现相同的元组</li>
+<li>关系中每一分量必须是不可分的数据项</li>
+</ul>
+<h5 id="关系模式"><a href="#关系模式" class="headerlink" title="关系模式"></a>关系模式</h5><p>在数据库中，要区分型和值。关系数据库中，关系模式是型，关系是值。关系的描述称为关系模式</p>
+<p><a href="https://imgchr.com/i/8XSnfS" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XSnfS.png" alt="8XSnfS.png"></a></p>
+<h4 id="2-2-关系的码与关系的完整性"><a href="#2-2-关系的码与关系的完整性" class="headerlink" title="2.2 关系的码与关系的完整性"></a>2.2 关系的码与关系的完整性</h4><h5 id="候选码与主码"><a href="#候选码与主码" class="headerlink" title="候选码与主码"></a>候选码与主码</h5><p><code>候选码</code>：能唯一标识关系中元组的一个最小属性或属性集</p>
+<p><img src="https://s1.ax1x.com/2020/07/01/N7CpY8.png" alt="N7CpY8.png"></p>
+<p><code>主码</code>：从多个候选码中选择一个作为查询，插入或删除元组的操作变量，被选用的候选码称为主码</p>
+<p><a href="https://imgchr.com/i/8XSsTx" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XSsTx.png" alt="8XSsTx.png"></a></p>
+<p><a href="https://imgchr.com/i/8XSr01" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XSr01.png" alt="8XSr01.png"></a></p>
+<p><code>主属性</code>：包含在主码中的各个属性</p>
+<p><code>非主属性</code>：不包含在任何候选码中的属性</p>
+<p><code>全码</code>：所有属性的集合是关系的候选码</p>
+<h5 id="外码"><a href="#外码" class="headerlink" title="外码"></a>外码</h5><p>如果关系R2的一个或一组属性X不是R2的主码，而是另一关系R1的主码，则该属性或属性组X称为关系R2的外码。关系R2为参照关系，关系R1为被参照关系</p>
+<p><a href="https://imgchr.com/i/8XS0X9" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XS0X9.png" alt="8XS0X9.png"></a></p>
+<h5 id="关系的完整性"><a href="#关系的完整性" class="headerlink" title="关系的完整性"></a>关系的完整性</h5><ul>
+<li><p>实体完整性</p>
+<p>主码的值不能为空或部分为空</p>
+</li>
+</ul>
+<ul>
+<li><p>参照完整性</p>
+<p>如果关系R2的外码X与关系R1的主码X相符，则X的每个值等于R1中主码的某个值，或者取空值</p>
+</li>
+</ul>
+<ul>
+<li>用户定义完整性</li>
+</ul>
+<h4 id="2-3-关系代数"><a href="#2-3-关系代数" class="headerlink" title="2.3 关系代数"></a>2.3 关系代数</h4><h5 id="关系代数的分类及其运算符"><a href="#关系代数的分类及其运算符" class="headerlink" title="关系代数的分类及其运算符"></a>关系代数的分类及其运算符</h5><p>关系代数是一种抽象的查询语言，关系代数的运算对象和运算结果都是关系</p>
+<p>关系代数运算符：</p>
+<p><a href="https://imgchr.com/i/8XpKN6" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XpKN6.png" alt="8XpKN6.png"></a></p>
+<h5 id="传统的集合运算"><a href="#传统的集合运算" class="headerlink" title="传统的集合运算"></a>传统的集合运算</h5><p>设给定两个关系R，S，若满足：（1）具有相同的列数n （2）R中第i个属性和S中第i个属性必须来自同一个域，则说E,S是相容的。<code>除笛卡尔积外，其他的集合运算要求参加运算的关系必须满足上述的相容性定义</code></p>
+<ul>
+<li><p>并</p>
+</li>
+<li><p>差</p>
+</li>
+<li><p>交</p>
+</li>
+<li><p>广义笛卡尔积</p>
+</li>
+</ul>
+<p><a href="https://imgchr.com/i/8Xp8jH" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8Xp8jH.png" alt="8Xp8jH.png"></a></p>
+<p><a href="https://imgchr.com/i/8Xp3ge" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8Xp3ge.png" alt="8Xp3ge.png"></a></p>
+<p><a href="https://imgchr.com/i/8XpIv4" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XpIv4.png" alt="8XpIv4.png"></a></p>
+<h5 id="专门的关系运算"><a href="#专门的关系运算" class="headerlink" title="专门的关系运算"></a>专门的关系运算</h5><p>1.设关系模式为R（A1,A2…An),它的一个关系为R，t属于R表示t是R的一个元组，t[A1]表示元组t中相应于属性A1的一个分量</p>
+<p><a href="https://imgchr.com/i/8Xp7r9" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8Xp7r9.png" alt="8Xp7r9.png"></a></p>
+<p><a href="https://imgchr.com/i/8Xp48U" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8Xp48U.png" alt="8Xp48U.png"></a></p>
+<ul>
+<li><code>选取</code></li>
+</ul>
+<p><a href="https://imgchr.com/i/8Xp52F" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8Xp52F.png" alt="8Xp52F.png"></a></p>
+<ul>
+<li><code>投影</code></li>
+</ul>
+<p><a href="https://imgchr.com/i/8XphCT" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XphCT.png" alt="8XphCT.png"></a></p>
+<ul>
+<li><code>连接</code></li>
+</ul>
+<p><a href="https://imgchr.com/i/8XpHbR" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XpHbR.png" alt="8XpHbR.png"></a></p>
+<p>自然连接和等值连接的区别：自然连接要求相等属性值的属性名相同，等值连接不要求</p>
+<p>自然连接是去掉重复列的等值连接</p>
+<ul>
+<li><code>除法</code></li>
+</ul>
+<p><a href="https://imgchr.com/i/8XpO56" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XpO56.png" alt="8XpO56.png"></a></p>
+<p>例：</p>
+<p><img src="https://s1.ax1x.com/2020/07/01/N7ZTYR.png" alt="N7ZTYR.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://github.com/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%B8%80%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -789,523 +1300,6 @@
 
 
 
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/2020/04/08/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%B8%89%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="xxxxAmor">
-      <meta itemprop="description" content="Not all girls are made of sugar and spice and everything nice.Some girls are made of adventures,fine beer,brains and no fear">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Geek is the new chic">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/08/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%B8%89%EF%BC%89/" class="post-title-link" itemprop="url">数据库原理与应用（三)</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-04-08 16:51:25 / 修改时间：16:57:00" itemprop="dateCreated datePublished" datetime="2020-04-08T16:51:25+08:00">2020-04-08</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="单表查询的SQL语句"><a href="#单表查询的SQL语句" class="headerlink" title="单表查询的SQL语句"></a>单表查询的SQL语句</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span>  表名或视图名</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span>  条件</span></pre></td></tr></table></figure>
-
-<p>例：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> s</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> age&gt;<span class="number">18</span></span></pre></td></tr></table></figure>
-
-<h5 id="单表查询重点在WHERE语句中的条件写法，包括："><a href="#单表查询重点在WHERE语句中的条件写法，包括：" class="headerlink" title="单表查询重点在WHERE语句中的条件写法，包括："></a>单表查询重点在WHERE语句中的条件写法，包括：</h5><ul>
-<li>数值类型的查询</li>
-<li>字符类型的查询（包括精确和部分匹配）</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> s</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> dept=<span class="string">'计算机'</span></span></pre></td></tr></table></figure>
-
-<p><code>利用通配符匹配</code></p>
-<p>【例】查询姓张的老师</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> t</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> tn <span class="keyword">like</span> <span class="string">'张%'</span></span></pre></td></tr></table></figure>
-
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> t</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> tn <span class="keyword">like</span> <span class="string">'张_'</span>  //只匹配张x，不是张xx</span></pre></td></tr></table></figure>
-
-<p>【例】查询名字里有‘铉’的人</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> t</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> tn <span class="keyword">like</span> <span class="string">'%铉'</span></span></pre></td></tr></table></figure>
-
-<p>【例】查询表格中职称是教授或副教授的人</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> t</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> prof <span class="keyword">like</span> <span class="string">'%教授%'</span></span></pre></td></tr></table></figure>
-
-<p>数据类型：</p>
-<ul>
-<li>日期类型的查询</li>
-</ul>
-<p>【例】查询具体日期</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> battales</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> <span class="built_in">date</span>=<span class="string">'2000-02-02'</span></span></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li>逻辑（bit）类型的查询</li>
-</ul>
-<p>【例】</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> printer</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> <span class="built_in">date</span>&lt;<span class="string">'1942-01-01'</span></span></pre></td></tr></table></figure>
-
-<h5 id="集合操作"><a href="#集合操作" class="headerlink" title="集合操作"></a>集合操作</h5><p>【例】查询80分到90分的同学</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">frome sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> score &gt;=<span class="number">80</span> <span class="keyword">and</span> score &lt;=<span class="number">90</span></span></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">frome sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> score <span class="keyword">between</span> <span class="number">80</span> <span class="keyword">and</span> <span class="number">90</span></span></pre></td></tr></table></figure>
-
-<p>【例】查询选修了C1或C2课程的同学</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> cno <span class="keyword">in</span> (<span class="string">'C1'</span>,<span class="string">'C2'</span>)</span></pre></td></tr></table></figure>
-
-
-
-<h5 id="去重"><a href="#去重" class="headerlink" title="去重"></a>去重</h5><p>【例】</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> dept</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> s</span></pre></td></tr></table></figure>
-
-<h5 id="空值判定"><a href="#空值判定" class="headerlink" title="空值判定"></a>空值判定</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> score <span class="keyword">is</span> <span class="literal">null</span></span></pre></td></tr></table></figure>
-
-<h5 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span>  //从高到低</span></pre></td></tr></table></figure>
-
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span>，cno <span class="keyword">desc</span></span></pre></td></tr></table></figure>
-
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> top3*   //显示前三名</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></span></pre></td></tr></table></figure>
-
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> top3 <span class="keyword">with</span> <span class="keyword">ties</span> *   //显示并列前三名</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> score <span class="keyword">desc</span></span></pre></td></tr></table></figure>
-
-<h5 id="在一个属性列上运算"><a href="#在一个属性列上运算" class="headerlink" title="在一个属性列上运算"></a>在一个属性列上运算</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> sno,cno,scor,score+<span class="number">10</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> cno=<span class="string">'c2'</span></span></pre></td></tr></table></figure>
-
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *,<span class="keyword">num</span>*price <span class="keyword">as</span> total</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> caidan</span></pre></td></tr></table></figure>
-
-
-
-
-
-<h4 id="多表查询的SQL语句"><a href="#多表查询的SQL语句" class="headerlink" title="多表查询的SQL语句"></a>多表查询的SQL语句</h4><h5 id="按笛卡尔积理解（cross-join）"><a href="#按笛卡尔积理解（cross-join）" class="headerlink" title="按笛卡尔积理解（cross join）"></a>按笛卡尔积理解（cross join）</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> 表名<span class="number">1</span>，表名<span class="number">2</span>，....</span></pre></td></tr></table></figure>
-
-<p>或者</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> 表名<span class="number">1</span> <span class="keyword">cross</span> <span class="keyword">join</span> 表名<span class="number">2</span></span></pre></td></tr></table></figure>
-
-<p>【例】</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> s,sc</span></pre></td></tr></table></figure>
-
-<p>再加上where语句相当于在笛卡尔积上进行选取</p>
-<p>【例】</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> s,sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> s.sno=sc.sno</span></pre></td></tr></table></figure>
-
-
-
-<h5 id="使用内连接（inner-join-join）"><a href="#使用内连接（inner-join-join）" class="headerlink" title="使用内连接（inner join|join）"></a>使用内连接（inner join|join）</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> 表<span class="number">1</span> <span class="keyword">inner</span> <span class="keyword">join</span> 表<span class="number">2</span> <span class="keyword">on</span> 条件<span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> 条件<span class="number">2</span></span></pre></td></tr></table></figure>
-
-<p>【例】查询‘刘伟’老师所教授的课程，要求列出教师号，教师姓名，课程名字</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> TN,T.TNO,CNO</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> T,TC</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> (T.TNO=TC.TNO) <span class="keyword">and</span> (TN=<span class="string">'刘伟'</span>)</span></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> TN.T.TNO,CNO</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> T <span class="keyword">inner</span> <span class="keyword">join</span> TC <span class="keyword">on</span> T.TNO=TC.TNO</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span>(TN=<span class="string">'刘伟'</span>)</span></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> R1.TNO,R2.TN,R1.CNO</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">(<span class="keyword">select</span> TNO,CNO <span class="keyword">from</span> TC) <span class="keyword">as</span> R1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">(<span class="keyword">select</span> TNO,TN <span class="keyword">from</span> T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> TN=<span class="string">'刘伟'</span>) <span class="keyword">as</span> R2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">on</span> R1.TNO=R2.TNO</span></pre></td></tr></table></figure>
-
-
-
-<h5 id="使用外连接-outer-join-left-join-right-join-full-join"><a href="#使用外连接-outer-join-left-join-right-join-full-join" class="headerlink" title="使用外连接(outer join|left join|right join|full join)"></a>使用外连接(outer join|left join|right join|full join)</h5><p>【例】查询所有学生的学号，姓名，选课名称及成绩（没有选课的同学的选课信息显示为空）</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> S.SNO,SN,CN,SCORE</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> S</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">left</span> <span class="keyword">outer</span> <span class="keyword">join</span> SC <span class="keyword">on</span> S.SNO=SC.SNO</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">left</span> <span class="keyword">outer</span> <span class="keyword">join</span> C <span class="keyword">on</span> C.CNO=SC.CNO</span></pre></td></tr></table></figure>
-
-
-
-
-
-<h4 id="子查询的SQL语句"><a href="#子查询的SQL语句" class="headerlink" title="子查询的SQL语句"></a>子查询的SQL语句</h4><p>子查询是指：一个查询是另一查询的一部分</p>
-<h5 id="普通子查询"><a href="#普通子查询" class="headerlink" title="普通子查询"></a>普通子查询</h5><ul>
-<li><p>返回一个值的子查询</p>
-<p>【例】查询与刘伟老师职称相同的教师号，姓名</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> TNO,TN</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> Prof=(<span class="keyword">select</span> Prof</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">           <span class="keyword">from</span> T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">           <span class="keyword">where</span> TN=<span class="string">'刘伟'</span>)</span></pre></td></tr></table></figure>
-</li>
-<li><p>返回一组值的子查询</p>
-</li>
-</ul>
-<p>集合成员运算符使用“IN”，表达式[NOT] IN</p>
-<p>【例】查询教C5课程的老师的编号</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> TN <span class="keyword">from</span> T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span>(TNO <span class="keyword">in</span> (<span class="keyword">select</span> TNO</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">              <span class="keyword">from</span> TC</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">              <span class="keyword">where</span> CNO=<span class="string">'C5'</span>))</span></pre></td></tr></table></figure>
-
-
-
-<p>集合成员进行比较时使用：ANY,ALL</p>
-<p>元组 <del>ANY（ 集合）：元组和右边集合中的至少一个元素满足</del>运算</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> TN <span class="keyword">from</span> T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span>(TNO =<span class="keyword">any</span> (<span class="keyword">select</span> TNO</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">              <span class="keyword">from</span> TC</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">              <span class="keyword">where</span> CNO=<span class="string">'C5'</span>))</span></pre></td></tr></table></figure>
-
-<p>NOT 元组<del>ANY（集合）：没有元组与右边集合中的任意元素满足</del>运算</p>
-<p>元组 <del>ALL（ 集合）:元组和右边集合中的所有元素都满足</del>运算</p>
-<p>【例】查询其他系中比计算机系所有教师工资都高的教师的姓名和工资</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> TN,Sal</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span>(Sal&gt;<span class="keyword">ALL</span>(<span class="keyword">select</span> Sal</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">              <span class="keyword">from</span> T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">              <span class="keyword">where</span> Dept=<span class="string">'计算机'</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">and</span> (Dept&lt;&gt;<span class="string">'计算机'</span>)</span></pre></td></tr></table></figure>
-
-<p>NOT 元组~ALL（集合）：</p>
-<h5 id="相关（关联）子查询"><a href="#相关（关联）子查询" class="headerlink" title="相关（关联）子查询"></a>相关（关联）子查询</h5><p>相关子查询的执行顺序是：首先选取父查询表中的第一行记录，内部的子查询利用此行中相关的属性值进行查询，然后父查询根据子查询返回的结果判断此行是否满足查询条件。如果满足条件，则把改行放入父查询的查询结果集合中。重复执行这一过程，直到处理完父查询表中的每一行数据。</p>
-<p>【例】查询不讲授C5课程的老师名字</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span>(<span class="string">'C5'</span><span class="keyword">not</span> <span class="keyword">in</span>(<span class="keyword">select</span> CNO</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">                 <span class="keyword">from</span> TC</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">                 <span class="keyword">where</span> TNO=T.TNO))</span></pre></td></tr></table></figure>
-
-<p>【例】查询至少选修了两门课的学生学号</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> sc.sno</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc,sc <span class="keyword">as</span> sc1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> sc.sno=sc1.sno <span class="keyword">and</span> sc.cno&gt;sc1.cno</span></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc <span class="keyword">as</span> sc1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> cno&lt;<span class="keyword">any</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">(<span class="keyword">select</span> cno</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"> <span class="keyword">from</span> sc <span class="keyword">as</span> sc2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"> <span class="keyword">where</span> sc1.sno=sc2,sno)</span></pre></td></tr></table></figure>
-
-<p>使用exists</p>
-<ul>
-<li>使用带有exists的子查询不返回任何实际数据，它只得到逻辑值“真”或“假”</li>
-<li>当子查询的查询结果集合为非空时，外层的where子句返回真值，否则返回假值</li>
-<li>not exists与此相反</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> T   //<span class="keyword">exists</span>判断一个集合是否为空</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> <span class="keyword">exists</span>(<span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">              <span class="keyword">from</span> TC</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">              <span class="keyword">where</span> TNO=T.TNO <span class="keyword">and</span> CNO=<span class="string">'C5'</span>)</span></pre></td></tr></table></figure>
-
-
-
-<p>查询选修了所有课程的学生姓名</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> SN</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> S</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> (<span class="keyword">not</span> <span class="keyword">exists</span> (<span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">                   <span class="keyword">from</span> C1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">                   <span class="keyword">where</span> <span class="keyword">not</span> <span class="keyword">exists</span>(<span class="keyword">select</span> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">                                    <span class="keyword">from</span> SC</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">                                    <span class="keyword">where</span> SNO=S.SNO</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">                                    <span class="keyword">and</span> CNO=C1.CNO)))</span></pre></td></tr></table></figure>
-
-
-
-<h4 id="使用聚合函数的SQL语句"><a href="#使用聚合函数的SQL语句" class="headerlink" title="使用聚合函数的SQL语句"></a>使用聚合函数的SQL语句</h4><p>通过在select子句中返回聚合函数的值，丰富查询结果</p>
-<h5 id="标准SQL语句提供的函数有以下五种："><a href="#标准SQL语句提供的函数有以下五种：" class="headerlink" title="标准SQL语句提供的函数有以下五种："></a>标准SQL语句提供的函数有以下五种：</h5><p>AVG：按列计算平均值</p>
-<p>SUM：按列计算值的总和</p>
-<p>MAX：求一列中的最大值</p>
-<p>MIN：求一列中的最小值</p>
-<p>COUNT：按列值计个数</p>
-<p>【例】求学号为S1的学生的总分和平均分</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">sum</span>(Score) <span class="keyword">as</span> Totalscore,<span class="keyword">avg</span>(Score) <span class="keyword">as</span> Avgscore</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span>(sno=<span class="string">"s1"</span>)</span></pre></td></tr></table></figure>
-
-<p>【例】求选修C1课程的最高分，最低分及之间相差的分数</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">MAX</span>(score) <span class="keyword">as</span> Maxscore,<span class="keyword">MIN</span>(score) <span class="keyword">as</span> Minscore,<span class="keyword">MAX</span>(score)-<span class="keyword">MIN</span>(score) <span class="keyword">as</span> diff</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span>(cno=<span class="string">"C1"</span>)</span></pre></td></tr></table></figure>
-
-<p>【例】求计算机系学生的总数</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(sno) <span class="keyword">from</span> s</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> dept=<span class="string">'计算机'</span></span></pre></td></tr></table></figure>
-
-<p>【例】求学校中共有多少个系</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(<span class="keyword">distinct</span> dept) <span class="keyword">as</span> deptnum</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">feom s</span></pre></td></tr></table></figure>
-
-
-
-<h5 id="数据分组查询"><a href="#数据分组查询" class="headerlink" title="数据分组查询"></a>数据分组查询</h5><p>group by 子句将表中的元组按指定列上值相等的原则分组，然后在每一分组使用聚合函数，得到单一值</p>
-<p>【例】查询各个教师的教师号及其任课的门数</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> tno,<span class="keyword">count</span>(*) <span class="keyword">as</span> c_num</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> tno</span></pre></td></tr></table></figure>
-
-
-
-<p> <code>易错问题示例</code>：列出每个同学的姓名，学号，平均分</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> s,sno,sn,<span class="keyword">avg</span>(score)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> s,sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> sc.sno=s.sno</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> s.sno</span></pre></td></tr></table></figure>
-
-<p><code>该语句是错误的，因为如果有group by 子句，那么select子句只能出现gruop by 子句中的属性及聚集函数</code> </p>
-<p>改正方法：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> s,sno,sn,<span class="keyword">avg</span>(score)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> s,sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> sc.sno=s.sno</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> s.sno，sn</span></pre></td></tr></table></figure>
-
-
-
-<p>若在分组后还要按照一定的条件进行筛选，则需使用having子句</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--查询选修两门以上课程的学生的学号和选课门数</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> sno,<span class="keyword">count</span>(*) <span class="keyword">as</span> sc_num</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> sno</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">having</span> (<span class="keyword">count</span>(*)&gt;=<span class="number">2</span>)</span></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--查询平均成绩最高的学生学号</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> sno </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> sno</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">having</span> <span class="keyword">AVG</span>(score)&gt;=</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">                <span class="keyword">ALL</span>(<span class="keyword">select</span> <span class="keyword">AVG</span>(score)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">                <span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">                <span class="keyword">group</span> <span class="keyword">by</span> sno)</span></pre></td></tr></table></figure>
-
-
-
-<h4 id="集合操作-1"><a href="#集合操作-1" class="headerlink" title="集合操作"></a>集合操作</h4><p><code>操作符：union,intersect,except</code></p>
-<p>要保证操作的集合结构相同,运算自动去重</p>
-<p>【例】查询选修C1或C3的学生学号</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> sno</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> cno=<span class="string">"C1"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">union</span>    //<span class="keyword">union</span> <span class="keyword">all</span> 保留重复</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> sno</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> cno=<span class="string">"C2"</span></span></pre></td></tr></table></figure>
-
-<h4 id="数据操纵的SQL语句"><a href="#数据操纵的SQL语句" class="headerlink" title="数据操纵的SQL语句"></a>数据操纵的SQL语句</h4><p>通过INSERT,DELETE,UPDATE进行数据库更新</p>
-<p>建议在操作之前进行备份</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">into</span> s2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> s1</span></pre></td></tr></table></figure>
-
-
-
-<h5 id="insert"><a href="#insert" class="headerlink" title="insert"></a>insert</h5><p><code>插入单个元组</code></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--在SC表中添加一条选课记录（‘s7','c1')</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> SC(SNO,CNO)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">values</span>(‘s7<span class="string">','</span>c1<span class="string">')</span></span></pre></td></tr></table></figure>
-
-<p><code>插入子查询结果</code></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--首先建立新表AvgSal,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> AvgSal</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">(department <span class="built_in">varchar</span>(<span class="number">20</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">average <span class="built_in">smallint</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--利用子查询求出T表中各系的平均工资，把结果放在AvgSal表中</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> AvgSal</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> dept,<span class="keyword">AVG</span>(sal)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> dept</span></pre></td></tr></table></figure>
-
-
-
-<h5 id="delete-删除表中的数据，表的结构没有变"><a href="#delete-删除表中的数据，表的结构没有变" class="headerlink" title="delete (删除表中的数据，表的结构没有变)"></a>delete (删除表中的数据，表的结构没有变)</h5><p><code>删除单个表中的记录</code></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--删除刘伟老师的记录</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> TN=<span class="string">'刘伟'</span></span></pre></td></tr></table></figure>
-
-
-
-<p><code>删除记录时涉及其他表的内容，需要用到子查询</code></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--删除刘伟老师的授课记录</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> tno=(<span class="keyword">select</span> tno</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">          <span class="keyword">from</span> t</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">          <span class="keyword">where</span> tn=<span class="string">'刘伟'</span>)</span></pre></td></tr></table></figure>
-
-
-
-<h5 id="update"><a href="#update" class="headerlink" title="update"></a>update</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--把刘伟老师转到信息系</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> dept=<span class="string">'信息'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> TN=<span class="string">'刘伟'</span></span></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--把所有学生的年龄加1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> S</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> age=age+<span class="number">1</span></span></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--把讲授C5课程的老师的岗位津贴加100</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> comm=comm+<span class="number">100</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span>(tno <span class="keyword">in</span>(<span class="keyword">select</span> t.tno </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">             <span class="keyword">from</span> t,tc </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">             <span class="keyword">where</span> t.tno=tc.tno))</span></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--把所有老师的工资都在平均工资的基础上加100</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> sal=(<span class="keyword">select</span> <span class="number">100</span> + <span class="keyword">avg</span>(sal) <span class="keyword">from</span> T)</span></pre></td></tr></table></figure>
-
-
-
-<h4 id="数据表的创建和使用"><a href="#数据表的创建和使用" class="headerlink" title="数据表的创建和使用"></a>数据表的创建和使用</h4><h5 id="创建数据表"><a href="#创建数据表" class="headerlink" title="创建数据表"></a>创建数据表</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> s20</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">(sno <span class="built_in">char</span>(<span class="number">6</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">sn <span class="built_in">varchar</span>(<span class="number">10</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">sex <span class="keyword">nchar</span>(<span class="number">1</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">age <span class="built_in">int</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">dept nvar(<span class="number">20</span>))</span></pre></td></tr></table></figure>
-
-
-
-<h5 id="定义数据表的约束"><a href="#定义数据表的约束" class="headerlink" title="定义数据表的约束"></a>定义数据表的约束</h5><p>完整性约束的基本语法格式：</p>
-<p><code>constraint &lt;约束名&gt; &lt;约束类型&gt;</code></p>
-<p>约束类型包括：</p>
-<h6 id="null-not-null约束"><a href="#null-not-null约束" class="headerlink" title="null/not null约束"></a>null/not null约束</h6><p>“null”表示不确定，不知道，没有数据的意思。主键列不允许出现空值</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--建立一个S表，对SNO字段进行约束</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> S</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">(sno <span class="built_in">char</span>(<span class="number">6</span>) <span class="keyword">constraint</span> S_cons <span class="keyword">not</span> <span class="literal">null</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">sn <span class="built_in">varchar</span>(<span class="number">10</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">sex <span class="keyword">nchar</span>(<span class="number">1</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">age <span class="built_in">int</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">dept nvar(<span class="number">20</span>))</span></pre></td></tr></table></figure>
-
-
-
-<h6 id="unique约束"><a href="#unique约束" class="headerlink" title="unique约束"></a>unique约束</h6><p>（唯一约束。指明基本表在某一列或多个列的组合上的取值必须一致）</p>
-<p>在使用unique约束时，需要考虑以下因素：</p>
-<p>使用unique约束的字段允许为null值</p>
-<p>一个表中可以允许有多个unique约束</p>
-<p>可以把unique约束定义在多个字段上</p>
-<p>unique约束用于强制在指定字段上创建一个unique索引，缺省为非聚集索引</p>
-<p><code>定义列约束</code>：constraint 约束名 unique</p>
-<p><code>定义表约束</code>：constraint 约束名 unique(列名，列名)</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--建立一个S表，定义sn为唯一键</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> S</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">(sno <span class="built_in">char</span>(<span class="number">6</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">sn <span class="built_in">varchar</span>(<span class="number">10</span>) <span class="keyword">constraint</span> sn_cons <span class="keyword">unique</span> ,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">sex <span class="keyword">nchar</span>(<span class="number">1</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">age <span class="built_in">int</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">dept nvar(<span class="number">20</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--建立一个S表，定义sn，sex为唯一键，此为表约束</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> S</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">(sno <span class="built_in">char</span>(<span class="number">6</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">sn <span class="built_in">varchar</span>(<span class="number">10</span>) <span class="keyword">unique</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">sex <span class="keyword">nchar</span>(<span class="number">1</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">age <span class="built_in">int</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">dept nvar(<span class="number">20</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">constraint</span> s_cons <span class="keyword">unique</span>(sn,sex)</span></pre></td></tr></table></figure>
-
-
-
-<h6 id="primary-key约束"><a href="#primary-key约束" class="headerlink" title="primary key约束"></a>primary key约束</h6><p>（主键约束，用于定义基本表的主键，起唯一标识作用，不可重复，不能为null）</p>
-<p>​       主键约束和unique约束的区别：</p>
-<p>​       <img src="https://s1.ax1x.com/2020/04/08/GWLZB4.png" alt="GWLZB4.png"></p>
-<p> <code>定义列约束</code>   constraint 约束名   primary key</p>
-<p><code>定义表约束</code>   constraint  约束名   primary key(列名，列名)</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--建立一个数据表S，定义sno为S的主键，再建立一个数据表C，定义CNO为C的主键</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--定义数据表S</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> S</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">(sno <span class="built_in">char</span>(<span class="number">6</span>) <span class="keyword">constraint</span> s_prim primary <span class="keyword">key</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">sn <span class="built_in">varchar</span>(<span class="number">10</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">sex <span class="keyword">nchar</span>(<span class="number">1</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">age <span class="built_in">int</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">dept nvar(<span class="number">20</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--定义数据表C</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> C</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">(CNO <span class="built_in">varchar</span>(<span class="number">6</span>) <span class="keyword">constraint</span> c_prim primary <span class="keyword">key</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"> CN  <span class="keyword">nvarchar</span>(<span class="number">20</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"> CT <span class="built_in">int</span>)</span></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--建立数据表SC，定义SNO+CNO为主键</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> SC</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">( SNO <span class="built_in">varchar</span>(<span class="number">6</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  CNO <span class="built_in">varchar</span>(<span class="number">6</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  SCORE <span class="built_in">numeric</span>(<span class="number">4</span>,<span class="number">1</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">constraint</span> SC_prim primary <span class="keyword">key</span>(SNO,CNO) </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">)</span></pre></td></tr></table></figure>
-
-
-
-<h6 id="foreign-key-约束"><a href="#foreign-key-约束" class="headerlink" title="foreign key 约束"></a>foreign key 约束</h6><p><code>cinstriant   约束名  foreign key  references 主表名（列名，列名）</code></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--建立一个SC表，定义SCO,CNO为外键</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> SC</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">( SNO <span class="built_in">varchar</span>(<span class="number">6</span>) <span class="keyword">not</span> <span class="literal">null</span> constriant sno_fk <span class="keyword">references</span> S(SNO),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  CNO <span class="built_in">varchar</span>(<span class="number">6</span>) <span class="keyword">not</span> <span class="literal">null</span> constriant cno_fk <span class="keyword">references</span> C(CNO), ,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  SCORE <span class="built_in">numeric</span>(<span class="number">4</span>,<span class="number">1</span>),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">   </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">)</span></pre></td></tr></table></figure>
-
-
-
-<h6 id="check约束"><a href="#check约束" class="headerlink" title="check约束"></a>check约束</h6><p>check约束用来检查字段值所允许的范围</p>
-<p>在建立check约束时，需要考虑以下因素：</p>
-<p>一个表中可以定义多个check约束</p>
-<p>每个字段只能定义一个check约束</p>
-<p>在多个字段上定义的check约束必须为表约束</p>
-<p>当执行insert,update语句时，check约束将验证数据</p>
-<p><code>constriant 约束名 check (条件)</code></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--建立一个SC表，定义SCORE的取值范围为0~100之间</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> SC</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">( SNO <span class="built_in">varchar</span>(<span class="number">6</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  CNO <span class="built_in">varchar</span>(<span class="number">6</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  SCORE <span class="built_in">numeric</span>(<span class="number">4</span>,<span class="number">1</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">constraint</span> SC_chec <span class="keyword">check</span>(SCORE&gt;=<span class="number">0</span> <span class="keyword">and</span> SCORE&lt;=<span class="number">100</span>) </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">)</span></pre></td></tr></table></figure>
-
-
-
-<h5 id="用sql语句修改数据表"><a href="#用sql语句修改数据表" class="headerlink" title="用sql语句修改数据表"></a>用sql语句修改数据表</h5><p><img src="https://s1.ax1x.com/2020/04/08/GWq4ne.png" alt="GWq4ne.png"></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--在S表中新加一个班号列和住址列</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">alert table s</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">add</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">class_no varchar(6),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">address nvarchar(20)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--使用此方式增加的新列自动添加null值</span></span></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--把S表中的SN列加宽到12个字符</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">alert table S</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">alert column</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">SN nvarchar(12)</span></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">--删除S中的主键</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">alret table S</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">constraint</span> s_prim</span></pre></td></tr></table></figure>
-
-
-
-<p><code>删除基本表</code>    drop table 表名（只能删除自己建立的表）</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/2020/03/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%8C%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="xxxxAmor">
-      <meta itemprop="description" content="Not all girls are made of sugar and spice and everything nice.Some girls are made of adventures,fine beer,brains and no fear">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Geek is the new chic">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/25/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%8C%EF%BC%89/" class="post-title-link" itemprop="url">数据库原理与应用（二）</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-25 09:36:55" itemprop="dateCreated datePublished" datetime="2020-03-25T09:36:55+08:00">2020-03-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-07 15:32:12" itemprop="dateModified" datetime="2020-07-07T15:32:12+08:00">2020-07-07</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="2-1-关系模型的数据结构及其形式化定义"><a href="#2-1-关系模型的数据结构及其形式化定义" class="headerlink" title="2.1 关系模型的数据结构及其形式化定义"></a>2.1 关系模型的数据结构及其形式化定义</h4><h5 id="关系的形式化定义及有关概念"><a href="#关系的形式化定义及有关概念" class="headerlink" title="关系的形式化定义及有关概念"></a>关系的形式化定义及有关概念</h5><p><code>域</code> ：域是一组具有相同数据类型的值的集合，又称为值域。整数，实数和字符串的集合都是域。域中所包含的值的个数称为域的基数。</p>
-<p> <code>笛卡尔积</code>：给定一组域D1,D2…Dn(它们可以包含相同的元素，既可以完全不同，也可以部分或全部相同)，D1.D2…Dn的笛卡尔积为：</p>
-<p><a href="https://imgchr.com/i/8XSEwt" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XSEwt.png" alt="8XSEwt.png"></a></p>
-<p>笛卡尔积实际上是一个二维表</p>
-<p><code>关系</code>：笛卡尔积D1XD2X…Dn的任一子集称为定义在域D1,D2….Dn上的n元关系</p>
-<p><a href="https://imgchr.com/i/8XSKSg" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XSKSg.png" alt="8XSKSg.png"></a></p>
-<p>在关系模型中，关系可以进一步定义成关系头+关系体</p>
-<h5 id="关系的性质"><a href="#关系的性质" class="headerlink" title="关系的性质"></a>关系的性质</h5><p>关系是一种规范化了的二维表中行的集合</p>
-<ul>
-<li>每一列中的分量必须来自同一个域，必须是同一类型的数据</li>
-<li>不同的属性可以来自同一个域，不同的属性必须有不同的名字</li>
-<li>列的顺序可以任意交换</li>
-<li>关系中元组的顺序可以任意</li>
-<li>关系中不允许出现相同的元组</li>
-<li>关系中每一分量必须是不可分的数据项</li>
-</ul>
-<h5 id="关系模式"><a href="#关系模式" class="headerlink" title="关系模式"></a>关系模式</h5><p>在数据库中，要区分型和值。关系数据库中，关系模式是型，关系是值。关系的描述称为关系模式</p>
-<p><a href="https://imgchr.com/i/8XSnfS" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XSnfS.png" alt="8XSnfS.png"></a></p>
-<h4 id="2-2-关系的码与关系的完整性"><a href="#2-2-关系的码与关系的完整性" class="headerlink" title="2.2 关系的码与关系的完整性"></a>2.2 关系的码与关系的完整性</h4><h5 id="候选码与主码"><a href="#候选码与主码" class="headerlink" title="候选码与主码"></a>候选码与主码</h5><p><code>候选码</code>：能唯一标识关系中元组的一个最小属性或属性集</p>
-<p><img src="https://s1.ax1x.com/2020/07/01/N7CpY8.png" alt="N7CpY8.png"></p>
-<p><code>主码</code>：从多个候选码中选择一个作为查询，插入或删除元组的操作变量，被选用的候选码称为主码</p>
-<p><a href="https://imgchr.com/i/8XSsTx" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XSsTx.png" alt="8XSsTx.png"></a></p>
-<p><a href="https://imgchr.com/i/8XSr01" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XSr01.png" alt="8XSr01.png"></a></p>
-<p><code>主属性</code>：包含在主码中的各个属性</p>
-<p><code>非主属性</code>：不包含在任何候选码中的属性</p>
-<p><code>全码</code>：所有属性的集合是关系的候选码</p>
-<h5 id="外码"><a href="#外码" class="headerlink" title="外码"></a>外码</h5><p>如果关系R2的一个或一组属性X不是R2的主码，而是另一关系R1的主码，则该属性或属性组X称为关系R2的外码。关系R2为参照关系，关系R1为被参照关系</p>
-<p><a href="https://imgchr.com/i/8XS0X9" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XS0X9.png" alt="8XS0X9.png"></a></p>
-<h5 id="关系的完整性"><a href="#关系的完整性" class="headerlink" title="关系的完整性"></a>关系的完整性</h5><ul>
-<li><p>实体完整性</p>
-<p>主码的值不能为空或部分为空</p>
-</li>
-</ul>
-<ul>
-<li><p>参照完整性</p>
-<p>如果关系R2的外码X与关系R1的主码X相符，则X的每个值等于R1中主码的某个值，或者取空值</p>
-</li>
-</ul>
-<ul>
-<li>用户定义完整性</li>
-</ul>
-<h4 id="2-3-关系代数"><a href="#2-3-关系代数" class="headerlink" title="2.3 关系代数"></a>2.3 关系代数</h4><h5 id="关系代数的分类及其运算符"><a href="#关系代数的分类及其运算符" class="headerlink" title="关系代数的分类及其运算符"></a>关系代数的分类及其运算符</h5><p>关系代数是一种抽象的查询语言，关系代数的运算对象和运算结果都是关系</p>
-<p>关系代数运算符：</p>
-<p><a href="https://imgchr.com/i/8XpKN6" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XpKN6.png" alt="8XpKN6.png"></a></p>
-<h5 id="传统的集合运算"><a href="#传统的集合运算" class="headerlink" title="传统的集合运算"></a>传统的集合运算</h5><p>设给定两个关系R，S，若满足：（1）具有相同的列数n （2）R中第i个属性和S中第i个属性必须来自同一个域，则说E,S是相容的。<code>除笛卡尔积外，其他的集合运算要求参加运算的关系必须满足上述的相容性定义</code></p>
-<ul>
-<li><p>并</p>
-</li>
-<li><p>差</p>
-</li>
-<li><p>交</p>
-</li>
-<li><p>广义笛卡尔积</p>
-</li>
-</ul>
-<p><a href="https://imgchr.com/i/8Xp8jH" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8Xp8jH.png" alt="8Xp8jH.png"></a></p>
-<p><a href="https://imgchr.com/i/8Xp3ge" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8Xp3ge.png" alt="8Xp3ge.png"></a></p>
-<p><a href="https://imgchr.com/i/8XpIv4" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XpIv4.png" alt="8XpIv4.png"></a></p>
-<h5 id="专门的关系运算"><a href="#专门的关系运算" class="headerlink" title="专门的关系运算"></a>专门的关系运算</h5><p>1.设关系模式为R（A1,A2…An),它的一个关系为R，t属于R表示t是R的一个元组，t[A1]表示元组t中相应于属性A1的一个分量</p>
-<p><a href="https://imgchr.com/i/8Xp7r9" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8Xp7r9.png" alt="8Xp7r9.png"></a></p>
-<p><a href="https://imgchr.com/i/8Xp48U" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8Xp48U.png" alt="8Xp48U.png"></a></p>
-<ul>
-<li><code>选取</code></li>
-</ul>
-<p><a href="https://imgchr.com/i/8Xp52F" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8Xp52F.png" alt="8Xp52F.png"></a></p>
-<ul>
-<li><code>投影</code></li>
-</ul>
-<p><a href="https://imgchr.com/i/8XphCT" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XphCT.png" alt="8XphCT.png"></a></p>
-<ul>
-<li><code>连接</code></li>
-</ul>
-<p><a href="https://imgchr.com/i/8XpHbR" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XpHbR.png" alt="8XpHbR.png"></a></p>
-<p>自然连接和等值连接的区别：自然连接要求相等属性值的属性名相同，等值连接不要求</p>
-<p>自然连接是去掉重复列的等值连接</p>
-<ul>
-<li><code>除法</code></li>
-</ul>
-<p><a href="https://imgchr.com/i/8XpO56" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XpO56.png" alt="8XpO56.png"></a></p>
-<p>例：</p>
-<p><img src="https://s1.ax1x.com/2020/07/01/N7ZTYR.png" alt="N7ZTYR.png"></p>
 
       
     </div>
