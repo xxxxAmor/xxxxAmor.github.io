@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="关系数据库理论4.1 规范化问题的提出规范化理论的主要内容关系数据库的规范化理论主要包括三个方面的内容：函数依赖，范式和模式设计。函数依赖起着核心的作用，是模式分解和模式设计的基础，范式是模式分解的标准 一个好的关系模式应该具备以下四个条件： 尽可能少的数据冗余；没有插入异常；没有删除异常；没有更新异常 4.2 函数依赖函数依赖的定义关系模式的各属性之间相互依赖，相互制约的关系称为数据依赖。数据依">
+<meta name="keywords" content="数据库原理与应用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库原理与应用（四）">
+<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;2020&#x2F;07&#x2F;07&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E5%9B%9B%EF%BC%89&#x2F;index.html">
+<meta property="og:site_name" content="Geek is the new chic">
+<meta property="og:description" content="关系数据库理论4.1 规范化问题的提出规范化理论的主要内容关系数据库的规范化理论主要包括三个方面的内容：函数依赖，范式和模式设计。函数依赖起着核心的作用，是模式分解和模式设计的基础，范式是模式分解的标准 一个好的关系模式应该具备以下四个条件： 尽可能少的数据冗余；没有插入异常；没有删除异常；没有更新异常 4.2 函数依赖函数依赖的定义关系模式的各属性之间相互依赖，相互制约的关系称为数据依赖。数据依">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;02&#x2F;NHWyxe.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;03&#x2F;NXMz38.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;03&#x2F;NXU9JJ.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;03&#x2F;NX0mnI.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;03&#x2F;NXDFQH.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;03&#x2F;NXrI8U.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;03&#x2F;NXsMrj.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;03&#x2F;NXsHW8.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;03&#x2F;NXyFlF.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;04&#x2F;NvUMl9.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;04&#x2F;NvU3ex.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;04&#x2F;NvURpQ.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;04&#x2F;NvaF9e.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;04&#x2F;NvaKN8.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;04&#x2F;NvwCSe.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;04&#x2F;Nv2qZF.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;04&#x2F;Nv0Jud.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;04&#x2F;NvBpKH.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;04&#x2F;Nvsjwd.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;04&#x2F;NvcVGq.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;04&#x2F;NvccSP.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;04&#x2F;Nvg5nO.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;04&#x2F;Nv2tbD.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;04&#x2F;Nv20PA.png">
+<meta property="og:updated_time" content="2020-07-07T08:01:02.109Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;s1.ax1x.com&#x2F;2020&#x2F;07&#x2F;02&#x2F;NHWyxe.png">
+
+<link rel="canonical" href="https://github.com/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E5%9B%9B%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>数据库原理与应用（四） | Geek is the new chic</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Geek is the new chic</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E5%9B%9B%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="xxxxAmor">
+      <meta itemprop="description" content="Not all girls are made of sugar and spice and everything nice.Some girls are made of adventures,fine beer,brains and no fear">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Geek is the new chic">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据库原理与应用（四）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-07 15:47:56 / 修改时间：16:01:02" itemprop="dateCreated datePublished" datetime="2020-07-07T15:47:56+08:00">2020-07-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="关系数据库理论"><a href="#关系数据库理论" class="headerlink" title="关系数据库理论"></a>关系数据库理论</h3><h4 id="4-1-规范化问题的提出"><a href="#4-1-规范化问题的提出" class="headerlink" title="4.1 规范化问题的提出"></a>4.1 规范化问题的提出</h4><h5 id="规范化理论的主要内容"><a href="#规范化理论的主要内容" class="headerlink" title="规范化理论的主要内容"></a>规范化理论的主要内容</h5><p>关系数据库的规范化理论主要包括三个方面的内容：函数依赖，范式和模式设计。函数依赖起着核心的作用，是模式分解和模式设计的基础，范式是模式分解的标准</p>
+<p>一个好的关系模式应该具备以下四个条件：</p>
+<p>尽可能少的数据冗余；没有插入异常；没有删除异常；没有更新异常</p>
+<h4 id="4-2-函数依赖"><a href="#4-2-函数依赖" class="headerlink" title="4.2 函数依赖"></a>4.2 函数依赖</h4><h5 id="函数依赖的定义"><a href="#函数依赖的定义" class="headerlink" title="函数依赖的定义"></a>函数依赖的定义</h5><p>关系模式的各属性之间相互依赖，相互制约的关系称为数据依赖。数据依赖又分为<code>函数依赖</code>和<code>多值依赖</code>。</p>
+<ul>
+<li><strong>函数依赖</strong></li>
+</ul>
+<p><code>函数依赖</code>（FD）是关系模式中属性之间的一种逻辑依赖关系。例如：SCO(SNO,SN,AGE,DEPT,MN,CNO,SCORE)</p>
+<p>SNO—&gt;一个学生—&gt;SN,AGE,DEPT</p>
+<p>一个SNO只对应一个学生，一个学生也只属于一个系，当SNO的值确定后，该学生的SN,AGE,DEPT也就确定了</p>
+<p>因此我们可以说SNO决定函数（SN,AGE,DEPT)的值, 也可以说(SN,AGE,DEPT)函数依赖于SNO</p>
+<p><img src="https://s1.ax1x.com/2020/07/02/NHWyxe.png" alt="NHWyxe.png"></p>
+<h5 id="函数依赖的逻辑蕴涵定义"><a href="#函数依赖的逻辑蕴涵定义" class="headerlink" title="函数依赖的逻辑蕴涵定义"></a>函数依赖的逻辑蕴涵定义</h5><p>设F是在关系模式R（U）上成立的函数依赖集合，X,Y是属性集U的子集，X-&gt;Y是一个函数依赖。如果从F中能推导出X-&gt;Y，即如果对于R的每一个满足F的关系r也满足X-&gt;Y，则称X-&gt;Y为F的逻辑蕴涵，记为F|=X-&gt;Y</p>
+<p>设F是函数依赖集，被F逻辑蕴涵的全部函数依赖集合，称为函数依赖集F的<code>闭包</code>。</p>
+<h5 id="函数依赖的推理定则"><a href="#函数依赖的推理定则" class="headerlink" title="函数依赖的推理定则"></a>函数依赖的推理定则</h5><p>设有关系模式R（U），U是关系模式R的属性集，F是R上成立的只涉及U中属性的函数依赖集，X,Y,Z,W均是U的子集，r是R的一个实例。函数依赖的推理规则如下：</p>
+<ul>
+<li><p><strong>自反律</strong><br>$$<br>如果Y \subseteq X \subseteq U，则X→Y在R上成立<br>$$</p>
+</li>
+<li><p><strong>增广律</strong><br>$$<br>若X→Y在R上成立，且Z \subseteq U，则XZ→YZ在R上也成立<br>$$</p>
+</li>
+<li><p><strong>传递律</strong><br>$$<br>若X→Y和Y→Z在R上成立，则X→Z在R上也成立 </p>
+</li>
+</ul>
+<p>$$<br>通过以上三个推理规则，可以得出如下定理：</p>
+<ul>
+<li><p>如果X →Y是从F用Armstrong公理推理导出，那么X →Y在F+中。</p>
+</li>
+<li><p>如果A1A2A3…..An是关系模式R的属性集，那么X-&gt;A1A2…An成立的充分必要条件是X-&gt;Ai(i=123..n)成立</p>
+</li>
+<li><p><strong>合并律</strong><br>$$</p>
+<p>若X→Y和X→Z在R上成立，则X→YZ在R上也成立<br>$$</p>
+</li>
+<li><p><strong>伪传递律</strong><br>$$<br>若X→Y和YW→Z在R上成立，则XW→Z在R上也成立<br>$$</p>
+</li>
+<li><p><strong>分解律</strong><br>$$<br>若X→Y和Z \subseteq  Y在R上成立，则X→Z在R上也成立<br>$$</p>
+</li>
+<li><p><strong>复合律</strong><br>$$<br>若X→Y和W→Z在R上成立，则XW→YZ在R上也成立<br>$$</p>
+</li>
+</ul>
+<h5 id="完全函数依赖与部分函数依赖"><a href="#完全函数依赖与部分函数依赖" class="headerlink" title="完全函数依赖与部分函数依赖"></a>完全函数依赖与部分函数依赖</h5><p><img src="https://s1.ax1x.com/2020/07/03/NXMz38.png" alt="NXMz38.png"></p>
+<h5 id="传递函数依赖"><a href="#传递函数依赖" class="headerlink" title="传递函数依赖"></a>传递函数依赖</h5><p>设有关系模式R(U)，U是属性全集，X，Y，Z是U的子集<br>$$<br>若X→Y，但Y 不依赖   X，而Y→Z（Y  \notin  X，Z  \notin  Y），则称Z对X传递函数依赖 ，记作：X → Z\<br>如果Y→X，则X \leftarrow \rightarrow   Y，这时称Z对X直接函数依赖，而不是传递函数依赖。<br>$$</p>
+<h5 id="属性集的闭包及其算法"><a href="#属性集的闭包及其算法" class="headerlink" title="属性集的闭包及其算法"></a>属性集的闭包及其算法</h5><p><img src="https://s1.ax1x.com/2020/07/03/NXU9JJ.png" alt="NXU9JJ.png"></p>
+<h5 id="候选码的求解理论和算法"><a href="#候选码的求解理论和算法" class="headerlink" title="候选码的求解理论和算法"></a>候选码的求解理论和算法</h5><p><img src="https://s1.ax1x.com/2020/07/03/NX0mnI.png" alt="NX0mnI.png"></p>
+<p><code>超码虽然能决定所有属性，但其中可以包含除候选码以外的所有属性</code></p>
+<p><strong>快速求解候选码的一个充分条件</strong></p>
+<p>对于给定的关系模式R(A1…，An)和函数依赖集F，可将其属性分为以下四类：</p>
+<ul>
+<li>L类：仅出现在F中的函数依赖左边的左部的属性</li>
+<li>R类：仅出现在F中的函数依赖右边的右部的属性</li>
+<li>N类：在F的函数依赖左右两边均未出现的属性</li>
+<li>LR类：在F的函数依赖左右两边均出现的属性</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2020/07/03/NXDFQH.png" alt="NXDFQH.png"></p>
+<p><strong>多属性函数依赖集候选码的求解算法</strong></p>
+<p>设有关系模式R，F是R上的函数依赖集，求R的所有候选码</p>
+<p><img src="https://s1.ax1x.com/2020/07/03/NXrI8U.png" alt="NXrI8U.png"></p>
+<h5 id="函数依赖推理规则的完备性"><a href="#函数依赖推理规则的完备性" class="headerlink" title="函数依赖推理规则的完备性"></a>函数依赖推理规则的完备性</h5><p><img src="https://s1.ax1x.com/2020/07/03/NXsMrj.png" alt="NXsMrj.png"></p>
+<h5 id="函数依赖集的等价，覆盖和最小函数依赖集"><a href="#函数依赖集的等价，覆盖和最小函数依赖集" class="headerlink" title="函数依赖集的等价，覆盖和最小函数依赖集"></a>函数依赖集的等价，覆盖和最小函数依赖集</h5><p><img src="https://s1.ax1x.com/2020/07/03/NXsHW8.png" alt="NXsHW8.png"></p>
+<p><strong>最小函数依赖集求解算法</strong></p>
+<p><img src="https://s1.ax1x.com/2020/07/03/NXyFlF.png" alt="NXyFlF.png"></p>
+<h4 id="4-3-关系模式的分解"><a href="#4-3-关系模式的分解" class="headerlink" title="4.3  关系模式的分解"></a>4.3  关系模式的分解</h4><h5 id="模式分解问题"><a href="#模式分解问题" class="headerlink" title="模式分解问题"></a>模式分解问题</h5><p><img src="https://s1.ax1x.com/2020/07/04/NvUMl9.png" alt="NvUMl9.png"></p>
+<p>R分解成ρ的目的是为消除关系模式中不合理的数据冗余和操作异常问题</p>
+<p><img src="https://s1.ax1x.com/2020/07/04/NvU3ex.png" alt="NvU3ex.png"></p>
+<h5 id="无损连接分解"><a href="#无损连接分解" class="headerlink" title="无损连接分解"></a>无损连接分解</h5><p><img src="https://s1.ax1x.com/2020/07/04/NvURpQ.png" alt="NvURpQ.png"></p>
+<p><code>分解是否具有无损性和函数依赖直接相关</code></p>
+<p><img src="https://s1.ax1x.com/2020/07/04/NvaF9e.png" alt="NvaF9e.png"></p>
+<h5 id="无损分解的测试算法"><a href="#无损分解的测试算法" class="headerlink" title="无损分解的测试算法"></a>无损分解的测试算法</h5><p>输入：关系模式R(A1.A2…….An), F是R上成立的函数依赖集，R的一个分解ρ=（R1,R2…….Rn)</p>
+<p><img src="https://s1.ax1x.com/2020/07/04/NvaKN8.png" alt="NvaKN8.png"></p>
+<p><code>设ρ=（R1,R2）是关系模式R的一个分解，F是R上成立的函数依赖集，那么分解ρ相对于F是无损分解的充分条件是：</code></p>
+<p><code>(R1∩R2)→（R1-R2）或（R1∩R2）→（R2-R1)</code></p>
+<p><strong>即当模式R分解成两个模式R1,R2时，若两个模式的公共属性（空集除外）能够函数决定R1（或R2）中的其他属性，这样的分解具有无损连接性</strong></p>
+<h5 id="保持函数依赖的分解"><a href="#保持函数依赖的分解" class="headerlink" title="保持函数依赖的分解"></a>保持函数依赖的分解</h5><p><img src="https://s1.ax1x.com/2020/07/04/NvwCSe.png" alt="NvwCSe.png"></p>
+<p><strong>一个无损连接分解不一定是保持函数依赖的，同样，一个保持函数依赖的分解也不一定是无损连接的</strong></p>
+<h4 id="4-4-关系模式的范式"><a href="#4-4-关系模式的范式" class="headerlink" title="4.4 关系模式的范式"></a>4.4 关系模式的范式</h4><p>一个低一级范式的关系模式，通过模式分解转化为若干个高一级范式的关系模式的集合，这种分解过程叫作关系模式的规范化。  规范化的目的就是使结构合理，消除存储异常，使数据冗余尽量小，便于插入、删除和更新。<br>规范化的基本原则就是遵循“一事一地”的原则。 </p>
+<p><img src="https://s1.ax1x.com/2020/07/04/Nv2qZF.png" alt="Nv2qZF.png"></p>
+<h5 id="第一范式"><a href="#第一范式" class="headerlink" title="第一范式"></a>第一范式</h5><p>第一范式是最基本的规范形式，即关系中每个属性都是不可再分的原子项</p>
+<p><img src="https://s1.ax1x.com/2020/07/04/Nv0Jud.png" alt="Nv0Jud.png"></p>
+<p><code>我们把满足1NF的关系称为规范化关系。在关系数据库系统中只讨论规范化的关系，因此凡是非规范化的关系模式必须转化成规范化的关系。在非规范化的关系中去掉组合项就能转化成规范化的关系</code></p>
+<h5 id="第二范式"><a href="#第二范式" class="headerlink" title="第二范式"></a>第二范式</h5><p><img src="https://s1.ax1x.com/2020/07/04/NvBpKH.png" alt="NvBpKH.png"></p>
+<p><code>从1NF关系中消除非主属性对主码的部分函数依赖，则可得到2NF关系</code></p>
+<p><code>如果R的主码为单属性，或R的全体属性均为主属性，则R∈2NF</code></p>
+<p><strong>2NF规范化</strong></p>
+<p>2NF规范化是指把1NF关系模式通过投影分解，转换成2NF关系模式的集合。</p>
+<p>分解时遵循的基本原则就是“一事一地”，让一个关系只描述一个实体或者实体间的联系。如果多于一个实体或联系，则进行投影分解</p>
+<p><strong>2NF的缺点</strong></p>
+<ul>
+<li>数据冗余</li>
+<li>插入异常</li>
+<li>删除异常</li>
+<li>更新日常</li>
+</ul>
+<p>之所以存在这些问题，是因为还存在着非主属性对主码的传递函数依赖</p>
+<h5 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h5><p><img src="https://s1.ax1x.com/2020/07/04/Nvsjwd.png" alt="Nvsjwd.png"></p>
+<p><strong>3NF规范化</strong></p>
+<p>3NF规范化是指把2NF的关系模式投影分解转换成3NF关系模式的集合</p>
+<p><strong>3NF规范化算法</strong></p>
+<p><img src="https://s1.ax1x.com/2020/07/04/NvcVGq.png" alt="NvcVGq.png"></p>
+<p><img src="https://s1.ax1x.com/2020/07/04/NvccSP.png" alt="NvccSP.png"></p>
+<p><code>3NF解决了2NF中存在的四个问题：数据冗余降低了 ,不存在插入异常,不存在删除异常,不存在更新异常</code></p>
+<p><code>但是，3NF没有限制主属性对主码的依赖关系</code></p>
+<h5 id="BC范式"><a href="#BC范式" class="headerlink" title="BC范式"></a>BC范式</h5><p><strong>BC范式的定义</strong></p>
+<p>如果关系模式R∈1NF，且所有的函数依赖X→Y（Y∉X），决定因素X都包含了R的一个候选码，则称R属于BC范式，记作R∈BCNF。</p>
+<p>BCNF具有如下性质：</p>
+<p><code>如果R∈BCNF，则R也是3NF 。</code></p>
+<p><code>如果R∈3NF，则R不一定是BCNF 。</code></p>
+<p><strong>BCNF规范化</strong></p>
+<p><img src="https://s1.ax1x.com/2020/07/04/Nvg5nO.png" alt="Nvg5nO.png"></p>
+<h5 id="第四范式"><a href="#第四范式" class="headerlink" title="第四范式"></a>第四范式</h5><p><img src="https://s1.ax1x.com/2020/07/04/Nv2tbD.png" alt="Nv2tbD.png"></p>
+<p><a href="https://imgchr.com/i/Nv20PA" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/07/04/Nv20PA.png" alt="Nv20PA.png"></a></p>
+
+    </div>
+
+    
+    
+    
+	  
+	  <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/" rel="tag"># 数据库原理与应用</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%B8%89%EF%BC%89/" rel="prev" title="数据库原理与应用（三)">
+      <i class="fa fa-chevron-left"></i> 数据库原理与应用（三)
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#关系数据库理论"><span class="nav-text">关系数据库理论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-规范化问题的提出"><span class="nav-text">4.1 规范化问题的提出</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#规范化理论的主要内容"><span class="nav-text">规范化理论的主要内容</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-函数依赖"><span class="nav-text">4.2 函数依赖</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#函数依赖的定义"><span class="nav-text">函数依赖的定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#函数依赖的逻辑蕴涵定义"><span class="nav-text">函数依赖的逻辑蕴涵定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#函数依赖的推理定则"><span class="nav-text">函数依赖的推理定则</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#完全函数依赖与部分函数依赖"><span class="nav-text">完全函数依赖与部分函数依赖</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#传递函数依赖"><span class="nav-text">传递函数依赖</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#属性集的闭包及其算法"><span class="nav-text">属性集的闭包及其算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#候选码的求解理论和算法"><span class="nav-text">候选码的求解理论和算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#函数依赖推理规则的完备性"><span class="nav-text">函数依赖推理规则的完备性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#函数依赖集的等价，覆盖和最小函数依赖集"><span class="nav-text">函数依赖集的等价，覆盖和最小函数依赖集</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-关系模式的分解"><span class="nav-text">4.3  关系模式的分解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#模式分解问题"><span class="nav-text">模式分解问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#无损连接分解"><span class="nav-text">无损连接分解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#无损分解的测试算法"><span class="nav-text">无损分解的测试算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#保持函数依赖的分解"><span class="nav-text">保持函数依赖的分解</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-关系模式的范式"><span class="nav-text">4.4 关系模式的范式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#第一范式"><span class="nav-text">第一范式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第二范式"><span class="nav-text">第二范式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第三范式"><span class="nav-text">第三范式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#BC范式"><span class="nav-text">BC范式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第四范式"><span class="nav-text">第四范式</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="xxxxAmor"
+      src="/images/touxiang.jpg">
+  <p class="site-author-name" itemprop="name">xxxxAmor</p>
+  <div class="site-description" itemprop="description">Not all girls are made of sugar and spice and everything nice.Some girls are made of adventures,fine beer,brains and no fear</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+  
+
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Amor</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">139k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:06</span>
+</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/chitose.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":"True#是否在手机端显示"},"log":false});</script></body>
+</html>
