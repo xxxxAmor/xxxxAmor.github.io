@@ -160,6 +160,295 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/2020/09/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="xxxxAmor">
+      <meta itemprop="description" content="Not all girls are made of sugar and spice and everything nice.Some girls are made of adventures,fine beer,brains and no fear">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Geek is the new chic">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0/" class="post-title-link" itemprop="url">计算机网络概述</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-24 15:13:33" itemprop="dateCreated datePublished" datetime="2020-09-24T15:13:33+08:00">2020-09-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-25 20:57:30" itemprop="dateModified" datetime="2020-10-25T20:57:30+08:00">2020-10-25</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="计算机网络的组成及功能"><a href="#计算机网络的组成及功能" class="headerlink" title="计算机网络的组成及功能"></a>计算机网络的组成及功能</h2><p>计算机网络的定义</p>
+<p>从技术上讲：计算机网络是计算机技术和通信技术相结合的产物，通过计算机来处理各种数据，再通过各种通信线路实现数据的传输。</p>
+<p>从组成结构上讲：计算机网络是通过外围设备和连线，将分布在相同或不同地域的多台计算机连接在一起所形成的集合 </p>
+<p>从应用的角度上讲： 只要将具有独立功能的多台计算机连接在一起，能够实现各计算机信息的交换，并可共享计算机资源的系统便可称为网络 </p>
+<p>综上，计算机网络是利用<strong>通信线路和通信设备</strong>，按照一定的连接方法，将分布在不同地点的具有独立功能的<strong>多台计算机</strong>相互连接在一起，在<strong>网络软件</strong>的支持下进行数据通信，实现资源共享和信息传递的系统。 </p>
+<p>计算机网络的功能</p>
+<p>1．资源共享，互补有无  2．提高系统可靠性和可用性  3．节省费用，提高性价比  4．通信手段  5．远程文件传输  6．分布处理  7．娱乐  </p>
+<p>计算机网络最重要的功能：</p>
+<p><strong>连通性</strong>——计算机网络使上网用户之间都可以交换信息，好像这些用户的计算机都可以彼此直接连通一样。  </p>
+<p><strong>共享</strong>——即资源共享。可以是信息共享、软件共享，也可以是硬件共享</p>
+<p>计算机网络的组成</p>
+<p>网络结点等概念：</p>
+<p><em>结点</em>：结点，也称为“站”，一般是指网络中的计算机，交换机，路由器等网络设备。结点可分为访问结点和转发结点两类。</p>
+<p><em>链路</em>：链路是指从一个结点到相邻结点的一段物理线路，中间没有其他交换结点</p>
+<p><strong>网络由若干结点和连接这些结点的链路组成</strong></p>
+<p><em>互连网：</em>一些相互连接的计算机网络的集合。</p>
+<p><em>互联网</em>：是互连网的同义词。互联网是“网络的网络”(network of networks)。网络把许多计算机连接在一起。互联网则把许多网络连接在一起。<strong>因特网是世界上最大的互联网</strong></p>
+<p><em>internet</em>：以小写字母 i 开始的 internet（互联网或互连网）是一个通用名词，它泛指由多个计算机网络互连而成的网络。</p>
+<p><em>Internet</em>：以大写字母I开始的的 Internet则是一个专用名词，它指当前全球最大的、开放的、由众多网络相互连接而成的特定计算机网络，它采用 TCP/IP 协议族作为通信的规则，且其前身是美国的 ARPANET。 Internet 的推荐译名是“因特网” 。<strong>连接在因特网上的计算机都称为主机。</strong></p>
+<p>**<br>**</p>
+<p>计算机网络系统的构型</p>
+<p>一般说来，在多个结点需要互相连接以构成网络时，希望每一个结点与其他的结点都有直接的点到点的通信线路，这种情况称为全连通的网络拓扑。如果有N个节点，就要求网络有N（N-1）/2条全双工的链路，且每一结点上的装置设备要有（N-1）个输入/输出端口。因为系统的成本、安装费用等随着节点数量的平方增长，当N很大时，这显然是不现实的。因此，所有网络都采用全连通的方法是不可行的</p>
+<p>计算机网络系统的组成</p>
+<ol>
+<li>按系统划分：计算机网络硬件系统，计算机网络软件系统</li>
+<li>按逻辑划分：计算机网络从逻辑结构上可以分成两部分：负责数据处理、向网络用户提供各种网络资源及网络服务的外层用户<strong>资源子网</strong>和负责数据转发的内层<strong>通信子网</strong>。</li>
+</ol>
+<p>网络基本组成</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1600490468429-337acb22-1c6d-4a43-a263-660d64255402.png" alt="img"></p>
+<p><em>三个部分</em>：若干台主机，通信子网，一系列协议</p>
+<p><em>两级子网</em>：资源子网，通信子网</p>
+<p><strong>资源子网</strong>：由主机，工作站，终端，外设，程序，数据等组成。作用是共享资源。</p>
+<p><strong>通信子网</strong>：通信子网是计算机网络中负责数据通信的部分，传输介质可以是架空明线、双绞线、同轴电缆、光纤等有线通信线路，也可以是微波、通信卫星等无线通信线路。</p>
+<p>它由结点交换机（也叫端点N、前端处理机 FEP、通信控制处理机CCP、中间数据处理机IMP）、传输介质组成，作用有：远程传输、路由选择、差错处理，流量控制 </p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1600490468443-e18a0a89-6f75-4cad-8518-ba42af065506.png" alt="img"></p>
+<p>因特网</p>
+<p>因特网的组成：</p>
+<p>从因特网的工作方式上看，可以划分为以下的两大块： (1) 边缘部分：由所有连接在因特网上的主机组成。这部分是用户直接使用的，用来进行通信（传送数据、音频或视频）和资源共享。 (2) 核心部分：由大量网络和连接这些网络的路由器组成。这部分是为边缘部分提供服务的（提供连通性和交换）。</p>
+<p> <img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1599354714336-50f0ab59-065d-4d38-900c-1bd17e018f7c.png" alt="image.png"></p>
+<p><strong>边缘部分</strong>：处在因特网边缘的部分就是连接在因特网上的所有的主机。这些主机又称为<strong>端系统(end system)。</strong>主机的用途是为用户进行信息处理的，并且可以和其他主机通过网络交换信息。 “主机 A 和主机 B 进行通信”，实际上是指：“运行在主机 A 上的某个程序和运行在主机 B 上的另一个程序进行通信”。 即“主机 A 的某个进程和主机 B 上的另一个进程进行通信”。或简称为“计算机之间通信”  </p>
+<p><strong>核心部分：</strong>因特网的核心部分是由许多网络和把它们互连起来的路由器组成。在因特网核心部分的路由器之间一般都用高速链路相连接，而在网络边缘的主机接入到核心部分则通常以相对较低速率的链路相连接。路由器是用来转发分组的，即进行分组交换的。</p>
+<p>因特网的机构</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1599355243960-7a94802c-ad92-4052-8c2a-ec67d5e730de.png" alt="image.png"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1599355285982-35c77ece-9b2c-4d81-8caa-60a1d46a6f43.png" alt="image.png"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1599355345001-d7a8a002-ae9a-44f7-a8e9-f605c26fca12.png" alt="image.png"></p>
+<h2 id="计算机网络的分类"><a href="#计算机网络的分类" class="headerlink" title="计算机网络的分类"></a>计算机网络的分类</h2><p>根据网络的传输技术进行分类</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1600490468458-6c0407c5-e422-4597-a161-874d4662ac16.png" alt="img"></p>
+<p>根据网络的覆盖范围进行分类</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1600490468498-e496a981-2d82-4228-aa01-a63b3634ab54.png" alt="img"></p>
+<p>根据网络的拓扑结构进行分类</p>
+<p>计算机网络拓扑是通过网中节点与通信线路之间的几何关系表示网络结构，反映出网络中各实体间的结构关系。拓扑设计是建设计算机网络的首步，也是实现各种网络协议的基础，它对网络性能、系统可靠性与通信费用都有重大影响。<strong>计算机网络拓扑主要是指通信子网的拓扑构型。</strong></p>
+<p><strong>网络拓扑分类方法</strong></p>
+<p>1、点到点线路通信子网的拓扑。    </p>
+<p>在采用点到点线路的通信子网中，每条物理线路连接一对节点。采用点到点线路的通信子网的基本拓扑构型有：集中式、分散式、分布式。</p>
+<p> 2、广播信道通信子网的拓扑。    </p>
+<p>在采用广播信道通信子网中，一个公共的通信信道被多个网络节点共享。采用广播信道通信子网的基本拓扑构型主要有四种：总线型、环型、树型、无线通信与卫星通信型。 </p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1599359187932-6b5aa7ea-14a4-4a99-a846-c6b7c7fcabd5.png" alt="image.png"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1599359209918-3ec22a7e-a88d-41f4-8b51-41b8e70d7015.png" alt="image.png"></p>
+<h2 id="交换方式"><a href="#交换方式" class="headerlink" title="交换方式"></a>交换方式</h2><p>“交换”(switching)的含义就是<strong>转接</strong>——把一条电话线转接到另一条电话线，使它们连通起来。   </p>
+<p> 从通信资源的分配角度来看，“交换”就是按照某种方式<strong>动态地分配</strong>传输线路的资源。</p>
+<p>电路交换</p>
+<p>模型：电话系统 </p>
+<p>原理：通信要经过三个过程：建立连接、传输数据、拆除连接。     </p>
+<p>进行通信的一对端点间有一条物理通道，由一系列的中间结点和物理线路构成。通信过程中，这对端点独占该条物理通道，直至通信线路被取消。 </p>
+<p>电路交换必是面向连接的 。</p>
+<p><strong>必须经过“建立连接”（占用通信资源）-&gt;通话（一直占用通信资源）-&gt;释放连接（归还通信资源）三个步骤的交换方式称为电路交换</strong>。</p>
+<p>电路交换的特点</p>
+<p>1.通话前先拨号建立连接。 </p>
+<ul>
+<li>可能只要经过一个交换机（如 A 到 B）</li>
+<li>可能要经过多个交换机（如 C 到 D） </li>
+</ul>
+<p>2.通话过程中，通信双方一直占用所建立的连接。 </p>
+<p>3.通话结束后，挂机释放连接。 </p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1599482815052-81e4d28b-2559-4b77-8ad6-ccd9f93c5b85.png" alt="image.png"></p>
+<p>4.建链时间长  </p>
+<p>5.通信时独占线路  </p>
+<p>6.速率不能自适配  </p>
+<p>7.计算机通信数据具有突发性，效率低    </p>
+<p>电路交换适用于大量数据传输及对时延敏感的应用。如网络文件下载，语音业务等。</p>
+<p>报文交换</p>
+<p>模型：电报系统 </p>
+<p>原理：报文交换的结点先将报文完整地接收，存储在硬盘中，等输出线路空闲时再转发到下一结点。 </p>
+<p>报文是一个包含目的地址等格式的信息包。根据收到报文的目的地，中间结点为报文选择路径和进行一些必要的处理，报文沿着线路逐段传送，不需要事先建立一条物理线路。</p>
+<p>报文交换的特点</p>
+<ul>
+<li>不存在建链时的呼叫损失  </li>
+<li>线路不独占利用率高  可靠性好  </li>
+<li>速率自适配  </li>
+<li>结点延迟时间较长  </li>
+<li>对结点的容量要求高、报文长度没有限制，不适合交互通信。 </li>
+</ul>
+<p>分组交换（包交换） </p>
+<p>通常我们把要发送的整块数据称为一个<strong>报文</strong>。在发送报文之前，先把较长的报文划分成一个个更小的等长数据段，在每一个数据段的前面，加上一些由必要的控制信息组成的<strong>首部</strong>后，就构成了一个<strong>分组</strong>。分组又可称为<strong>包</strong>，分组的首部可称为“<strong>包头</strong>”</p>
+<p>原理：将报文分割成具有固定长度的数据包，每个包含有目的端地址和控制信息。传输以数据包形式传送。属于同一个报文的数据包发送顺序可以无序，目的端重新组装成报文交给用户。  </p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1599483665198-b098d06f-792e-45f9-b423-fbd07bcd3ab2.png" alt="image.png"></p>
+<p><strong>每一个</strong>分组的首部都含有<strong>地址</strong>等控制信息。 分组交换网中的结点交换机根据收到的分组的首部中的<strong>地址信息</strong>，把分组<strong>转发</strong>到下一个结点交换机。 用这样的<strong>存储转发</strong>方式，最后分组就能到达<strong>最终目的地</strong>。 </p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1599484384935-f506b710-fcba-402f-bbc1-11e9a613bd21.png" alt="image.png"></p>
+<p>分组交换的特点</p>
+<ul>
+<li>不存在建链时的呼叫损失   </li>
+<li>线路分段占用   </li>
+<li>链路共享、可靠性好   </li>
+<li>速率自适配   </li>
+<li>减少结点延迟时间、效率高</li>
+</ul>
+<p>分组交换的缺点</p>
+<ul>
+<li>仍然存在结点转发时延  </li>
+<li>信息附带额外空间开销控制分组和组装  </li>
+<li>管理复杂  </li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1599484535286-e557ea5c-bff0-4147-a5d1-352163f4540d.png" alt="image.png"></p>
+<h2 id="主要性能指标"><a href="#主要性能指标" class="headerlink" title="主要性能指标"></a>主要性能指标</h2><p>速率</p>
+<ul>
+<li><strong>比特（bit）</strong>是计算机中数据量的单位，也是信息论中使用的信息量的单位。意思是一个“<strong>二进制数字</strong>”，因此一个比特就是二进制数字中的一个 1 或 0。</li>
+<li>速率即<strong>数据率(data rate)或比特率(bit rate)</strong>是计算机网络中最重要的一个性能指标。在信道上传输数据的速率，速率的单位是 b/s，或kb/s, Mb/s, Gb/s 等 </li>
+<li>速率往往是指<strong>额定速率</strong>或<strong>标称速率</strong>。  </li>
+</ul>
+<p>带宽</p>
+<ul>
+<li>“带宽”(bandwidth)本来是指信号具有的频带宽度，单位是赫（或千赫、兆赫、吉赫等）。 </li>
+<li>现在“带宽”是数字信道所能传送的“最高数据率”的同义语，表示在单位时间内网络中的某信道所能通过的<strong>最高数据率</strong>，单位是“比特每秒”，或 b/s (bit/s)</li>
+</ul>
+<p>更常用的带宽单位是 千比每秒，即 kb/s （103 b/s） 兆比每秒，即 Mb/s（106 b/s） 吉比每秒，即 Gb/s（109 b/s） 太比每秒，即 Tb/s（1012b/s） </p>
+<p>请注意：在计算机界，K = 210 = 1024   M = 220, G = 230, T = 240。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1599485192000-fb82dd0e-b390-45ed-8901-0a4d0df8512b.png" alt="image.png"></p>
+<p>吞吐量</p>
+<ul>
+<li>吞吐量(throughput)表示在单位时间内通过某个网络（或信道、接口）的实际的数据量。 </li>
+<li>吞吐量更经常地用于对现实世界中的网络的一种测量，以便知道实际上到底有多少数据量能够通过网络。</li>
+<li>吞吐量受网络的带宽或网络的额定速率的限制。  </li>
+</ul>
+<p>时延</p>
+<p>时延是指数据从网络一端传到另一端所需的时间</p>
+<p>时延组成：  </p>
+<ul>
+<li>传播时延，信号在信道中传播需要的时间   </li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1599485357457-5f11bda5-8605-47f7-840f-76973b383da1.png" alt="image.png"></p>
+<p>信号传输速率（即发送速率）和信号在信道上的传播速率是完全不同的概念。 </p>
+<ul>
+<li>发送时延，发送数据需要的时间 。也就是从发送数据帧的第一个比特算起，到该帧的最后一个比特发送完毕所需的时间。提高链路带宽可以减小数据的发送时延</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1599485447969-bff91b71-3805-4c30-b11f-473f851b7d5a.png" alt="image.png"></p>
+<ul>
+<li>排队时延，数据在交换结点等候发送的排队时间，取决于网络状态：通信量大小、缓冲能力。   </li>
+<li>处理时延，交换结点为存储转发而进行一些必要的处理所花费的时间 </li>
+</ul>
+<p>各部分时延关系</p>
+<ul>
+<li>大数据块，发送时间长，传输时延所占比例大。  </li>
+<li>小数据块，发送时间短，传输时延所占比例小。</li>
+</ul>
+<p>时延带宽积</p>
+<p>链路的时延带宽积含义为<strong>链路可容纳的比特数</strong>，又称为以比特为单位的链路长度</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1600429069822-f663c708-3698-4c17-a467-128e5185378e.png" alt="image.png"></p>
+<p>往返时延</p>
+<p>往返时延是指发送开始到收到收方确认的时间</p>
+<p>利用率</p>
+<p><strong>信道利用率</strong>指出某信道有百分之几的时间是被利用的（有数据通过）。完全空闲的信道的利用率是零。 </p>
+<p><strong>网络利用率</strong>则是全网络的信道利用率的加权平均值。 </p>
+<p>信道利用率并非越高越好。</p>
+<p>时延与网络利用率的关系</p>
+<p>根据排队论的理论，当某信道的利用率增大时，该信道引起的时延也就迅速增加</p>
+<p>错误概念</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1600429436805-4ec6996d-ee53-4fe8-9254-2715c001592e.png" alt="image.png"></p>
+<p><strong>宽带线路</strong>是指每秒有更多比特从计算机注入到线路。 宽带线路和窄带线路上比特的传播速率是一样的。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/2020/09/24/test/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="xxxxAmor">
+      <meta itemprop="description" content="Not all girls are made of sugar and spice and everything nice.Some girls are made of adventures,fine beer,brains and no fear">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Geek is the new chic">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/24/test/" class="post-title-link" itemprop="url">test</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-24 15:12:08" itemprop="dateCreated datePublished" datetime="2020-09-24T15:12:08+08:00">2020-09-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://github.com/2020/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%BA%94%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1908,297 +2197,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/2020/03/22/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%AB%98%E6%95%88%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="xxxxAmor">
-      <meta itemprop="description" content="Not all girls are made of sugar and spice and everything nice.Some girls are made of adventures,fine beer,brains and no fear">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Geek is the new chic">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/22/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%AB%98%E6%95%88%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">如何快速高效解决问题</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-22 18:23:07" itemprop="dateCreated datePublished" datetime="2020-03-22T18:23:07+08:00">2020-03-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-24 15:45:49" itemprop="dateModified" datetime="2020-03-24T15:45:49+08:00">2020-03-24</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="如何快速高效解决问题"><a href="#如何快速高效解决问题" class="headerlink" title="如何快速高效解决问题"></a>如何快速高效解决问题</h3><p>​                                                                     —又名《我是怎样抄代码的》</p>
-<p>相信大家在平时的学习过程中都遇到过和我一样的问题，有一道编程题没有思路，安装环境遇到奇怪报错，去百度搜索，出来的结果都是博客园，百度知道，CSDN，有时候看了一大堆也没有看出解决方案，最后心情大概就是像这张图一样。</p>
-<p>​                                                         <a href="https://imgchr.com/i/8qywHU" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/24/8qywHU.png" alt="8qywHU.png" style="zoom: 50%;"></a></p>
-<p>因此，在这里十分有必要安利我摸索出来的三大法宝。</p>
-<h4 id="Google"><a href="#Google" class="headerlink" title="Google"></a>Google</h4><p>在我对谷歌的力量一无所知的时候，天真地以为它就是一个普通的搜索引擎，直到我学会了一些“黑魔法”，才体会到它的方便好用。</p>
-<ul>
-<li>OR, AND</li>
-</ul>
-<p>OR: 返回的结果是包含OR两边的任意关键词，比如: amazon OR ebay</p>
-<p>AND: 返回的结果是包含AND两边的关键词，比如: amazon AND ebay</p>
-<p>注意：OR, AND 必须是大写</p>
-<ul>
-<li>用 “-“ 在搜索结果中排除某个关键词。比如搜索 amazon -ebay，搜索的结果就不会出现ebay。</li>
-</ul>
-<ul>
-<li>用 * 星号搜索指定关键词</li>
-</ul>
-<p>在Google中搜索 “amazon * guide”，其中的*号代表任何文字。返回的结果就不仅包含 Amazon Quick Start Guide 还包括 Amazon PPC Guide</p>
-<ul>
-<li>intext: 指返回的页面正文中包含关键词的页面。</li>
-</ul>
-<p>例如：在google中搜索 “intext:amazon ebay wish” 就会返回页面正文中包含 “amazon ebay wish”的页面</p>
-<ul>
-<li>allintitle：搜索返回的是页面标题中包含多组关键词的文件。</li>
-</ul>
-<p>例如：allintitle:amazon ebay wish</p>
-<p>就相当于:intitle:amazon intitle:ebay intitle:wish</p>
-<p>返回的是标题中既包含“amazon”, “ebay” , “wish” 的页面。</p>
-<ul>
-<li>filetype:</li>
-</ul>
-<p>基本查询语法：[关键字1]+ [空格]+[filetype]+[:]+[文件类型标识]　　</p>
-<p>filetype:指令用来搜索特定的资源，比如PDF电子书、Word文件等非常有用。</p>
-<p>例子: SEO filetype:pdf 返回的就是包含SEO这个关键词的所有 PDF文件。</p>
-<ul>
-<li>related:</li>
-</ul>
-<p>查询与某个网站相关联或者相类似的页面</p>
-<p>例如搜索：related:amazon.com，就得出了 Rakuten 等电商平台</p>
-<h4 id="Stack-over-flow"><a href="#Stack-over-flow" class="headerlink" title="Stack over flow"></a>Stack over flow</h4><p>我强烈建议学会使用，并习惯Stackoverflow.。这是个英文网站，很多问题和回答都是英文的，因此最好养成用英文来搜索问题的习惯。想要得到准确的解决方案的前提是能精确定位你的问题，我把它简单概括为三步。<code>第一步：你使用的编程语言是什么</code>.永远在输入问题关键词的时候先输入你使用的是哪种编程语言。<code>第二步：定位你在做什么事情时遇到了什么问题</code>。比如我曾经在使用Anaconda时遇到了安装包装不上的问题，就可以这样描述：Anaconda install package.<code>第三步：复制错误信息</code>。有了这三步，只要你不是第一个遇见某个技术问题的人，你基本就会在 stackoverflow 找到相同或者类似的问题。</p>
-<p>在Stackoverflow上也是可以提问的，但是我建议提问前一定要搜索，当实在找不到答案后再提问。对于那些靠搜索就能得到答案的问题，StackOverFlow 上的广大程序员是毫不留情的，会让你的反对票快速上升。。。如果你问了一些低质量的提问，是会被关闭或者删除的。既然讲到提问，还是要学习一些典型的提问/回答习惯，这里提供一些笔记</p>
-<p>提问：<br>1，In my limited experience with ..    谦虚表达自己在某方面的经验</p>
-<p>2， I am searching for a long time on net. But no use. Please help or try to give some ideas how to achieve this.   找了很久未果，求助</p>
-<p>3，after searching around for a decent XX solution and found that everything out there was difficult to use.  找了N种方法都发现太难了。</p>
-<p>4，I’ ve looked around and apparently I’ve got the choice between these libraries/ solutions:   说明自己是努力搜索过的，然后目前有了哪几种方案</p>
-<p>5，which seems it’s a promising solution.  看起来是一个好解决方案</p>
-<p>6,I haveve tried multiple variations of this, but none of them seem to work. Any ideas? 试了很多种方法都无效，求助</p>
-<p>7，Wanted to know if it’s good practice to do that and what would be the best way to do that? 我的做法是否正确，是否有更好的方法？</p>
-<p>稍微提一句，在它的官方说明里有一段话：Please do not add a comment on your question or on an answer to say “Thank you”. Comments are meant for requesting clarification, leaving constructive criticism, or adding relevant but minor additional information – not for socializing. If you want to say “thank you,” vote on or accept that person’s answer, or simply pay it forward by providing a great answer to someone else’s question.也就是说在提问的时候不要写“Thank you”,你的点赞就是对回答者的感谢。</p>
-<p>之所以写出如何提问，是因为之前老师讲过的提问的智慧让我印象很深刻。当你拋出一个技术问题时，最终是否能得到有用的回答，往往取决于你所提问和追问的方式。 有时候，清晰描述一个问题，特别是技术问题没有想象的那么简单。提问从来就是一门学问，可惜很多人没有意识到这一点，或者没有给予足够的重视。</p>
-<h4 id><a href="#" class="headerlink" title></a></h4><h4 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h4><p>全球最大的同性交友社区，同时也是程序员托管代码的平台，有很多优秀的开源项目。经常去逛逛，说不定会发现惊喜。我来推荐几个收藏的仓库。</p>
-<p>设计工具：<a href="https://github.com/LisaDziuba/Awesome-Design-Tools">https://github.com/LisaDziuba/Awesome-Design-Tools</a></p>
-<p><img src="https://s1.ax1x.com/2020/03/24/8qyNj0.png" alt="8qyNj0.png"></p>
-<p>NLP民工的乐园: 几乎最全的中文资源库<img src="https://s1.ax1x.com/2020/03/24/8qyauV.png" alt="8qyauV.png"></p>
-<p><img src="/2020/03/22/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E9%AB%98%E6%95%88%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98/3.png" alt="image-20200322174721780"></p>
-<p>爬虫集合：<a href="https://github.com/facert/awesome-spider">https://github.com/facert/awesome-spider</a></p>
-<p><img src="https://s1.ax1x.com/2020/03/24/8qyY3n.png" alt="8qyY3n.png"></p>
-<p>以上就是基本介绍，至于怎么访问，相信大家会找到办法的~</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/2020/03/20/%E9%9A%90%E5%96%BB%E7%9A%84%E9%AD%94%E6%B3%95%E5%B8%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="xxxxAmor">
-      <meta itemprop="description" content="Not all girls are made of sugar and spice and everything nice.Some girls are made of adventures,fine beer,brains and no fear">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Geek is the new chic">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/20/%E9%9A%90%E5%96%BB%E7%9A%84%E9%AD%94%E6%B3%95%E5%B8%88/" class="post-title-link" itemprop="url">隐喻的魔法师</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-03-20 21:38:52 / 修改时间：21:40:36" itemprop="dateCreated datePublished" datetime="2020-03-20T21:38:52+08:00">2020-03-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="崔胜铉：隐喻的魔法师"><a href="#崔胜铉：隐喻的魔法师" class="headerlink" title="崔胜铉：隐喻的魔法师"></a>崔胜铉：隐喻的魔法师</h4><p>谈到崔胜铉的作词风格，也许是受其外公-韩国著名作家徐瑾培的影响，他时常有层出不穷的想法。又因为其自身对美术、音乐、建筑、电影等领域广而深的涉猎，最终形成了他善于借用艺术符号，来表达歌曲中的情感和思想的鲜明特征。说人话就是他最近一直处于失联状态，我已经失去了网上冲浪的乐趣，打算全面盘点他在歌曲创作中出现过的，独树一帜的各种艺术隐喻手法，顺便完成艺术史的作业。</p>
-<h5 id="一、《花路》-2018年发行："><a href="#一、《花路》-2018年发行：" class="headerlink" title="一、《花路》- 2018年发行："></a>一、《花路》- 2018年发行：</h5><p><code>歌词：你盛开的时候我看到了一万种花的颜色,无限大的回音 维瓦尔第的四季</code></p>
-<p>个人理解：《四季》，是意大利作曲家安东尼奥·维瓦尔第的一首巴洛克风格的小提琴曲，他是最早用音乐抒写”四季”的音乐家。在这首歌词里，借用《四季》，来表达莽莽穹苍的万生万物，都有可现的情态之意。唯有时光，那昼夜平分的岁月，四时更迭的季节，无形地运行着，犹若流云逝水，去不复归。《四季》的标题分别为：《春》E大调 、《夏》g小调 、《秋》F大调 、《冬》F小调 。构成《四季》的四首协奏曲前都各有一首十四行诗，作为引子藉以描述乐曲的内容，下面是维瓦尔第《四季》十四行诗的中文译本：</p>
-<p>《春 》</p>
-<p>　　春临大地</p>
-<p>　　众鸟欢唱</p>
-<p>　　和风吹拂</p>
-<p>　　溪流低语</p>
-<p>　　天空很快被黑幕遮蔽</p>
-<p>　　雷鸣和闪电宣示暴风雨的前奏</p>
-<p>　　风雨过境 鸟花语再度</p>
-<p>　　奏起和谐乐章</p>
-<p>　　芳草鲜美的草原上</p>
-<p>　　枝叶沙沙作响 喃喃低语</p>
-<p>　　牧羊人安详地打盹</p>
-<p>　　脚旁睡著夏日懒狗</p>
-<p>　　当春临大地 仙女和牧羊人随著风笛愉悦的旋律</p>
-<p>　　在他们的草原上 婆娑起舞</p>
-<p>《夏 》</p>
-<p>　　奄奄一息的人们和动物躺在</p>
-<p>　　绘热无情的太阳底下</p>
-<p>　　松树彷佛就要起火</p>
-<p>　　杜鹃高歌著 加入斑鸠和金翅雀的行列中</p>
-<p>　　微风轻拂</p>
-<p>　　但很快地大风卷起</p>
-<p>　　若有风雨欲来之势</p>
-<p>　　牧羊人被突如其来的狂风惊吓</p>
-<p>　　担心著他的羊群以及自己的命运</p>
-<p>　　他开始忙著做风雨前的准备不安的心在灰暗的天色下</p>
-<p>　　蚊蝇的嗡嗡作响下显得更加孤立无援</p>
-<p>　　终于 他担心的事发生了</p>
-<p>　　雷电交加的狂风暴雨及冰雹</p>
-<p>　　阻挠了他回家的路</p>
-<p>   《秋 》</p>
-<p>　　农人唱歌跳舞</p>
-<p>　　庆祝庄稼的丰收</p>
-<p>　　酒神的琼浆玉液使</p>
-<p>　　众人在欢愉的气氛中沉沉睡去</p>
-<p>　　在歌声及舞蹈停止之时</p>
-<p>　　大地重回宁静</p>
-<p>　　万物随庄稼的人们</p>
-<p>　　在秋高气爽中一同进入梦乡</p>
-<p>　　破晓时分</p>
-<p>　　号角响起</p>
-<p>　　猎人带著猎狗整装待发</p>
-<p>　　鸟兽纷逃 而猎人开始追寻猎物的行踪</p>
-<p>　　一阵枪声剧响夹杂猎狗的狂吠之后</p>
-<p>　　动物四窜奔逃但终奄奄一息</p>
-<p>　　不敌死神的召唤</p>
-<p>《冬 》</p>
-<p>　　人们在冷冽的寒风中</p>
-<p>　　在沁冷的冰雪里 不住发抖</p>
-<p>　　靠著来回跺步来保持体温</p>
-<p>　　但牙齿仍不住地打颤</p>
-<p>　　在滂沱大雨中坐在火炉旁度过</p>
-<p>　　安静而美好的时光 </p>
-<p>　　小心翼翼地踩著步伐前进</p>
-<p>　　深怕一个不留神栽了个跟斗</p>
-<p>　　有时在冰上匆匆滑过</p>
-<p>　　跌坐在雪上 来回地跑步玩耍</p>
-<p>　　直到 冰裂雪融的时刻 听见温暖的南风已轻叩</p>
-<p>　　冷漠的冰雪大门</p>
-<p>　　这是冬天</p>
-<p>　　一个愉快的冬天</p>
-<h5 id="二、《FXXK-IT》-2016年发行"><a href="#二、《FXXK-IT》-2016年发行" class="headerlink" title="二、《FXXK IT》- 2016年发行"></a>二、《FXXK IT》- 2016年发行</h5><p><code>歌词：我是无数人的俘虏/逃到这个地方Papillon/烦恼使我白发渐长</code></p>
-<p>个人理解：“papillon:(巴比龙)法语意为蝴蝶。亦是与肖申克救赎同类型越狱电影《巴比龙》的音译。该片由弗兰克林·斯凡那执导，史蒂夫·麦奎因、达斯汀·霍夫曼主演，于1973年12月16日上映。根据亨利·查理尔的原著改编，主要讲述了一名因冤入狱囚禁于恶魔岛上的犯人一次又一次地逃狱，经过十多年，他头发已白，但仍孤注一掷地抱着一袋椰壳跳下大海逃生的故事。这里借用电影《papillon》，来表达本人即使力量微小,也要执着冲破束缚,追求自由,证明自己的决心,一场与自己的博弈即将到来的心态。</p>
-<p><code>歌词：在没有规则的游戏里/即使你混淆旋律不同的高低音/反正我们定会拒绝/斩钉截铁的告诉你/这是梦想中的eldorado</code></p>
-<p>个人理解：《黄金国》Eldorado ，美国“鬼才作家爱伦坡的诗。《黄金国》创作于1849年，即他病逝的当年，同时也是加州的淘金潮如火如荼之时。这首诗中给出了这样一个怪诞而动人的暗示。与其说他在讥讽那些追求财富者的贪欲，毋宁说他同时也在赞赏这种追求在人性中出自原始的而永恒不灭的动力。</p>
-<p>　</p>
-<p>中文译本：</p>
-<p>身著华丽装饰</p>
-<p>一位英武骑士</p>
-<p>顶着阴侵阳灼</p>
-<p>迈在独往之旅</p>
-<p>哼着一首小曲</p>
-<p>寻找那黄金国</p>
-<p>骑士逐渐老去</p>
-<p>虽然仍在继续</p>
-<p>心间阴影班驳</p>
-<p>他的唯一发现</p>
-<p>是根本找不见</p>
-<p>传说的黄金国</p>
-<p>当他再也无力</p>
-<p>支撑自己之际</p>
-<p>遇到一位影魔</p>
-<p>他向他询问道：</p>
-<p>“我在哪能找到</p>
-<p>那一片黄金国？”</p>
-<p>“上越月亮上的</p>
-<p>那些群山众岭</p>
-<p>下穿阴谷陂陀</p>
-<p>走吧，勇敢走吧”</p>
-<p>影魔如是回答，</p>
-<p>“若寻找黄金国”</p>
-<h5 id="三、《Zutter》-2015年发行"><a href="#三、《Zutter》-2015年发行" class="headerlink" title="三、《Zutter》-2015年发行"></a>三、《Zutter》-2015年发行</h5><p><code>歌词：T.O.P人们称之为鬼神/Da vinci yea my brain</code></p>
-<p>个人理解：Da vinci(达芬奇）不用多做介绍，此处用达芬奇来比作自己的大脑，充分显示了在绘画、建筑、音乐等艺术和人文领域的知识面，创作灵感源源不断从这些层面汇聚而出。</p>
-<p><code>歌词：Francis bacon在我厨房一旁/我仿佛就想考尔德一般/在你头上跳舞</code></p>
-<p>个人理解：弗朗西斯·培根（Francis Bacon，1909-1992年），是一位生于爱尔兰的英国画家。其作品以粗犷，犀利，具强烈暴力与噩梦般的图像著称，他扭曲、变形和模糊的人物画使他成为战后最有争议的画家之一。但这些怪诞形象深刻地揭露了这个世界和人类的灾难，他故意把人的丑陋面貌和痛苦挣扎的表情强调出来。还经常在照片、画报、印刷品等著名画作上进行再加工，创作出仅反映自己的内心幻象和痛苦的肖像作品。</p>
-<p>在这句，我觉得他是在纯粹炫耀自己的富有和无所谓的态度、再牛的作品也只是放在家里厨房一角（从他有一次发在厨房切菜的视频可以看出，他确实是这么干的）。</p>
-<p>亚历山大·考尔德（Alexander Calder，1898年7月22日－1976年11月11日）是美国著名雕塑家、艺术家，动态雕塑（mobile）的发明者，代表作有《龙虾陷阱与鱼尾》。考尔德制作的动态雕塑，或是放在室外，或是悬在金属线上，通过空气的流动或者观赏者的摆弄，每动一下，作品都会展现出不同形态，让观者感觉到空气在流动，空间在转换。同时，他将三维空间之外的另一种感受，即时间的概念融入到雕塑作品创作中。随着雕塑作品的运动，时间也在流淌。他的作品主要是应用大胆基色、巨大，且富有盘旋、漂浮感的活动雕塑作品。考尔德是西方构成雕塑发展中承前启后的雕塑家，是上世纪雕塑的重要革新者之一。</p>
-<p><code>歌词：这好似老千/GD和大吉的合作/开怀大笑吧/我们两个是老千</code></p>
-<p>个人理解：《老千2-神之手》，崔胜铉于2014年担当男主演出的电影，这部电影讲述了大吉进入老千世界后，经历多次命悬一线的赌博的故事。在这首歌中将自己代入成大吉。</p>
-<h5 id="四、《DOOM-DADA》-2013年发行"><a href="#四、《DOOM-DADA》-2013年发行" class="headerlink" title="四、《DOOM DADA》-2013年发行"></a>四、《DOOM DADA》-2013年发行</h5><p><code>歌词：我是21世纪非同凡响的韩国人/拿上麦克风风靡一片的说唱巴斯奎特</code></p>
-<p>个人理解：让·米歇尔·巴斯奎特（Jean-Michel Basquiat）（1960-1988）是二战后美国涂鸦艺术家，新艺术的代表人物之一。他的涂鸦作品经常把各种符号、文字放到画面上，看起来像即兴创作的作品，但是他作为生活在白人世界的黑人艺术家，在这些涂鸦绘画和文字的背后是他的冷静思考，表达了某种神秘性，好像在传达一种宗教感和无处不在的政治。作品常常使用简便、便宜的材料，丙烯油画棒的结合使用在其作品中非常常见。二十世纪八十年代早期是表现主义绘画复兴的一段时期，巴斯奎特则是这一运动中的领军人物。他的作品个性鲜明，广泛的使用文字和拼贴技法，并大范围的借鉴现代文化的主题和非洲加勒比地区的文化传统。他在音乐、语言和自身文化的传承方面兴味盎然，这对他的作品产生了重要的影响。代表作有《拿波里来的人》（《那不勒斯来的人》），《乘坐死亡》等等。</p>
-<p>巴斯奎特的地位和其涂鸦艺术在世界范围内的影响力可见一斑，神秘性、宗教感、政治意味是巴斯奎特作品的三要素，这三点也正好符合《DoomDADA》这首歌的主旨和氛围。巴斯奎特对崔胜铉的影响很大，细心朋友们可以发现，其在2015年的发型也酷似巴斯奎特。2016年于中国五大杂志的第一封封面拍摄，后面的背景墙是专为拍摄而做的涂鸦墙，2014年Bigbang巡演时，《How Gee》出场视频也是运用涂鸦手法来表现。</p>
-<p><code>歌词：过热的媒体/Hakunamatata Hakunamatata/驱赶着人们</code></p>
-<p>个人理解：Hakunamatata 哈库那玛塔塔 ，是一句古老而神奇的非洲谚语，意为从此以后无忧无虑，梦想成真。</p>
-<h5 id="五、《Turn-It-Up》-2010年发行"><a href="#五、《Turn-It-Up》-2010年发行" class="headerlink" title="五、《Turn It Up》- 2010年发行"></a>五、《Turn It Up》- 2010年发行</h5><p><code>歌词：伴随着温暖怡人的茶/一起欣赏萦绕的雷·查尔斯</code></p>
-<p>个人理解：雷·查尔斯（Ray Charles，1930年9月23日—2004年6月10日），出生于美国佐治亚州，美国灵魂音乐家、钢琴演奏家。雷·查尔斯开创了节奏布鲁斯音乐，是第一批被列入摇滚名人堂的人物之一，《滚石杂志》亦把他列为“100个最伟大的艺人”中的第2位。法兰克·辛纳屈称他为“音乐界唯一的天才”。2004年雷·查尔斯去世后，按照其生平拍摄记录影片《灵魂歌王》。辉煌背后是迥异于常人的波折和磨难。他出身于贫穷的黑人家庭，童年亲眼目睹弟弟溺水身亡事件形成了折磨他一生的创伤和阴影，七岁时双目失明，其后他精神支柱之一的母亲又离开了人世，而他的音乐创作起初也并不得到世人的认可，各大音乐电台甚至曾经联手封杀了他，雷吸毒、戒毒，爱情颠簸坎坷。他在音乐中自救，被音乐拯救，也拯救了音乐。他创作了第一首真正的美国黑人歌曲，共13次获得代表美国流行音乐最高荣誉的格莱美奖，并于1987年获得格莱美终身成就奖。而他的最大贡献在于上世纪50年代首开“灵乐”先河。</p>
-<h5 id="六、《一见倾心》-2010年发表"><a href="#六、《一见倾心》-2010年发表" class="headerlink" title="六、《一见倾心》- 2010年发表"></a>六、《一见倾心》- 2010年发表</h5><p><code>歌词：我的嗓音相当好/Sweet Medusa</code></p>
-<p>个人理解：这是与组合成员GD的合作曲，各自Rap部分为对方互写，这句歌词出自于崔胜铉之手。美杜莎（希腊语：Μέδουσα、英语：Medusa），是古希腊神话中的蛇发女妖，戈耳工三姐妹之一。在古希腊，美杜莎是天生妖怪，而在罗马时期，罗马诗人奥维德却将希腊神话做出巨大改编，在他的诗歌《变形记》中（4.793-803）说：美杜莎原本是一个美丽女子，特别以头发美丽著称。他是我所知道的唯一一个夸权志龙嗓音是美杜莎的人。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -2271,14 +2269,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -2314,12 +2312,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">145k</span>
+    <span title="站点总字数">150k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:12</span>
+    <span title="站点阅读时长">2:16</span>
 </div>
   <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
   </div>

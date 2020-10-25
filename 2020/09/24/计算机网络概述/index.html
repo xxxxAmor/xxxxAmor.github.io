@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="计算机网络的组成及功能计算机网络的定义 从技术上讲：计算机网络是计算机技术和通信技术相结合的产物，通过计算机来处理各种数据，再通过各种通信线路实现数据的传输。 从组成结构上讲：计算机网络是通过外围设备和连线，将分布在相同或不同地域的多台计算机连接在一起所形成的集合  从应用的角度上讲： 只要将具有独立功能的多台计算机连接在一起，能够实现各计算机信息的交换，并可共享计算机资源的系统便可称为网络  综">
+<meta name="keywords" content="计算机网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络概述">
+<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;2020&#x2F;09&#x2F;24&#x2F;%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0&#x2F;index.html">
+<meta property="og:site_name" content="Geek is the new chic">
+<meta property="og:description" content="计算机网络的组成及功能计算机网络的定义 从技术上讲：计算机网络是计算机技术和通信技术相结合的产物，通过计算机来处理各种数据，再通过各种通信线路实现数据的传输。 从组成结构上讲：计算机网络是通过外围设备和连线，将分布在相同或不同地域的多台计算机连接在一起所形成的集合  从应用的角度上讲： 只要将具有独立功能的多台计算机连接在一起，能够实现各计算机信息的交换，并可共享计算机资源的系统便可称为网络  综">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.nlark.com&#x2F;yuque&#x2F;0&#x2F;2020&#x2F;png&#x2F;2050808&#x2F;1600490468429-337acb22-1c6d-4a43-a263-660d64255402.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.nlark.com&#x2F;yuque&#x2F;0&#x2F;2020&#x2F;png&#x2F;2050808&#x2F;1600490468443-e18a0a89-6f75-4cad-8518-ba42af065506.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.nlark.com&#x2F;yuque&#x2F;0&#x2F;2020&#x2F;png&#x2F;2050808&#x2F;1599354714336-50f0ab59-065d-4d38-900c-1bd17e018f7c.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.nlark.com&#x2F;yuque&#x2F;0&#x2F;2020&#x2F;png&#x2F;2050808&#x2F;1599355243960-7a94802c-ad92-4052-8c2a-ec67d5e730de.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.nlark.com&#x2F;yuque&#x2F;0&#x2F;2020&#x2F;png&#x2F;2050808&#x2F;1599355285982-35c77ece-9b2c-4d81-8caa-60a1d46a6f43.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.nlark.com&#x2F;yuque&#x2F;0&#x2F;2020&#x2F;png&#x2F;2050808&#x2F;1599355345001-d7a8a002-ae9a-44f7-a8e9-f605c26fca12.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.nlark.com&#x2F;yuque&#x2F;0&#x2F;2020&#x2F;png&#x2F;2050808&#x2F;1600490468458-6c0407c5-e422-4597-a161-874d4662ac16.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.nlark.com&#x2F;yuque&#x2F;0&#x2F;2020&#x2F;png&#x2F;2050808&#x2F;1600490468498-e496a981-2d82-4228-aa01-a63b3634ab54.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.nlark.com&#x2F;yuque&#x2F;0&#x2F;2020&#x2F;png&#x2F;2050808&#x2F;1599359187932-6b5aa7ea-14a4-4a99-a846-c6b7c7fcabd5.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.nlark.com&#x2F;yuque&#x2F;0&#x2F;2020&#x2F;png&#x2F;2050808&#x2F;1599359209918-3ec22a7e-a88d-41f4-8b51-41b8e70d7015.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.nlark.com&#x2F;yuque&#x2F;0&#x2F;2020&#x2F;png&#x2F;2050808&#x2F;1599482815052-81e4d28b-2559-4b77-8ad6-ccd9f93c5b85.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.nlark.com&#x2F;yuque&#x2F;0&#x2F;2020&#x2F;png&#x2F;2050808&#x2F;1599483665198-b098d06f-792e-45f9-b423-fbd07bcd3ab2.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.nlark.com&#x2F;yuque&#x2F;0&#x2F;2020&#x2F;png&#x2F;2050808&#x2F;1599484384935-f506b710-fcba-402f-bbc1-11e9a613bd21.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.nlark.com&#x2F;yuque&#x2F;0&#x2F;2020&#x2F;png&#x2F;2050808&#x2F;1599484535286-e557ea5c-bff0-4147-a5d1-352163f4540d.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.nlark.com&#x2F;yuque&#x2F;0&#x2F;2020&#x2F;png&#x2F;2050808&#x2F;1599485192000-fb82dd0e-b390-45ed-8901-0a4d0df8512b.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.nlark.com&#x2F;yuque&#x2F;0&#x2F;2020&#x2F;png&#x2F;2050808&#x2F;1599485357457-5f11bda5-8605-47f7-840f-76973b383da1.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.nlark.com&#x2F;yuque&#x2F;0&#x2F;2020&#x2F;png&#x2F;2050808&#x2F;1599485447969-bff91b71-3805-4c30-b11f-473f851b7d5a.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.nlark.com&#x2F;yuque&#x2F;0&#x2F;2020&#x2F;png&#x2F;2050808&#x2F;1600429069822-f663c708-3698-4c17-a467-128e5185378e.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;cdn.nlark.com&#x2F;yuque&#x2F;0&#x2F;2020&#x2F;png&#x2F;2050808&#x2F;1600429436805-4ec6996d-ee53-4fe8-9254-2715c001592e.png">
+<meta property="og:updated_time" content="2020-10-25T12:57:30.873Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;cdn.nlark.com&#x2F;yuque&#x2F;0&#x2F;2020&#x2F;png&#x2F;2050808&#x2F;1600490468429-337acb22-1c6d-4a43-a263-660d64255402.png">
+
+<link rel="canonical" href="https://github.com/2020/09/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>计算机网络概述 | Geek is the new chic</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Geek is the new chic</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/2020/09/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="xxxxAmor">
+      <meta itemprop="description" content="Not all girls are made of sugar and spice and everything nice.Some girls are made of adventures,fine beer,brains and no fear">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Geek is the new chic">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算机网络概述
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-24 15:13:33" itemprop="dateCreated datePublished" datetime="2020-09-24T15:13:33+08:00">2020-09-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-25 20:57:30" itemprop="dateModified" datetime="2020-10-25T20:57:30+08:00">2020-10-25</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="计算机网络的组成及功能"><a href="#计算机网络的组成及功能" class="headerlink" title="计算机网络的组成及功能"></a>计算机网络的组成及功能</h2><p>计算机网络的定义</p>
+<p>从技术上讲：计算机网络是计算机技术和通信技术相结合的产物，通过计算机来处理各种数据，再通过各种通信线路实现数据的传输。</p>
+<p>从组成结构上讲：计算机网络是通过外围设备和连线，将分布在相同或不同地域的多台计算机连接在一起所形成的集合 </p>
+<p>从应用的角度上讲： 只要将具有独立功能的多台计算机连接在一起，能够实现各计算机信息的交换，并可共享计算机资源的系统便可称为网络 </p>
+<p>综上，计算机网络是利用<strong>通信线路和通信设备</strong>，按照一定的连接方法，将分布在不同地点的具有独立功能的<strong>多台计算机</strong>相互连接在一起，在<strong>网络软件</strong>的支持下进行数据通信，实现资源共享和信息传递的系统。 </p>
+<p>计算机网络的功能</p>
+<p>1．资源共享，互补有无  2．提高系统可靠性和可用性  3．节省费用，提高性价比  4．通信手段  5．远程文件传输  6．分布处理  7．娱乐  </p>
+<p>计算机网络最重要的功能：</p>
+<p><strong>连通性</strong>——计算机网络使上网用户之间都可以交换信息，好像这些用户的计算机都可以彼此直接连通一样。  </p>
+<p><strong>共享</strong>——即资源共享。可以是信息共享、软件共享，也可以是硬件共享</p>
+<p>计算机网络的组成</p>
+<p>网络结点等概念：</p>
+<p><em>结点</em>：结点，也称为“站”，一般是指网络中的计算机，交换机，路由器等网络设备。结点可分为访问结点和转发结点两类。</p>
+<p><em>链路</em>：链路是指从一个结点到相邻结点的一段物理线路，中间没有其他交换结点</p>
+<p><strong>网络由若干结点和连接这些结点的链路组成</strong></p>
+<p><em>互连网：</em>一些相互连接的计算机网络的集合。</p>
+<p><em>互联网</em>：是互连网的同义词。互联网是“网络的网络”(network of networks)。网络把许多计算机连接在一起。互联网则把许多网络连接在一起。<strong>因特网是世界上最大的互联网</strong></p>
+<p><em>internet</em>：以小写字母 i 开始的 internet（互联网或互连网）是一个通用名词，它泛指由多个计算机网络互连而成的网络。</p>
+<p><em>Internet</em>：以大写字母I开始的的 Internet则是一个专用名词，它指当前全球最大的、开放的、由众多网络相互连接而成的特定计算机网络，它采用 TCP/IP 协议族作为通信的规则，且其前身是美国的 ARPANET。 Internet 的推荐译名是“因特网” 。<strong>连接在因特网上的计算机都称为主机。</strong></p>
+<p>**<br>**</p>
+<p>计算机网络系统的构型</p>
+<p>一般说来，在多个结点需要互相连接以构成网络时，希望每一个结点与其他的结点都有直接的点到点的通信线路，这种情况称为全连通的网络拓扑。如果有N个节点，就要求网络有N（N-1）/2条全双工的链路，且每一结点上的装置设备要有（N-1）个输入/输出端口。因为系统的成本、安装费用等随着节点数量的平方增长，当N很大时，这显然是不现实的。因此，所有网络都采用全连通的方法是不可行的</p>
+<p>计算机网络系统的组成</p>
+<ol>
+<li>按系统划分：计算机网络硬件系统，计算机网络软件系统</li>
+<li>按逻辑划分：计算机网络从逻辑结构上可以分成两部分：负责数据处理、向网络用户提供各种网络资源及网络服务的外层用户<strong>资源子网</strong>和负责数据转发的内层<strong>通信子网</strong>。</li>
+</ol>
+<p>网络基本组成</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1600490468429-337acb22-1c6d-4a43-a263-660d64255402.png" alt="img"></p>
+<p><em>三个部分</em>：若干台主机，通信子网，一系列协议</p>
+<p><em>两级子网</em>：资源子网，通信子网</p>
+<p><strong>资源子网</strong>：由主机，工作站，终端，外设，程序，数据等组成。作用是共享资源。</p>
+<p><strong>通信子网</strong>：通信子网是计算机网络中负责数据通信的部分，传输介质可以是架空明线、双绞线、同轴电缆、光纤等有线通信线路，也可以是微波、通信卫星等无线通信线路。</p>
+<p>它由结点交换机（也叫端点N、前端处理机 FEP、通信控制处理机CCP、中间数据处理机IMP）、传输介质组成，作用有：远程传输、路由选择、差错处理，流量控制 </p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1600490468443-e18a0a89-6f75-4cad-8518-ba42af065506.png" alt="img"></p>
+<p>因特网</p>
+<p>因特网的组成：</p>
+<p>从因特网的工作方式上看，可以划分为以下的两大块： (1) 边缘部分：由所有连接在因特网上的主机组成。这部分是用户直接使用的，用来进行通信（传送数据、音频或视频）和资源共享。 (2) 核心部分：由大量网络和连接这些网络的路由器组成。这部分是为边缘部分提供服务的（提供连通性和交换）。</p>
+<p> <img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1599354714336-50f0ab59-065d-4d38-900c-1bd17e018f7c.png" alt="image.png"></p>
+<p><strong>边缘部分</strong>：处在因特网边缘的部分就是连接在因特网上的所有的主机。这些主机又称为<strong>端系统(end system)。</strong>主机的用途是为用户进行信息处理的，并且可以和其他主机通过网络交换信息。 “主机 A 和主机 B 进行通信”，实际上是指：“运行在主机 A 上的某个程序和运行在主机 B 上的另一个程序进行通信”。 即“主机 A 的某个进程和主机 B 上的另一个进程进行通信”。或简称为“计算机之间通信”  </p>
+<p><strong>核心部分：</strong>因特网的核心部分是由许多网络和把它们互连起来的路由器组成。在因特网核心部分的路由器之间一般都用高速链路相连接，而在网络边缘的主机接入到核心部分则通常以相对较低速率的链路相连接。路由器是用来转发分组的，即进行分组交换的。</p>
+<p>因特网的机构</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1599355243960-7a94802c-ad92-4052-8c2a-ec67d5e730de.png" alt="image.png"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1599355285982-35c77ece-9b2c-4d81-8caa-60a1d46a6f43.png" alt="image.png"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1599355345001-d7a8a002-ae9a-44f7-a8e9-f605c26fca12.png" alt="image.png"></p>
+<h2 id="计算机网络的分类"><a href="#计算机网络的分类" class="headerlink" title="计算机网络的分类"></a>计算机网络的分类</h2><p>根据网络的传输技术进行分类</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1600490468458-6c0407c5-e422-4597-a161-874d4662ac16.png" alt="img"></p>
+<p>根据网络的覆盖范围进行分类</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1600490468498-e496a981-2d82-4228-aa01-a63b3634ab54.png" alt="img"></p>
+<p>根据网络的拓扑结构进行分类</p>
+<p>计算机网络拓扑是通过网中节点与通信线路之间的几何关系表示网络结构，反映出网络中各实体间的结构关系。拓扑设计是建设计算机网络的首步，也是实现各种网络协议的基础，它对网络性能、系统可靠性与通信费用都有重大影响。<strong>计算机网络拓扑主要是指通信子网的拓扑构型。</strong></p>
+<p><strong>网络拓扑分类方法</strong></p>
+<p>1、点到点线路通信子网的拓扑。    </p>
+<p>在采用点到点线路的通信子网中，每条物理线路连接一对节点。采用点到点线路的通信子网的基本拓扑构型有：集中式、分散式、分布式。</p>
+<p> 2、广播信道通信子网的拓扑。    </p>
+<p>在采用广播信道通信子网中，一个公共的通信信道被多个网络节点共享。采用广播信道通信子网的基本拓扑构型主要有四种：总线型、环型、树型、无线通信与卫星通信型。 </p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1599359187932-6b5aa7ea-14a4-4a99-a846-c6b7c7fcabd5.png" alt="image.png"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1599359209918-3ec22a7e-a88d-41f4-8b51-41b8e70d7015.png" alt="image.png"></p>
+<h2 id="交换方式"><a href="#交换方式" class="headerlink" title="交换方式"></a>交换方式</h2><p>“交换”(switching)的含义就是<strong>转接</strong>——把一条电话线转接到另一条电话线，使它们连通起来。   </p>
+<p> 从通信资源的分配角度来看，“交换”就是按照某种方式<strong>动态地分配</strong>传输线路的资源。</p>
+<p>电路交换</p>
+<p>模型：电话系统 </p>
+<p>原理：通信要经过三个过程：建立连接、传输数据、拆除连接。     </p>
+<p>进行通信的一对端点间有一条物理通道，由一系列的中间结点和物理线路构成。通信过程中，这对端点独占该条物理通道，直至通信线路被取消。 </p>
+<p>电路交换必是面向连接的 。</p>
+<p><strong>必须经过“建立连接”（占用通信资源）-&gt;通话（一直占用通信资源）-&gt;释放连接（归还通信资源）三个步骤的交换方式称为电路交换</strong>。</p>
+<p>电路交换的特点</p>
+<p>1.通话前先拨号建立连接。 </p>
+<ul>
+<li>可能只要经过一个交换机（如 A 到 B）</li>
+<li>可能要经过多个交换机（如 C 到 D） </li>
+</ul>
+<p>2.通话过程中，通信双方一直占用所建立的连接。 </p>
+<p>3.通话结束后，挂机释放连接。 </p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1599482815052-81e4d28b-2559-4b77-8ad6-ccd9f93c5b85.png" alt="image.png"></p>
+<p>4.建链时间长  </p>
+<p>5.通信时独占线路  </p>
+<p>6.速率不能自适配  </p>
+<p>7.计算机通信数据具有突发性，效率低    </p>
+<p>电路交换适用于大量数据传输及对时延敏感的应用。如网络文件下载，语音业务等。</p>
+<p>报文交换</p>
+<p>模型：电报系统 </p>
+<p>原理：报文交换的结点先将报文完整地接收，存储在硬盘中，等输出线路空闲时再转发到下一结点。 </p>
+<p>报文是一个包含目的地址等格式的信息包。根据收到报文的目的地，中间结点为报文选择路径和进行一些必要的处理，报文沿着线路逐段传送，不需要事先建立一条物理线路。</p>
+<p>报文交换的特点</p>
+<ul>
+<li>不存在建链时的呼叫损失  </li>
+<li>线路不独占利用率高  可靠性好  </li>
+<li>速率自适配  </li>
+<li>结点延迟时间较长  </li>
+<li>对结点的容量要求高、报文长度没有限制，不适合交互通信。 </li>
+</ul>
+<p>分组交换（包交换） </p>
+<p>通常我们把要发送的整块数据称为一个<strong>报文</strong>。在发送报文之前，先把较长的报文划分成一个个更小的等长数据段，在每一个数据段的前面，加上一些由必要的控制信息组成的<strong>首部</strong>后，就构成了一个<strong>分组</strong>。分组又可称为<strong>包</strong>，分组的首部可称为“<strong>包头</strong>”</p>
+<p>原理：将报文分割成具有固定长度的数据包，每个包含有目的端地址和控制信息。传输以数据包形式传送。属于同一个报文的数据包发送顺序可以无序，目的端重新组装成报文交给用户。  </p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1599483665198-b098d06f-792e-45f9-b423-fbd07bcd3ab2.png" alt="image.png"></p>
+<p><strong>每一个</strong>分组的首部都含有<strong>地址</strong>等控制信息。 分组交换网中的结点交换机根据收到的分组的首部中的<strong>地址信息</strong>，把分组<strong>转发</strong>到下一个结点交换机。 用这样的<strong>存储转发</strong>方式，最后分组就能到达<strong>最终目的地</strong>。 </p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1599484384935-f506b710-fcba-402f-bbc1-11e9a613bd21.png" alt="image.png"></p>
+<p>分组交换的特点</p>
+<ul>
+<li>不存在建链时的呼叫损失   </li>
+<li>线路分段占用   </li>
+<li>链路共享、可靠性好   </li>
+<li>速率自适配   </li>
+<li>减少结点延迟时间、效率高</li>
+</ul>
+<p>分组交换的缺点</p>
+<ul>
+<li>仍然存在结点转发时延  </li>
+<li>信息附带额外空间开销控制分组和组装  </li>
+<li>管理复杂  </li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1599484535286-e557ea5c-bff0-4147-a5d1-352163f4540d.png" alt="image.png"></p>
+<h2 id="主要性能指标"><a href="#主要性能指标" class="headerlink" title="主要性能指标"></a>主要性能指标</h2><p>速率</p>
+<ul>
+<li><strong>比特（bit）</strong>是计算机中数据量的单位，也是信息论中使用的信息量的单位。意思是一个“<strong>二进制数字</strong>”，因此一个比特就是二进制数字中的一个 1 或 0。</li>
+<li>速率即<strong>数据率(data rate)或比特率(bit rate)</strong>是计算机网络中最重要的一个性能指标。在信道上传输数据的速率，速率的单位是 b/s，或kb/s, Mb/s, Gb/s 等 </li>
+<li>速率往往是指<strong>额定速率</strong>或<strong>标称速率</strong>。  </li>
+</ul>
+<p>带宽</p>
+<ul>
+<li>“带宽”(bandwidth)本来是指信号具有的频带宽度，单位是赫（或千赫、兆赫、吉赫等）。 </li>
+<li>现在“带宽”是数字信道所能传送的“最高数据率”的同义语，表示在单位时间内网络中的某信道所能通过的<strong>最高数据率</strong>，单位是“比特每秒”，或 b/s (bit/s)</li>
+</ul>
+<p>更常用的带宽单位是 千比每秒，即 kb/s （103 b/s） 兆比每秒，即 Mb/s（106 b/s） 吉比每秒，即 Gb/s（109 b/s） 太比每秒，即 Tb/s（1012b/s） </p>
+<p>请注意：在计算机界，K = 210 = 1024   M = 220, G = 230, T = 240。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1599485192000-fb82dd0e-b390-45ed-8901-0a4d0df8512b.png" alt="image.png"></p>
+<p>吞吐量</p>
+<ul>
+<li>吞吐量(throughput)表示在单位时间内通过某个网络（或信道、接口）的实际的数据量。 </li>
+<li>吞吐量更经常地用于对现实世界中的网络的一种测量，以便知道实际上到底有多少数据量能够通过网络。</li>
+<li>吞吐量受网络的带宽或网络的额定速率的限制。  </li>
+</ul>
+<p>时延</p>
+<p>时延是指数据从网络一端传到另一端所需的时间</p>
+<p>时延组成：  </p>
+<ul>
+<li>传播时延，信号在信道中传播需要的时间   </li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1599485357457-5f11bda5-8605-47f7-840f-76973b383da1.png" alt="image.png"></p>
+<p>信号传输速率（即发送速率）和信号在信道上的传播速率是完全不同的概念。 </p>
+<ul>
+<li>发送时延，发送数据需要的时间 。也就是从发送数据帧的第一个比特算起，到该帧的最后一个比特发送完毕所需的时间。提高链路带宽可以减小数据的发送时延</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1599485447969-bff91b71-3805-4c30-b11f-473f851b7d5a.png" alt="image.png"></p>
+<ul>
+<li>排队时延，数据在交换结点等候发送的排队时间，取决于网络状态：通信量大小、缓冲能力。   </li>
+<li>处理时延，交换结点为存储转发而进行一些必要的处理所花费的时间 </li>
+</ul>
+<p>各部分时延关系</p>
+<ul>
+<li>大数据块，发送时间长，传输时延所占比例大。  </li>
+<li>小数据块，发送时间短，传输时延所占比例小。</li>
+</ul>
+<p>时延带宽积</p>
+<p>链路的时延带宽积含义为<strong>链路可容纳的比特数</strong>，又称为以比特为单位的链路长度</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1600429069822-f663c708-3698-4c17-a467-128e5185378e.png" alt="image.png"></p>
+<p>往返时延</p>
+<p>往返时延是指发送开始到收到收方确认的时间</p>
+<p>利用率</p>
+<p><strong>信道利用率</strong>指出某信道有百分之几的时间是被利用的（有数据通过）。完全空闲的信道的利用率是零。 </p>
+<p><strong>网络利用率</strong>则是全网络的信道利用率的加权平均值。 </p>
+<p>信道利用率并非越高越好。</p>
+<p>时延与网络利用率的关系</p>
+<p>根据排队论的理论，当某信道的利用率增大时，该信道引起的时延也就迅速增加</p>
+<p>错误概念</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2050808/1600429436805-4ec6996d-ee53-4fe8-9254-2715c001592e.png" alt="image.png"></p>
+<p><strong>宽带线路</strong>是指每秒有更多比特从计算机注入到线路。 宽带线路和窄带线路上比特的传播速率是一样的。</p>
+
+    </div>
+
+    
+    
+    
+	  
+	  <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag"># 计算机网络</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/24/test/" rel="prev" title="test">
+      <i class="fa fa-chevron-left"></i> test
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机网络的组成及功能"><span class="nav-text">计算机网络的组成及功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机网络的分类"><span class="nav-text">计算机网络的分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#交换方式"><span class="nav-text">交换方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主要性能指标"><span class="nav-text">主要性能指标</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="xxxxAmor"
+      src="/images/touxiang.jpg">
+  <p class="site-author-name" itemprop="name">xxxxAmor</p>
+  <div class="site-description" itemprop="description">Not all girls are made of sugar and spice and everything nice.Some girls are made of adventures,fine beer,brains and no fear</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+  
+
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Amor</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">150k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:16</span>
+</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/chitose.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":"True#是否在手机端显示"},"log":false});</script></body>
+</html>
